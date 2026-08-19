@@ -7,6 +7,7 @@ const theme = createTheme({
     primary: {
       main: "#0F766E",
     },
+
     secondary: {
       main: "#F59E0B",
     },
@@ -18,8 +19,18 @@ const theme = createTheme({
 
     text: {
       primary: "#1F2937",
+      secondary: "#6B7280",
+    },
+
+    error: {
+      main: "#DC2626",
+    },
+
+    success: {
+      main: "#16A34A",
     },
   },
+
   typography: {
     fontFamily: "var(--font-peyda), sans-serif",
   },
