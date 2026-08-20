@@ -3,6 +3,12 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import Logo from "./Logo";
+import Search from "./Search";
+import Location from "./Location";
+import Support from "./Support";
+import Auth from "./Auth";
+import Cart from "./Cart";
 
 import {
   AppBar,
@@ -112,108 +118,13 @@ const Header = () => {
           }}
         >
           {/* Logo */}
-          <Box
-            sx={{
-              flexShrink: 0,
-              display: "flex",
-              alignItems: "center",
-            }}
-          >
-            <Link href="/">
-              <Image
-                src="/logo/logo.png"
-                alt="کالاچی"
-                width={175}
-                height={65}
-                priority
-              />
-            </Link>
-          </Box>
+          <Logo />
 
           {/* Search */}
-          <Box
-            sx={{
-              width: "100%",
-              maxWidth: 500,
-            }}
-          >
-            <TextField
-              fullWidth
-              size="small"
-              placeholder="جستجوی محصول..."
-              sx={{
-                "& .MuiOutlinedInput-root": {
-                  height: 48,
-                  borderRadius: 2.5,
-                  bgcolor: "background.default",
-
-                  "& fieldset": {
-                    borderColor: "#E5E7EB",
-                  },
-
-                  "&:hover fieldset": {
-                    borderColor: "#E5E7EB",
-                  },
-
-                  "&.Mui-focused fieldset": {
-                    borderColor: "#E5E7EB",
-                  },
-                },
-
-                "& .MuiInputBase-input": {
-                  textAlign: "right",
-                },
-              }}
-              slotProps={{
-                input: {
-                  startAdornment: (
-                    <InputAdornment position="end">
-                      <IconButton
-                        size="small"
-                        aria-label="جستجو"
-                        sx={{
-                          width: 40,
-                          height: 40,
-                          bgcolor: "primary.main",
-                          color: "#fff",
-                          borderRadius: 2,
-
-                          "&:hover": {
-                            bgcolor: "primary.main",
-                          },
-                        }}
-                      >
-                        <SearchOutlined />
-                      </IconButton>
-                    </InputAdornment>
-                  ),
-
-                  endAdornment: (
-                    <InputAdornment position="start">
-                      <IconButton
-                        size="small"
-                        aria-label="جستجوی تصویری"
-                        sx={{ color: "text.secondary" }}
-                      >
-                        <CameraAltOutlined />
-                      </IconButton>
-                    </InputAdornment>
-                  ),
-                },
-              }}
-            />
-          </Box>
+          <Search />
 
           {/* Location */}
-          <Button
-            startIcon={<LocationOnOutlined />}
-            sx={{
-              ...navButtonSx,
-              flexShrink: 0,
-            }}
-          >
-            انتخاب شهر
-          </Button>
+          <Location />
         </Box>
 
         {/* Other Actions */}
@@ -226,26 +137,11 @@ const Header = () => {
             pl: 2,
           }}
         >
-          <IconButton sx={{ color: "text.secondary" }}>
-            <PhoneOutlined />
-          </IconButton>
 
-          <Button
-            sx={{
-              minWidth: "auto",
-              color: "text.primary",
-              fontWeight: 700,
-              whiteSpace: "nowrap",
-            }}
-          >
-            ورود / ثبت‌نام
-          </Button>
+          <Support />
+          <Auth />
 
-          <IconButton sx={{ color: "text.secondary" }}>
-            <Badge badgeContent={3} color="secondary">
-              <ShoppingCartOutlined />
-            </Badge>
-          </IconButton>
+          <Cart />
         </Box>
       </Toolbar>
 
@@ -329,6 +225,8 @@ const Header = () => {
               <MenuItem
                 key={item}
                 onClick={closeProductsMenu}
+                component={Link}
+                href={`/products/${item.toLowerCase()}`}
               >
                 {item}
               </MenuItem>
