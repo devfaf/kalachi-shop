@@ -3,14 +3,16 @@ import Image from "next/image";
 import Link from "next/link";
 import {
     KeyboardArrowDownOutlined,
-    HomeOutlined,
-    Inventory2Outlined,
     QuestionMarkOutlined,
-    LocalShippingOutlined,
-    ArticleOutlined,
-    ContactPhoneOutlined,
     LocalOfferOutlined,
 } from "@mui/icons-material";
+import { PiList } from "react-icons/pi";
+import { HiOutlineHome } from "react-icons/hi2";
+import { AiOutlineShop } from "react-icons/ai";
+import { TbTruckDelivery } from "react-icons/tb";
+import { RxFileText } from "react-icons/rx";
+import { BsTelephone } from "react-icons/bs";
+
 import { useState } from "react";
 import { categories, productsMenu } from "../Header/data/navigation";
 import { navButtonSx } from "../Header/style/navButtonStyle"
@@ -51,9 +53,8 @@ const Navigation = () => {
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "space-between",
-                minHeight: 56,
-                px: { xs: 2, md: 4 },
-                borderTop: "1px solid #F0F0F0",
+                minHeight: 50,
+                px: { md: 2 },
                 bgcolor: "background.paper",
                 overflowX: "auto",
             }}
@@ -68,13 +69,12 @@ const Navigation = () => {
             >
                 {/* Category */}
                 <Button
-                    startIcon={<Inventory2Outlined />}
+                    startIcon={<PiList />}
                     endIcon={<KeyboardArrowDownOutlined />}
                     onClick={openCategoryMenu}
                     sx={{
                         ...navButtonSx,
-                        color: "primary.main",
-                        fontWeight: 700,
+                        color: "text.primary",
                     }}
                 >
                     دسته‌بندی کالاها
@@ -99,15 +99,25 @@ const Navigation = () => {
                 <Button
                     component={Link}
                     href="/"
-                    startIcon={<HomeOutlined />}
-                    sx={navButtonSx}
+                    startIcon={<HiOutlineHome />}
+                    sx={{
+                        ...navButtonSx,
+                        color: "text.primary",
+                    }}
                 >
                     صفحه اصلی
                 </Button>
 
                 {/* Products */}
                 <Button
-                    startIcon={<Inventory2Outlined />}
+                    startIcon={
+                        <Box
+                            component={AiOutlineShop}
+                            sx={{
+                                strokeWidth: .5,
+                            }}
+                        ></Box>
+                    }
                     endIcon={<KeyboardArrowDownOutlined />}
                     onClick={openProductsMenu}
                     sx={navButtonSx}
@@ -146,7 +156,13 @@ const Navigation = () => {
                 <Button
                     component={Link}
                     href="/track-order"
-                    startIcon={<LocalShippingOutlined />}
+                    startIcon={
+                        <Box
+                            component={TbTruckDelivery}
+                            sx={{
+                                strokeWidth: 1.5,
+                            }}
+                        ></Box>}
                     sx={navButtonSx}
                 >
                     پیگیری سفارش
@@ -156,7 +172,12 @@ const Navigation = () => {
                 <Button
                     component={Link}
                     href="/blog"
-                    startIcon={<ArticleOutlined />}
+                    startIcon={
+                        <Box
+                            component={RxFileText}
+                        >
+
+                        </Box>}
                     sx={navButtonSx}
                 >
                     بلاگ
@@ -166,7 +187,16 @@ const Navigation = () => {
                 <Button
                     component={Link}
                     href="/contact"
-                    startIcon={<ContactPhoneOutlined />}
+                    startIcon={
+                        <Box
+                            component={BsTelephone}
+                            sx={{
+                                fontSize: "18px !important"
+                            }}
+                        >
+
+                        </Box>
+                    }
                     sx={navButtonSx}
                 >
                     تماس با ما
@@ -177,14 +207,27 @@ const Navigation = () => {
             <Button
                 component={Link}
                 href="/special-offers"
-                startIcon={<LocalOfferOutlined />}
                 sx={{
                     ...navButtonSx,
-                    color: "secondary.main",
+                    color: "text.primary",
                     fontWeight: 700,
                     flexShrink: 0,
                     ml: 3,
+                    "&:hover": {
+                        color: "primary.main",
+                    }
                 }}
+                startIcon={
+                    <Box
+                        component={LocalOfferOutlined}
+                        sx={{
+                            fontWeight: 700,
+                            color:"primary.main"
+                        }}
+                    >
+
+                    </Box>
+                }
             >
                 فروش ویژه
             </Button>

@@ -1,8 +1,9 @@
 import { Box, TextField, IconButton, InputAdornment } from "@mui/material"
 import {
     SearchOutlined,
-    CameraAltOutlined,
 } from "@mui/icons-material";
+import { HiOutlineCamera } from "react-icons/hi2";
+import { CiSearch } from "react-icons/ci";
 
 const Search = () => {
     return (
@@ -15,29 +16,29 @@ const Search = () => {
         >
             <TextField
                 fullWidth
-                size="small"
-                placeholder="جستجوی محصول..."
+                placeholder="جستجو در بین ۱۵۰۰ محصول تخفیف‌دار"
                 sx={{
+                    height: 50,
                     "& .MuiOutlinedInput-root": {
-                        height: 48,
-                        borderRadius: 2.5,
-                        bgcolor: "background.default",
+                        height: 64,
+                        padding: 0,
+                        borderRadius: 2,
 
                         "& fieldset": {
-                            borderColor: "#E5E7EB",
+                            border: "1px solid",
+                            borderColor: "divider",
+                            borderWidth: "1px !important",
                         },
 
                         "&:hover fieldset": {
-                            borderColor: "#E5E7EB",
+                            borderColor: "divider",
+                            borderWidth: "1px !important",
                         },
 
                         "&.Mui-focused fieldset": {
-                            borderColor: "#E5E7EB",
+                            borderColor: "divider",
+                            borderWidth: "1px !important",
                         },
-                    },
-
-                    "& .MuiInputBase-input": {
-                        textAlign: "right",
                     },
                 }}
                 slotProps={{
@@ -48,18 +49,24 @@ const Search = () => {
                                     size="small"
                                     aria-label="جستجو"
                                     sx={{
-                                        width: 40,
-                                        height: 40,
-                                        bgcolor: "primary.main",
-                                        color: "#fff",
+                                        width: 50,
+                                        height: 50,
+                                        padding: 0,
+                                        border: "10px solid",
+                                        borderColor: "primary.main",
                                         borderRadius: 2,
+
+                                        bgcolor: "primary.main",
+                                        color: "primary.contrastText",
 
                                         "&:hover": {
                                             bgcolor: "primary.main",
                                         },
                                     }}
                                 >
-                                    <SearchOutlined />
+                                    <Box
+                                        component={CiSearch}
+                                        sx={{ fontSize: 30 }} />
                                 </IconButton>
                             </InputAdornment>
                         ),
@@ -69,9 +76,24 @@ const Search = () => {
                                 <IconButton
                                     size="small"
                                     aria-label="جستجوی تصویری"
-                                    sx={{ color: "text.secondary" }}
+                                    sx={{
+                                        pl: 2,
+
+                                        "&:active": {
+                                            transform: "scale(0.85)",
+                                        },
+
+                                        transition: "transform 150ms ease",
+                                    }}
                                 >
-                                    <CameraAltOutlined />
+                                    <Box
+                                        component={HiOutlineCamera}
+                                        sx={{
+                                            fontSize: 30,
+                                            color: "primary.main",
+                                        }}
+
+                                    />
                                 </IconButton>
                             </InputAdornment>
                         ),

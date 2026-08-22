@@ -1,12 +1,21 @@
 import { Button } from "@mui/material"
+import { AiOutlineUser } from "react-icons/ai";
+import { KeyboardArrowDown } from "@mui/icons-material";
+import { navButtonSx } from "./style/navButtonStyle";
 
 const Auth = () => {
     return (
         <Button
+            startIcon={<AiOutlineUser />}
+            endIcon={<KeyboardArrowDown />}
             sx={{
-                minWidth: "auto",
-                color: "text.primary",
-                whiteSpace: "nowrap",
+                ...navButtonSx,
+                flexShrink: 0,
+                border: "1px solid",
+                borderColor: "divider",
+                borderRadius: 2,
+                height: 50,
+                fontSize:16,
             }}
         >
             ورود / ثبت‌نام

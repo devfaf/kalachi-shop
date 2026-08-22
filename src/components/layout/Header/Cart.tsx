@@ -1,19 +1,33 @@
-import { IconButton, Badge } from "@mui/material"
-import {
-  ShoppingCartOutlined,
-} from "@mui/icons-material";
+import { IconButton, Badge, Box } from "@mui/material"
+import { HiOutlineShoppingCart } from "react-icons/hi2";
+import { toPersianNumber } from "@/lib/utils/farsiNumbers";
 
 const Cart = () => {
   return (
 
-              <IconButton
-                sx={{ color: "text.secondary" }}
-                aria-label={`آیتم در سبد خرید`}
-              >
-                <Badge badgeContent={3} color="secondary">
-                  <ShoppingCartOutlined />
-                </Badge>
-              </IconButton>
+    <IconButton
+      sx={{
+        color: "text.secondary",
+        p: 0,
+      }}
+      aria-label={`آیتم در سبد خرید`}
+    >
+      <Badge 
+      sx={{
+        
+      }}
+      badgeContent={toPersianNumber(3)} 
+      color="primary">
+        <Box
+        sx={{
+          fontSize:30,
+        }}
+        component={HiOutlineShoppingCart}
+        >
+        </Box>
+
+      </Badge>
+    </IconButton>
   )
 }
 export default Cart

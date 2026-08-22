@@ -158,16 +158,32 @@ const theme = createTheme({
 
       styleOverrides: {
         root: {
-          borderRadius: 8,
-          minHeight: 42,
+          "&:hover": {
+            backgroundColor: "transparent",
+          },
+          "&:active": {
+            backgroundColor: "transparent",
+          },
         },
       },
     },
 
     MuiIconButton: {
+      defaultProps: {
+        disableRipple: true,
+      },
+
       styleOverrides: {
         root: {
           borderRadius: 8,
+
+          "&:hover": {
+            backgroundColor: "transparent",
+          },
+
+          "&:active": {
+            backgroundColor: "transparent",
+          },
         },
       },
     },

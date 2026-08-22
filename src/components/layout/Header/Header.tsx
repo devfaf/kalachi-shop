@@ -3,7 +3,7 @@
 import Logo from "./Logo";
 import Search from "./Search";
 import Location from "./Location";
-import Support from "./Support";
+import Contact from "./Contact";
 import Auth from "./Auth";
 import Cart from "./Cart";
 import Navigation from "../Navigation/Navigation";
@@ -31,7 +31,7 @@ const Header = () => {
         sx={{
           minHeight: 105,
           px: { xs: 2, md: 4 },
-          gap: 4,
+          gap: 2,
         }}
       >
         {/* Logo + Search + Location */}
@@ -39,7 +39,7 @@ const Header = () => {
           sx={{
             display: "flex",
             alignItems: "center",
-            gap: { xs: 2, md: 4 },
+            gap: { md: 2 },
             flex: 1,
             minWidth: 0,
           }}
@@ -59,14 +59,30 @@ const Header = () => {
           sx={{
             display: "flex",
             alignItems: "center",
-            gap: 1.5,
+            gap: 1,
             flexShrink: 0,
             pl: 2,
           }}
         >
 
-          <Support />
+          <Contact />
+          <Box
+            sx={{
+              bgcolor: "#eee",
+              width: "1px",
+              height: "20px"
+            }}>
+          </Box>
+
           <Auth />
+
+          <Box
+            sx={{
+              bgcolor: "#eee",
+              width: "1px",
+              height: "20px"
+            }}>
+          </Box>
 
           <Cart />
         </Box>
