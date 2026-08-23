@@ -1,7 +1,7 @@
 import { Button } from "@mui/material"
 import { AiOutlineUser } from "react-icons/ai";
 import { KeyboardArrowDown } from "@mui/icons-material";
-import { navButtonSx } from "./style/navButtonStyle";
+import { navButtonSx } from "../Navigation/style/navButtonStyle";
 
 const Auth = () => {
     return (
