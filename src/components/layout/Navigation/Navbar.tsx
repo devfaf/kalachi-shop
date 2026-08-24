@@ -27,15 +27,29 @@ export default function Navbar() {
     };
 
     return (
-        <Box>
+        <Box
+        sx={{
+            display:"flex"
+        }}
+        >
             {
                 navItems.map((item, index) => {
                     return (
                         <Button
                             key={item.label}
+                            sx={{
+                                color: "text.secondary",
+                                display:"flex",
+                                gap:"10px",
+                                justifyContent:"center",
+                                alignItems:"center"
+                            }}
                             startIcon={
                                 <Box
                                     component={item.icon}
+                                    sx={{
+                                        color: "text.secondary"
+                                    }}
                                 />
                             }
                             onMouseEnter={(event) => openSubMenu(
@@ -57,15 +71,15 @@ export default function Navbar() {
                 }}
             >
                 <Box
-                sx={{
-                    display:"flex",
-                    flexDirection:"column",
-                    border: "1px solid",
-                    borderColor: "divider",
-                    bgcolor: "background.paper",
-                    p:2,
-                    borderRadius: "0 0 16px 16px",
-                }}
+                    sx={{
+                        display: "flex",
+                        flexDirection: "column",
+                        border: "1px solid",
+                        borderColor: "divider",
+                        bgcolor: "background.paper",
+                        p: 2,
+                        borderRadius: "0 0 16px 16px",
+                    }}
                 >
                     {activeItem !== null &&
                         navItems[activeItem].children?.map((child) => (
@@ -78,110 +92,3 @@ export default function Navbar() {
         </Box>
     );
 }
-// <Box
-//     component="nav"
-//     sx={{
-//         display: "flex",
-//         alignItems: "center",
-//         gap: 1,
-//     }}
-// >
-//     {navItems.map((item, index) => {
-//         const Icon = item.icon;
-//         const hasChildren = Boolean(item.children);
-
-//         return (
-//             <Box
-//                 key={item.label}
-//                 onMouseEnter={(event) => {
-//                     if (hasChildren) {
-//                         setAncherEl(event.currentTarget);
-//                         setActiveItem(index);
-//                     }
-//                 }}
-//             >
-//                 <Button
-//                     startIcon={
-//                         <Box
-//                             component={Icon}
-//                             sx={{
-//                                 fontSize: 20,
-//                             }}
-//                         />
-//                     }
-//                 >
-//                     {item.label}
-//                 </Button>
-//             </Box>
-//         );
-//     })}
-
-//     <Popper
-//         open={ancherEl !== null}
-//         anchorEl={ancherEl}
-//         placement="bottom-start"
-//     >
-//         <Paper
-//             elevation={3}
-//             sx={{
-//                 mt: 1,
-//                 p: 2,
-//                 minWidth: 220,
-//             }}
-//         >
-//             {activeItem !== null &&
-//                 navItems[activeItem].children?.map((child, index) => (
-//                     <Box
-//                         key={child.label}
-//                         onMouseEnter={(event) => {
-//                             if (child.children) {
-//                                 setSubMenuAnchor(event.currentTarget);
-//                                 setActiveChild(index);
-//                             }
-//                         }}
-//                     >
-//                         <Button
-//                             fullWidth
-//                             sx={{
-//                                 justifyContent: "space-between",
-//                             }}
-//                         >
-//                             {child.label}
-//                         </Button>
-//                     </Box>
-//                 ))}
-//         </Paper>
-//     </Popper>
-
-//     <Popper
-//         open={subMenuAnchor !== null}
-//         anchorEl={subMenuAnchor}
-//         placement="right-start"
-//     >
-//         <Paper
-//             elevation={3}
-//             sx={{
-//                 ml: 1,
-//                 p: 1,
-//                 minWidth: 200,
-//             }}
-//         >
-//             {activeItem !== null &&
-//                 activeChild !== null &&
-//                 navItems[activeItem].children?.[activeChild].children?.map(
-//                     (item) => (
-//                         <Button
-//                             key={item.href}
-//                             href={item.href}
-//                             fullWidth
-//                             sx={{
-//                                 justifyContent: "flex-start",
-//                             }}
-//                         >
-//                             {item.label}
-//                         </Button>
-//                     )
-//                 )}
-//         </Paper>
-//     </Popper>
-// </Box>

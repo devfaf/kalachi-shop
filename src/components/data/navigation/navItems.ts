@@ -7,6 +7,7 @@ import {
     HiOutlinePhone,
     HiOutlineSquares2X2,
 } from "react-icons/hi2";
+import { GrDeliver } from "react-icons/gr";
 
 export type NavItem = {
     label:string;
@@ -86,7 +87,7 @@ export const navItems : NavItem[] = [
     {
         label: "پیگیری سفارش",
         href: "/track-your-order",
-        icon: HiOutlineQuestionMarkCircle,
+        icon: GrDeliver,
     },
 
     {

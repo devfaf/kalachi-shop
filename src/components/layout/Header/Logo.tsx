@@ -10,14 +10,21 @@ const Logo = () => {
                 alignItems: "center",
             }}
         >
-            <Link href="/">
+            <Link href="/"
+            aria-label="فروشگاه اینترنتی کالاچی">
+            <Box 
+                sx={{
+                    display:"flex"
+                }}
+            >
                 <Image
                     src="/logo/logo.png"
                     alt="کالاچی"
-                    width={175}
-                    height={65}
+                    width={130}
+                    height={50}
                     priority
                 />
+            </Box>
             </Link>
         </Box>
     )

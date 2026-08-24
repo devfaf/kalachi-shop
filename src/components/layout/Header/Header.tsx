@@ -42,6 +42,7 @@ const Header = () => {
             gap: { md: 2 },
             flex: 1,
             minWidth: 0,
+            height:"80px",
           }}
         >
           {/* Logo */}
