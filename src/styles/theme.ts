@@ -151,6 +151,24 @@ const theme = createTheme({
   spacing: 8,
 
   components: {
+    MuiCssBaseline: {
+      styleOverrides: {
+        ul: {
+          listStyle: "none",
+          padding: 0,
+          margin: 0,
+        },
+
+        li: {
+          listStyle: "none",
+        },
+
+        a: {
+          textDecoration: "none",
+          color: "inherit",
+        },
+      },
+    },
     MuiButton: {
       defaultProps: {
         disableElevation: true,

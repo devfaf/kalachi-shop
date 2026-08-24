@@ -1,4 +1,4 @@
-import { Box, Button, Popper, Paper } from "@mui/material";
+import { Box, Button, Popper, Link } from "@mui/material";
 import { navItems } from "@/components/data/navigation/navItems"
 import { useState } from "react";
 import type { NavItem } from "@/components/data/navigation/navItems";
@@ -28,43 +28,51 @@ export default function Navbar() {
 
     return (
         <Box
-        sx={{
-            display:"flex"
-        }}
+            component={"ul"}
+            sx={{
+                display: "flex",
+            }}
         >
             {
                 navItems.map((item, index) => {
                     return (
-                        <Button
-                            key={item.label}
-                            sx={{
-                                color: "text.secondary",
-                                display:"flex",
-                                gap:"10px",
-                                justifyContent:"center",
-                                alignItems:"center"
-                            }}
-                            startIcon={
+                        <Box
+                            component="li"
+                        >
+                            <Link href={item.href}
+                                key={item.label}
+                                sx={{
+                                    color: "text.primary",
+                                    display: "flex",
+                                    gap: "5px",
+                                    justifyContent: "center",
+                                    alignItems: "center",
+                                    p: "10px",
+                                    textDecoration: "none",
+                                    "&:hover": {
+                                        color: "text.primary",
+                                    }
+                                }}
+                                onMouseEnter={(event) => openSubMenu(
+                                    event, item, index
+                                )}
+                            >
                                 <Box
                                     component={item.icon}
                                     sx={{
-                                        color: "text.secondary"
-                                    }}
-                                />
-                            }
-                            onMouseEnter={(event) => openSubMenu(
-                                event, item, index
-                            )}
-                        >
-                            {item.label}
-                        </Button>
+                                        color: "text.secondary",
+                                        fontSize: "20px",
+                                    }}></Box>
+                                {item.label}
+                            </Link>
+                        </Box>
                     )
                 })
             }
             <Popper
                 open={anchorEl !== null}
                 anchorEl={anchorEl}
-                placement="bottom-start"
+                placement="bottom-end"
                 onMouseLeave={() => {
                     setAnchorEl(null);
                     setActiveItem(null);
@@ -89,6 +97,6 @@ export default function Navbar() {
                         ))}
                 </Box>
             </Popper>
-        </Box>
+        </Box >
     );
 }

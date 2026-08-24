@@ -6,8 +6,9 @@ import {
     HiOutlineNewspaper,
     HiOutlinePhone,
     HiOutlineSquares2X2,
+    HiOutlineTruck,
+    HiOutlineListBullet
 } from "react-icons/hi2";
-import { GrDeliver } from "react-icons/gr";
 
 export type NavItem = {
     label:string;
@@ -60,13 +61,13 @@ export const navItems : NavItem[] = [
     {
         label: "صفحه اصلی",
         href: "/",
-        icon: HiOutlineQuestionMarkCircle,
+        icon: HiOutlineHome,
     },
 
     {
         label: "لیست کالاها",
         href: "/products",
-        icon: HiOutlineHome,
+        icon: HiOutlineListBullet,
         children : [
             {
                 label: "کالای دیجیتال",
@@ -87,7 +88,7 @@ export const navItems : NavItem[] = [
     {
         label: "پیگیری سفارش",
         href: "/track-your-order",
-        icon: GrDeliver,
+        icon: HiOutlineTruck,
     },
 
     {
