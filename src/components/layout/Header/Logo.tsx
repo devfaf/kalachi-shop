@@ -14,7 +14,11 @@ const Logo = () => {
             aria-label="فروشگاه اینترنتی کالاچی">
             <Box 
                 sx={{
-                    display:"flex"
+                    display:"flex",
+                    width:{
+                        sm:102,
+                        md:130
+                    }
                 }}
             >
                 <Image

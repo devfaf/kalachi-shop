@@ -7,6 +7,7 @@ import Contact from "./Contact";
 import Auth from "./Auth";
 import Cart from "./Cart";
 import Navigation from "../Navigation/Navigation";
+import MobileHeader from "./MobileMenu/MobileHeader";
 
 import {
   AppBar,
@@ -37,12 +38,12 @@ const Header = () => {
         {/* Logo + Search + Location */}
         <Box
           sx={{
-            display: "flex",
+            display: { xs: "none", md: "flex" },
             alignItems: "center",
             gap: { md: 2 },
             flex: 1,
             minWidth: 0,
-            height:"80px",
+            height: "80px",
           }}
         >
           {/* Logo */}
@@ -58,7 +59,7 @@ const Header = () => {
         {/* Other Actions */}
         <Box
           sx={{
-            display: "flex",
+            display: { xs: "none", md: "flex" },
             alignItems: "center",
             gap: 1,
             flexShrink: 0,
@@ -71,9 +72,9 @@ const Header = () => {
             sx={{
               bgcolor: "#eee",
               width: "1px",
-              height: "20px"
-            }}>
-          </Box>
+              height: "20px",
+              margin: "5px"
+            }}/>
 
           <Auth />
 
@@ -81,13 +82,18 @@ const Header = () => {
             sx={{
               bgcolor: "#eee",
               width: "1px",
-              height: "20px"
-            }}>
-          </Box>
+              height: "20px",
+              margin: "5px"
+            }}/>
 
           <Cart />
         </Box>
+
+
+        {/* Mobile / Tablet */}
+        <MobileHeader />
       </Toolbar>
+
 
       {/* ================= NAVIGATION ================= */}
       <Navigation />

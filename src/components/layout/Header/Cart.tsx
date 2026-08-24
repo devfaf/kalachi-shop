@@ -23,9 +23,7 @@ const Cart = () => {
           fontSize:30,
         }}
         component={HiOutlineShoppingCart}
-        >
-        </Box>
-
+        />
       </Badge>
     </IconButton>
   )

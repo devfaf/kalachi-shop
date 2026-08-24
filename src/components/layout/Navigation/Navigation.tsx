@@ -26,7 +26,11 @@ const Navigation = () => {
                             alignItems:"center",
                             textDecoration:"none",
                             p:'10px',
-                            fontWeight:700
+                            fontWeight:700,
+                            transition: "color 0.2s ease",
+                            "&:hover":{
+                                color:"primary.light"
+                            }
                         }}
                         >
                             <Box
