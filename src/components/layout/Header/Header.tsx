@@ -8,10 +8,12 @@ import Auth from "./Auth";
 import Cart from "./Cart";
 import Navigation from "../Navigation/Navigation";
 import MobileHeader from "./MobileMenu/MobileHeader";
+import { HiOutlineBars3 } from "react-icons/hi2";
 
 import {
   AppBar,
   Box,
+  IconButton,
   Toolbar,
 } from "@mui/material";
 
@@ -25,6 +27,10 @@ const Header = () => {
         bgcolor: "background.paper",
         color: "text.primary",
         borderBottom: "1px solid #E5E7EB",
+        pb:{
+          xs:2,
+          md:0,
+        }
       }}
     >
       {/* ================= TOP HEADER ================= */}
@@ -74,7 +80,7 @@ const Header = () => {
               width: "1px",
               height: "20px",
               margin: "5px"
-            }}/>
+            }} />
 
           <Auth />
 
@@ -84,7 +90,7 @@ const Header = () => {
               width: "1px",
               height: "20px",
               margin: "5px"
-            }}/>
+            }} />
 
           <Cart />
         </Box>
@@ -96,7 +102,16 @@ const Header = () => {
 
 
       {/* ================= NAVIGATION ================= */}
-      <Navigation />
+      <Box
+        sx={{
+          display: {
+            xs: "none",
+            md: "block",
+          },
+        }}
+      >
+        <Navigation />
+      </Box>
     </AppBar>
   );
 };
