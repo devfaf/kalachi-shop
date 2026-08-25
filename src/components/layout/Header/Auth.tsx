@@ -1,19 +1,10 @@
-import { Box } from "@mui/material";
-import { Button } from "@mui/material"
+import { Box, IconButton, Button } from "@mui/material";
 import { AiOutlineUser } from "react-icons/ai";
 import { navButtonSx } from "../Navigation/style/navButtonStyle";
 
 const Auth = () => {
     return (
         <Button
-            startIcon={
-                <Box
-                    component={AiOutlineUser}
-                    sx={{
-                        fontSize: 25,
-                    }}
-                />
-            }
             sx={{
                 ...navButtonSx,
                 height: 50,
@@ -52,6 +43,21 @@ const Auth = () => {
                 },
             }}
         >
+            <IconButton
+                sx={{
+                    p: 0,
+                }}
+            >
+                <Box
+                    component={AiOutlineUser}
+                    sx={{
+                        fontSize: {
+                            xs: "30px",
+                            md: "20px"
+                        },
+                    }}
+                />
+            </IconButton>
             <Box
                 component="span"
                 sx={{
