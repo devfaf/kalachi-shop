@@ -1,12 +1,20 @@
-import { Box, IconButton } from "@mui/material";
+import { Box, IconButton, Drawer } from "@mui/material";
 import Logo from "../Logo";
 import Search from "../Search";
 import Contact from "../Contact";
 import Auth from "../Auth";
 import Cart from "../Cart";
 import { HiOutlineBars3 } from "react-icons/hi2";
+import { useState } from "react";
+import MobileMenu from "./MobileMenu";
 
 const MobileHeader = () => {
+    const [isMenuOpen, setIsMenuOpen] = useState(false)
+
+    const mobileMenuHandler = () => {
+        setIsMenuOpen(prev => !prev)
+    }
+
     return (
         <Box
             sx={{
@@ -27,7 +35,9 @@ const MobileHeader = () => {
                 }}
             >
                 {/* Hamburger */}
-                <IconButton>
+                <IconButton
+                    onClick={mobileMenuHandler}
+                >
                     <Box
                         component={HiOutlineBars3}
                         sx={{
@@ -66,6 +76,14 @@ const MobileHeader = () => {
 
                 <Cart />
             </Box>
+            {/* Drawer */}
+            <Drawer
+                anchor="right"
+                open={isMenuOpen}
+                onClose={mobileMenuHandler}
+            >
+                <MobileMenu />
+            </Drawer>
         </Box>
     );
 };
