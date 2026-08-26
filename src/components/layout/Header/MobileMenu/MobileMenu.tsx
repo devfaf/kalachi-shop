@@ -1,19 +1,51 @@
-import { Box, Button, List, ListItem } from "@mui/material";
+import { Box, Button, List, ListItem, IconButton } from "@mui/material";
 import { navItems } from "@/components/data/navigation/navItems";
+import Logo from "../Logo";
+import { HiOutlineXMark } from "react-icons/hi2";
 
-const MobileMenu = () => {
+type MobileMenuProps = {
+  onClose: () => void;
+};
+
+const MobileMenu = ({ onClose }: MobileMenuProps) => {
   return (
     <Box
       sx={{
         width: 300,
-        p: 2,
       }}
     >
+      {/* Logo */}
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          p: 2,
+          borderBottom: "1px solid",
+          borderColor: "divider",
+        }}
+      >
+        <Logo />
+        {/* Close button */}
+        <IconButton
+          onClick={onClose}
+          aria-label="بستن منو"
+        >
+          <Box
+            component={HiOutlineXMark}
+            sx={{
+              fontSize: 26,
+            }}
+          />
+        </IconButton>
+      </Box>
+
+      {/* Navigation */}
       <List
         sx={{
           display: "flex",
           flexDirection: "column",
-          gap: 1,
+          gap: 0,
         }}
       >
         {navItems.map((item) => {
@@ -23,6 +55,10 @@ const MobileMenu = () => {
             <ListItem
               key={item.label}
               disablePadding
+              sx={{
+                borderBottom: "1px solid",
+                borderColor: "divider",
+              }}
             >
               <Button
                 fullWidth
@@ -31,24 +67,24 @@ const MobileMenu = () => {
                   gap: "5px",
                   justifyContent: "flex-start",
                   color: "text.primary",
-                  py: 1.5,
-                  borderRadius: 2,
+                  px: 2,
+                  py: 2,
+                  borderRadius: 0,
+
                   "&:hover": {
-                    bgcolor: "action.hover",
                     color: "primary.main",
                   },
                 }}
               >
-                {
-                  Icon ? (
-                    <Box
-                      component={Icon}
-                      sx={{
-                        fontSize: 24,
-                      }}
-                    />
-                  ) : null
-                }
+                {Icon ? (
+                  <Box
+                    component={Icon}
+                    sx={{
+                      fontSize: 24,
+                    }}
+                  />
+                ) : null}
+
                 {item.label}
               </Button>
             </ListItem>

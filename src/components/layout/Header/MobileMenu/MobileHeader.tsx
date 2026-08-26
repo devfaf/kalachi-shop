@@ -82,7 +82,7 @@ const MobileHeader = () => {
                 open={isMenuOpen}
                 onClose={mobileMenuHandler}
             >
-                <MobileMenu />
+                <MobileMenu onClose={mobileMenuHandler} />
             </Drawer>
         </Box>
     );
