@@ -8,12 +8,11 @@ import Auth from "./Auth";
 import Cart from "./Cart";
 import Navigation from "../Navigation/Navigation";
 import MobileHeader from "./MobileMenu/MobileHeader";
-import { HiOutlineBars3 } from "react-icons/hi2";
+import DistanceLine from "@/components/common/DistanceLine";
 
 import {
   AppBar,
   Box,
-  IconButton,
   Toolbar,
 } from "@mui/material";
 
@@ -27,9 +26,9 @@ const Header = () => {
         bgcolor: "background.paper",
         color: "text.primary",
         borderBottom: "1px solid #E5E7EB",
-        pb:{
-          xs:2,
-          md:0,
+        pb: {
+          xs: 2,
+          md: 0,
         }
       }}
     >
@@ -74,23 +73,11 @@ const Header = () => {
         >
 
           <Contact />
-          <Box
-            sx={{
-              bgcolor: "#eee",
-              width: "1px",
-              height: "20px",
-              margin: "5px"
-            }} />
+          <DistanceLine />
 
           <Auth />
 
-          <Box
-            sx={{
-              bgcolor: "#eee",
-              width: "1px",
-              height: "20px",
-              margin: "5px"
-            }} />
+          <DistanceLine />
 
           <Cart />
         </Box>

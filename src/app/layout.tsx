@@ -4,6 +4,7 @@ import { peyda } from "@/styles/fonts";
 import Providers from "@/providers";
 import Header from "@/components/layout/Header/Header"
 import { CssBaseline } from "@mui/material";
+import Footer from "@/components/layout/Footer/Footer";
 
 export const metadata: Metadata = {
   title: "فروشگاه اینترنتی کالاچی",
@@ -19,11 +20,12 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     >
       <body>
         <Providers>
-          <Header/>
+          <Header />
           <main>
             <CssBaseline />
             {children}
           </main>
+          <Footer />
         </Providers>
       </body>
     </html>
