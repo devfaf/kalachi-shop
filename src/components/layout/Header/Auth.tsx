@@ -1,75 +1,65 @@
-import { Box, IconButton, Button } from "@mui/material";
+import { Box } from "@mui/material";
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import { AiOutlineUser } from "react-icons/ai";
-import { navButtonSx } from "../Navigation/style/navButtonStyle";
+import AppButton from "@/components/common/AppButton";
 
 const Auth = () => {
-    return (
-        <Button
-            sx={{
-                ...navButtonSx,
-                height: 50,
-                fontSize: 16,
-                borderRadius: 2,
+  return (
+    <AppButton
+      startIcon={
+        <Box
+          component={AiOutlineUser}
+          sx={{
+            fontSize: {
+              xs: 28,
+              md: 20,
+            },
+          }}
+        />
+      }
+      endIcon={<KeyboardArrowDownIcon />}
+      sx={{
+        height: 44,
 
-                border: {
-                    xs: "none",
-                    md: "1px solid",
-                },
+        minWidth: {
+          xs: 44,
+          md: "auto",
+        },
 
-                borderColor: {
-                    md: "divider",
-                },
+        px: {
+          xs: 1,
+          md: 1.5,
+        },
 
-                minWidth: {
-                    xs: 40,
-                    md: "auto",
-                },
+        fontSize: 14,
+        fontWeight: 400,
+        color: "text.primary",
 
-                px: {
-                    xs: 1,
-                    md: 2,
-                },
+        "& .MuiButton-startIcon": {
+          marginLeft: 0.5,
+        },
 
-                // مخفی کردن متن
-                "& .MuiButton-startIcon": {
-                    margin: 0,
-                },
+        "& .MuiButton-endIcon": {
+          display: {
+            xs: "none",
+            md: "inline-flex",
+          },
+        },
+      }}
+    >
+      <Box
+        component="span"
+        sx={{
+          display: {
+            xs: "none",
+            md: "inline",
+          },
+        }}
+      >
+        ورود / ثبت‌نام
+      </Box>
+    </AppButton>
+  );
+};
 
-                "& .MuiButton-endIcon": {
-                    display: {
-                        xs: "none",
-                        md: "inline-flex",
-                    },
-                },
-            }}
-        >
-            <IconButton
-                sx={{
-                    p: 0,
-                }}
-            >
-                <Box
-                    component={AiOutlineUser}
-                    sx={{
-                        fontSize: {
-                            xs: "30px",
-                            md: "20px"
-                        },
-                    }}
-                />
-            </IconButton>
-            <Box
-                component="span"
-                sx={{
-                    display: {
-                        xs: "none",
-                        md: "inline",
-                    },
-                }}
-            >
-                ورود / ثبت‌نام
-            </Box>
-        </Button>
-    )
-}
-export default Auth
+export default Auth;
