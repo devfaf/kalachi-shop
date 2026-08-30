@@ -6,7 +6,7 @@ import Link from "next/link";
 
 import { footerData } from "./footerData";
 
-const FooterLinks = () => { 
+const FooterLinks = () => {
   return (
     <Box>
       {/* Desktop */}
@@ -22,8 +22,8 @@ const FooterLinks = () => {
             <Typography
               component="h3"
               sx={{
-                  fontWeight:"700",
-                  mb:2
+                fontWeight: "700",
+                mb: 2
               }}
             >
               {group.title}
@@ -86,7 +86,7 @@ const FooterLinks = () => {
             }}
           >
             <AccordionSummary
-              expandIcon={<KeyboardArrowDown width={20} />}
+              expandIcon={<KeyboardArrowDown sx={{ fontSize: 20 }} />}
               sx={{
                 minHeight: 48,
                 justifyContent: "center",
@@ -97,9 +97,9 @@ const FooterLinks = () => {
                 },
               }}
             >
-<Typography sx={{ fontWeight: 700 }}>
-  {group.title}
-</Typography>
+              <Typography sx={{ fontWeight: 700 }}>
+                {group.title}
+              </Typography>
             </AccordionSummary>
 
             <AccordionDetails>
@@ -118,13 +118,13 @@ const FooterLinks = () => {
                 {group.links.map((link) => (
                   <Box component="li" key={link.title}>
                     <Link href={link.href}>
-<Typography
-  component="span"
-  sx={{
-    color: "text.secondary",
-    fontSize: 14,
-  }}
->
+                      <Typography
+                        component="span"
+                        sx={{
+                          color: "text.secondary",
+                          fontSize: 14,
+                        }}
+                      >
                         {link.title}
                       </Typography>
                     </Link>

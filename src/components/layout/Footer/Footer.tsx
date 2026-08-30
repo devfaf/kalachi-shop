@@ -2,6 +2,7 @@
 import { Box } from "@mui/material"
 import FooterContacts from "./FooterContacts"
 import FooterLinks from "./FooterLinks"
+import FooterSocials from "./FooterSocials"
 
 const Footer = () => {
     return (
@@ -16,7 +17,18 @@ const Footer = () => {
                 }}
             >
                 <FooterContacts />
-                <FooterLinks />
+                <Box
+                    sx={{
+                        display: "grid",
+                        gridTemplateColumns: "2fr 1fr",
+                        gap: 4,
+                        alignItems: "start",
+                        py:4,
+                    }}
+                >
+                    <FooterLinks />
+                    <FooterSocials />
+                </Box>
             </Box>
         </footer>
     )

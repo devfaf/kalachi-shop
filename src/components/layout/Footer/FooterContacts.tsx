@@ -6,7 +6,7 @@ const FooterContacts = () => {
     return (
         <Box
         sx={{
-            pb:2,
+            pb:4,
             borderBottom:"1px solid",
             borderBottomColor:"divider",
         }}
