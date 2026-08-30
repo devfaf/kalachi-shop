@@ -1,6 +1,7 @@
 
 import { Box } from "@mui/material"
 import FooterContacts from "./FooterContacts"
+import FooterLinks from "./FooterLinks"
 
 const Footer = () => {
     return (
@@ -15,6 +16,7 @@ const Footer = () => {
                 }}
             >
                 <FooterContacts />
+                <FooterLinks />
             </Box>
         </footer>
     )

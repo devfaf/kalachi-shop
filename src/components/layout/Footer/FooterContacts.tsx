@@ -4,15 +4,26 @@ import AppButton from "@/components/common/AppButton"
 import DistanceLine from "@/components/common/DistanceLine"
 const FooterContacts = () => {
     return (
-        <Box>
+        <Box
+        sx={{
+            pb:2,
+            borderBottom:"1px solid",
+            borderBottomColor:"divider",
+        }}
+        >
             <Box
                 sx={{
                     display: "flex",
                     justifyContent: "space-between",
+                    pb:2,
                 }}
             >
                 <Logo />
-                <AppButton>
+                <AppButton
+                sx={{
+                    color:"text.secondary"
+                }}
+                >
                     برگشت با بالا
                 </AppButton>
             </Box>
@@ -20,6 +31,10 @@ const FooterContacts = () => {
                 sx={{
                     display: "flex",
                     gap: 1,
+                    flexDirection: {
+                        xs: "column",
+                        md: "row",
+                    }
                 }}
             >
                 <Box>
@@ -34,7 +49,11 @@ const FooterContacts = () => {
                         061-535-10225
                     </Box>
                 </Box>
-                <DistanceLine />
+                <DistanceLine
+                    sx={{
+                        display: { xs: "none", md: "block" },
+                    }}
+                />
                 <Box>
                     <Box component={"span"}
                         sx={{
@@ -48,7 +67,12 @@ const FooterContacts = () => {
                         info@parskala.com
                     </Box>
                 </Box>
-                <DistanceLine />
+
+                <DistanceLine
+                    sx={{
+                        display: { xs: "none", md: "block" },
+                    }}
+                />
                 <Box>
                     هفت روز هفته ، 24 ساعت شبانه‌روز پاسخگوی شما هستیم.
                 </Box>
