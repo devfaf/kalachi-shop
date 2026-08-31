@@ -3,6 +3,7 @@ import { Box } from "@mui/material"
 import FooterContacts from "./FooterContacts"
 import FooterLinks from "./FooterLinks"
 import FooterSocials from "./FooterSocials"
+import FooterAbout from "./FooterAbout"
 
 const Footer = () => {
     return (
@@ -29,6 +30,7 @@ const Footer = () => {
                     <FooterLinks />
                     <FooterSocials />
                 </Box>
+                <FooterAbout/>
             </Box>
         </footer>
     )
