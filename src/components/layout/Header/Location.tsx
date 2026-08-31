@@ -10,7 +10,7 @@ const Location = () => {
       sx={{
         flexShrink: 0,
         height: 50,
-        color: "text.secondary",
+        color: "text.primary",
 
         "& .MuiButton-startIcon": {
           marginRight: 0,

@@ -18,10 +18,6 @@ const Auth = () => {
           xs: 44,
           md: "auto",
         },
-        px: {
-          xs: 1,
-          md: 1.5,
-        },
         color: "text.primary",
 
         "& .MuiButton-startIcon svg": {
