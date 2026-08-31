@@ -1,22 +1,33 @@
-import { Button } from "@mui/material"
 import { VscLocation } from "react-icons/vsc";
-import { KeyboardArrowDown } from "@mui/icons-material";
+import { HiOutlineChevronDown } from "react-icons/hi2";
+import AppButton from "@/components/common/AppButton";
 
 const Location = () => {
   return (
-    <Button
-      startIcon={<VscLocation />}
-      endIcon={<KeyboardArrowDown />}
+    <AppButton
+      startIcon={<VscLocation size={18} />}
+      endIcon={<HiOutlineChevronDown size={15} />}
       sx={{
         flexShrink: 0,
-        border: "1px solid",
-        borderColor: "divider",
-        borderRadius: 2,
         height: 50,
+        color: "text.secondary",
+
+        "& .MuiButton-startIcon": {
+          marginRight: 0,
+          marginLeft: "6px",
+        },
+
+        "& .MuiButton-endIcon": {
+          display: "inline-flex",
+          marginLeft: 0,
+          marginRight: "6px",
+        },
       }}
     >
       انتخاب شهر
-    </Button>
-  )
-}
-export default Location
+    </AppButton>
+  );
+};
+
+export default Location;
+

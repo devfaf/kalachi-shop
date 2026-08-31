@@ -1,9 +1,8 @@
 "use client";
 
 import { Box, Typography, Accordion, AccordionSummary, AccordionDetails } from "@mui/material";
-import { KeyboardArrowDown } from "@mui/icons-material";
+import { HiOutlineChevronDown } from "react-icons/hi2";
 import Link from "next/link";
-
 import { footerData } from "./footerData";
 
 const FooterLinks = () => {
@@ -79,14 +78,21 @@ const FooterLinks = () => {
             elevation={0}
             sx={{
               bgcolor: "grey.100",
-              borderRadius: 2,
+              borderRadius: 1,
               "&:before": {
                 display: "none",
               },
             }}
           >
             <AccordionSummary
-              expandIcon={<KeyboardArrowDown sx={{ fontSize: 20 }} />}
+              expandIcon={
+                <Box
+                  component={HiOutlineChevronDown}
+                  sx={{
+                    fontSize: 20,
+                  }}
+                />
+              }
               sx={{
                 minHeight: 48,
                 justifyContent: "center",

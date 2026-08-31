@@ -1,49 +1,38 @@
-import { Box } from "@mui/material";
-import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import { AiOutlineUser } from "react-icons/ai";
 import AppButton from "@/components/common/AppButton";
+import { AiOutlineUser } from "react-icons/ai";
+import { Box } from "@mui/material";
 
 const Auth = () => {
   return (
     <AppButton
       startIcon={
-        <Box
-          component={AiOutlineUser}
-          sx={{
-            fontSize: {
-              xs: 28,
-              md: 20,
-            },
+        <AiOutlineUser
+          style={{
+            fontSize: "20px",
           }}
         />
       }
-      endIcon={<KeyboardArrowDownIcon />}
       sx={{
-        height: 44,
-
+        height: 45,
         minWidth: {
           xs: 44,
           md: "auto",
         },
-
         px: {
           xs: 1,
           md: 1.5,
         },
-
-        fontSize: 14,
-        fontWeight: 400,
         color: "text.primary",
 
-        "& .MuiButton-startIcon": {
-          marginLeft: 0.5,
+        "& .MuiButton-startIcon svg": {
+          fontSize: {
+            xs: 28,
+            md: 20,
+          },
         },
 
         "& .MuiButton-endIcon": {
-          display: {
-            xs: "none",
-            md: "inline-flex",
-          },
+          display: "none",
         },
       }}
     >

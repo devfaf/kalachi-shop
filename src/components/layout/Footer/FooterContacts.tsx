@@ -2,35 +2,38 @@ import { Box } from "@mui/material"
 import Logo from "../Header/Logo"
 import AppButton from "@/components/common/AppButton"
 import DistanceLine from "@/components/common/DistanceLine"
+import { HiOutlineChevronUp } from "react-icons/hi2";
+
 const FooterContacts = () => {
     return (
         <Box
-        sx={{
-            pb:4,
-            borderBottom:"1px solid",
-            borderBottomColor:"divider",
-        }}
+            sx={{
+                pb: 4,
+                borderBottom: "1px solid",
+                borderBottomColor: "divider",
+            }}
         >
             <Box
                 sx={{
                     display: "flex",
                     justifyContent: "space-between",
-                    pb:2,
+                    pb: 2,
                 }}
             >
                 <Logo />
                 <AppButton
-                sx={{
-                    color:"text.secondary"
-                }}
+                    sx={{
+                        color: "text.secondary"
+                    }}
+                    endIcon={<HiOutlineChevronUp size={15} />}
                 >
-                    برگشت با بالا
+                    برگشت به بالا
                 </AppButton>
             </Box>
             <Box
                 sx={{
                     display: "flex",
-                    gap: 1,
+                    gap: 2,
                     flexDirection: {
                         xs: "column",
                         md: "row",

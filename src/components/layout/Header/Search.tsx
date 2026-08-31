@@ -22,7 +22,7 @@ const Search = () => {
                     "& .MuiOutlinedInput-root": {
                         height: 64,
                         padding: 0,
-                        borderRadius: 2,
+                        borderRadius: 1,
 
                         "& fieldset": {
                             border: "1px solid",
@@ -54,7 +54,7 @@ const Search = () => {
                                         padding: 0,
                                         border: "10px solid",
                                         borderColor: "primary.main",
-                                        borderRadius: 2,
+                                        borderRadius: 1,
 
                                         bgcolor: "primary.main",
                                         color: "primary.contrastText",

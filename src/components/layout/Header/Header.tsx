@@ -66,7 +66,7 @@ const Header = () => {
           sx={{
             display: { xs: "none", md: "flex" },
             alignItems: "center",
-            gap: 1,
+            gap: 2,
             flexShrink: 0,
             pl: 2,
           }}

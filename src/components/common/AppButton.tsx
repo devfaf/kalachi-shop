@@ -6,10 +6,10 @@ const AppButton = (props: ButtonProps) => {
     <Button
       {...props}
       sx={{
-        height: 50,
+        height: 45,
         fontSize: 14,
         fontWeight: 400,
-        borderRadius: 2,
+        borderRadius: 1,
 
         border: {
           xs: "none",
@@ -31,7 +31,8 @@ const AppButton = (props: ButtonProps) => {
         },
 
         "& .MuiButton-startIcon": {
-          margin: 0,
+          marginLeft: "4px",
+          marginRight: 0,
         },
 
         "& .MuiButton-endIcon": {
@@ -39,6 +40,8 @@ const AppButton = (props: ButtonProps) => {
             xs: "none",
             md: "inline-flex",
           },
+          marginLeft: 0,
+          marginRight: "4px",
         },
 
         ...props.sx,

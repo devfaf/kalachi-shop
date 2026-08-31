@@ -1,6 +1,7 @@
 import { createTheme } from "@mui/material/styles";
 
 const theme = createTheme({
+  direction: "rtl",
   palette: {
     mode: "light",
 
@@ -167,7 +168,18 @@ const theme = createTheme({
           textDecoration: "none",
           color: "inherit",
         },
+MuiButton: {
+  styleOverrides: {
+    endIcon: {
+      marginLeft: "0 !important",
+      marginRight: "8px !important",
+    },
+  },
+},
+
+
       },
+
     },
     MuiButton: {
       defaultProps: {
