@@ -66,6 +66,9 @@ const FooterSocials = () => {
         sx={{
           fontWeight: 700,
           fontSize: 18,
+          pt:{
+            xs:2
+          }
         }}
       >
         ما را در شبکه‌های اجتماعی دنبال کنید

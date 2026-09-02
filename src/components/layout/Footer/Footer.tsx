@@ -21,7 +21,12 @@ const Footer = () => {
                 <FooterContacts />
                 <Box
                     sx={{
-                        display: "grid",
+                        display: {
+                            md:"grid",
+                        },
+                        flexDirection:{
+                            xs:"column"
+                        },
                         gridTemplateColumns: "2fr 1fr",
                         gap: 4,
                         alignItems: "start",
