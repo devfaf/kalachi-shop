@@ -21,3 +21,5 @@ export const categories: Category[] = [
         slug:'laptop'
     }
 ]
+
+

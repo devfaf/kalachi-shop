@@ -1,7 +1,9 @@
-const Page = () => {
+import ProductList from "@/components/product/ProductList";
+
+const HomePage = () => {
     return (
-        <p>Hello</p>
+        <ProductList/>
     )
 }
 
-export default Page;
+export default HomePage;

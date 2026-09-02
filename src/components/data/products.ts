@@ -30,7 +30,7 @@ export const products: Product[] = [
     },
     {
         id: '3',
-        name: 'laptop',
+        name: 'لپ تاپ',
         slug: "laptop",
         price: 12_000_000,
         image: "/products/laptop.jpg",
