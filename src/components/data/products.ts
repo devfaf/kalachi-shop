@@ -22,7 +22,7 @@ export const products: Product[] = [
     {
         id: '2',
         name: 'گوشی موبایل',
-        slug: "mobile-phone",
+        slug: "mobile",
         price: 12_000_000,
         image: "/products/phone.jpg",
         categoryId: "mobile",
