@@ -1,3 +1,6 @@
+کالاچی قراره یک فروشگاه اینترنتی با محصولات دیجیتال باشه که با تکنولوژی هایی نظیر ری اکت و نکست و MUI توسعه داده میشه.
+این پروژه فعلا در حال توسعه هست
+
 Project: Kalachi shop
 Type: Home & Lifestyle E-commerce
 Framework: Next.js
