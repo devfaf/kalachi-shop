@@ -8,9 +8,7 @@ type CategoryPageProps = {
     }>
 }
 
-const page = () => {
-    return (
-        <div>page</div>
-    )
+export default async function CategoryPage ({params}: CategoryPageProps){
+    const {categorySlug} 
+
 }
-export default page
