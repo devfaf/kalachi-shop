@@ -1,85 +1,41 @@
+export type ProductFeature = {
+    label: string;
+    value: string;
+};
 
 export type PurchasePanel = {
     storeName: string;
     guarantee: string;
     stock: number;
     price: number;
-}
+    discountPrice?: number;
+};
 
 export type ProductInfo = {
     persianName: string;
     englishName: string;
     rating: number;
-    color: {
-        name: string,
-        value: string,
+    colors: {
+        name: string;
+        value: string;
     }[];
     features: ProductFeature[];
     description: string;
-}
-
-export type ProductFeature = {
-    label: string;
-    value: string;
-}
-
+};
 
 export type Product = {
     readonly id: string;
     slug: string;
-    discountPrice?: number;
     categoryId: string;
     images: string[];
     info: ProductInfo;
     purchasePanel: PurchasePanel;
-}
+};
 
 export const products: Product[] = [
-    // ─────────────────────────── محصول ۱: تلویزیون ───────────────────────────
     {
         id: "1",
-        slug: "samsung-55cu8000",
-        discountPrice: 10_500_000,
-        categoryId: "tv",
-        images: [
-
-            "/products/tv/tv-1.jpg",
-            "/products/tv/tv-2.jpg",
-            "/products/tv/tv-3.jpg",
-            "/products/tv/tv-4.jpg",
-
-        ],
-        info: {
-            persianName: "تلویزیون سامسونگ مدل 55CU8000 سایز 55 اینچ",
-            englishName: "Samsung 55CU8000 55 inch Crystal UHD 4K Smart TV",
-            rating: 4.5,
-            color: [
-                { name: "مشکی", value: "#000000" },
-                { name: "خاکستری", value: "#808080" },
-            ],
-            features: [
-                { label: "منطقه", value: "کره جنوبی" },
-                { label: "فناوری نمایشگر", value: "Crystal UHD" },
-                { label: "سیستم‌عامل", value: "Tizen" },
-                { label: "دوربین", value: "ندارد" },
-                { label: "سایز", value: "55 اینچ" },
-            ],
-            description:
-                "تلویزیون سامسونگ 55CU8000 با کیفیت تصویر Crystal UHD و رزولوشن 4K، تجربه‌ای بی‌نظیر از تماشای فیلم و ورزش را ارائه می‌دهد. مجهز به سیستم‌عامل Tizen و پشتیبانی از دستیار صوتی.",
-        },
-        purchasePanel: {
-            storeName: "کالاچی",
-            guarantee: "18 ماه گارانتی شرکتی",
-            stock: 8,
-            price: 12_000_000,
-        },
-    },
-
-    // ─────────────────────────── محصول ۲: گوشی موبایل ───────────────────────────
-    {
-        id: "2",
         slug: "apple-iphone-13-pro-max",
-        discountPrice: 45_000_000,
         categoryId: "mobile",
         images: [
             "/products/iphone13/iphone-1.jpg",
@@ -93,7 +49,7 @@ export const products: Product[] = [
             englishName:
                 "Apple iPhone 13 Pro Max A2644 Dual SIM 256GB And 6GB RAM Mobile Phone",
             rating: 4.8,
-            color: [
+            colors: [
                 { name: "نقره‌ای", value: "#C0C0C0" },
                 { name: "طلایی", value: "#FFD700" },
                 { name: "آبی سیر", value: "#1E3A8A" },
@@ -114,22 +70,19 @@ export const products: Product[] = [
             guarantee: "12 ماه گارانتی آواژنگ",
             stock: 12,
             price: 48_000_000,
+            discountPrice: 45_000_000,
         },
     },
 
-    // ─────────────────────────── محصول ۳: لپ‌تاپ ───────────────────────────
     {
-        id: "3",
+        id: "2",
         slug: "asus-vivobook-15-x1504za",
-        discountPrice: 28_000_000,
-        categoryId: "laptop",
+        categoryId: "laptops",
         images: [
-
             "/products/vivobook/laptop-1.jpg",
             "/products/vivobook/laptop-2.jpg",
             "/products/vivobook/laptop-3.jpg",
             "/products/vivobook/laptop-4.jpg",
-
         ],
         info: {
             persianName:
@@ -137,7 +90,7 @@ export const products: Product[] = [
             englishName:
                 "ASUS Vivobook 15 X1504ZA Core i5 1235U 16GB RAM 512GB SSD 15.6 inch",
             rating: 4.2,
-            color: [
+            colors: [
                 { name: "خاکستری", value: "#6B7280" },
                 { name: "نقره‌ای", value: "#D1D5DB" },
                 { name: "آبی", value: "#2563EB" },
@@ -157,6 +110,47 @@ export const products: Product[] = [
             guarantee: "12 ماه گارانتی سازگار",
             stock: 5,
             price: 30_000_000,
+            discountPrice: 28_000_000,
+        },
+    },
+
+    {
+        id: "3",
+        slug: "samsung-galaxy-tab-s9",
+        categoryId: "tablets",
+        images: [
+            "/products/tablet/tablet-1.jpg",
+            "/products/tablet/tablet-2.jpg",
+            "/products/tablet/tablet-3.jpg",
+            "/products/tablet/tablet-4.jpg",
+        ],
+        info: {
+            persianName:
+                "تبلت سامسونگ مدل Galaxy Tab S9 ظرفیت 256 گیگابایت",
+            englishName:
+                "Samsung Galaxy Tab S9 256GB WiFi Tablet",
+            rating: 4.6,
+            colors: [
+                { name: "خاکستری", value: "#6B7280" },
+                { name: "بژ", value: "#D6C7B0" },
+            ],
+            features: [
+                { label: "منطقه", value: "کره جنوبی" },
+                { label: "فناوری نمایشگر", value: "Dynamic AMOLED 2X" },
+                { label: "سیستم‌عامل", value: "Android" },
+                { label: "دوربین", value: "13 مگاپیکسل" },
+                { label: "سایز", value: "11 اینچ" },
+            ],
+            description:
+                "تبلت Galaxy Tab S9 با نمایشگر Dynamic AMOLED 2X، پردازنده قدرتمند و پشتیبانی از قلم S Pen، گزینه‌ای مناسب برای استفاده روزمره، مطالعه و کار است.",
+        },
+        purchasePanel: {
+            storeName: "کالاچی",
+            guarantee: "18 ماه گارانتی شرکتی",
+            stock: 7,
+            price: 35_000_000,
+            discountPrice: 32_000_000,
         },
     },
 ];
+

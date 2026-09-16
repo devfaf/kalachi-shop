@@ -38,9 +38,9 @@ export default function Navbar() {
                     return (
                         <Box
                             component="li"
+                            key={item.label}
                         >
                             <Link href={item.href}
-                                key={item.label}
                                 sx={{
                                     color: "text.primary",
                                     display: "flex",
