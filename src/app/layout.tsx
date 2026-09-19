@@ -5,6 +5,10 @@ import Providers from "@/providers";
 import Header from "@/components/layout/Header/Header"
 import { CssBaseline } from "@mui/material";
 import Footer from "@/components/layout/Footer/Footer";
+import { Geist } from "next/font/google";
+import { cn } from "@/lib/utils";
+
+const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 
 export const metadata: Metadata = {
   title: "فروشگاه اینترنتی کالاچی",
@@ -16,7 +20,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html
       lang="fa"
       dir="rtl"
-      className={peyda.variable}
+      className={cn("font-sans", geist.variable)}
     >
       <body>
         <Providers>
