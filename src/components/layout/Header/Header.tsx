@@ -6,7 +6,7 @@ import Location from "./Location";
 import Contact from "./Contact";
 import Auth from "./Auth";
 import Cart from "./Cart";
-import Navigation from "../Navigation/Navigation";
+import Navigation from "./Navigation/Navigation";
 import MobileHeader from "./MobileMenu/MobileHeader";
 import DistanceLine from "@/components/common/DistanceLine";
 
