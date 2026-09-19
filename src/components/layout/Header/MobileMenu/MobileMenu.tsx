@@ -1,5 +1,5 @@
 import { Box, Button, List, ListItem, IconButton } from "@mui/material";
-import { navItems } from "@/components/data/navigation/navItems";
+import { navItems } from "@/components/data/navItems";
 import Logo from "../Logo";
 import { HiOutlineXMark } from "react-icons/hi2";
 
