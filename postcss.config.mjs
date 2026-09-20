@@ -4,4 +4,4 @@ const config = {
     },
 }
 
-export default confing;
+export default config;
