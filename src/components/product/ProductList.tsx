@@ -1,4 +1,4 @@
-import { products } from "@/components/data/products"
+import { products } from "@/data/products"
 import { Box } from "@mui/material";
 import Link from "next/link";
 

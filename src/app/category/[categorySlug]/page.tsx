@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation"
-import { categories } from "@/components/data/categories"
-import { products } from "@/components/data/products"
+import { categories } from "@/data/categories"
+import { products } from "@/data/products"
 import Link from "next/link"
 
 type CategoryPageProps = {

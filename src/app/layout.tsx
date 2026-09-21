@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import "../styles/globals.css";
 import { peyda } from "@/styles/fonts";
-import Providers from "@/providers";
+import Providers from "@/lib/providers";
 import Header from "@/components/layout/Header/Header"
 import { CssBaseline } from "@mui/material";
 import Footer from "@/components/layout/Footer/Footer";

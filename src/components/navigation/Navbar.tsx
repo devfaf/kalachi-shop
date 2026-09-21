@@ -9,9 +9,9 @@ import {
     NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
 
-import { navItems } from "@/components/data/navItems"
+import { navItems } from "@/data/navItems"
 import { useState } from "react";
-import { categories } from "@/components/data/categories";
+import { categories } from "@/data/categories";
 
 
 
