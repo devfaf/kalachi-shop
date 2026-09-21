@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation"
 import { categories } from "@/components/data/categories"
 import { products } from "@/components/data/products"
+import Link from "next/link"
 
 type CategoryPageProps = {
     params: Promise<{
@@ -33,6 +34,10 @@ export default async function CategoryPage ({params}: CategoryPageProps){
                             ).toLocaleString()}{" "}
                             تومان
                         </p>
+
+                        <Link href={`/products/${product.slug}`}>
+                        مشاهده جزئیات
+                        </Link>
                     </div>
                 ))
             }
