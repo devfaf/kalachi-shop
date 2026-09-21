@@ -39,23 +39,26 @@ export default function Navbar() {
                                     </NavigationMenuTrigger>
                                     <NavigationMenuContent>
                                         {
-                                            categoryParents.map((child) => (
-                                                <NavigationMenuItem
-                                                    key={child.id}
-                                                    onMouseEnter={() => setActiveCategoryId(child.id)}
+                                            categoryParents.map((category) => (
+                                                <NavigationMenuLink
+                                                    key={category.id}
+                                                    href={`/category/${category.slug}`}
+                                                    onMouseEnter={() => setActiveCategoryId(category.id)}
                                                 >
-                                                    {child.name}
-                                                </NavigationMenuItem>
+                                                    {category.name}
+                                                </NavigationMenuLink>
                                             ))
                                         }
                                         {
                                             categoryChildren.map(submenu => (
-                                                <NavigationMenuItem
-                                                    key={submenu.id}>
+                                                <NavigationMenuLink
+                                                    key={submenu.id}
+                                                    href={`/category/${submenu.slug}`}
+                                                    >
                                                     <NavigationMenuLink>
                                                         {submenu.name}
                                                     </NavigationMenuLink>
-                                                </NavigationMenuItem>
+                                                </NavigationMenuLink>
                                             ))
                                         }
                                     </NavigationMenuContent>
