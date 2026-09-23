@@ -35,42 +35,43 @@ export type Product = {
 export const products: Product[] = [
     {
         id: "1",
-        slug: "apple-iphone-13-pro-max",
+        slug: "apple-iphone-17",
         categoryId: "mobile",
         images: [
-            "/products/iphone13/iphone-1.jpg",
-            "/products/iphone13/iphone-2.jpg",
-            "/products/iphone13/iphone-3.jpg",
-            "/products/iphone13/iphone-4.jpg",
+            "/images/products/iphone-17/1.webp",
+            "/images/products/iphone-17/2.webp",
+            "/images/products/iphone-17/3.webp",
+            "/images/products/iphone-17/4.webp",
+            "/images/products/iphone-17/5.webp",
+            "/images/products/iphone-17/6.webp",
         ],
         info: {
             persianName:
-                "گوشی موبایل اپل مدل iPhone 13 Pro Max A2644 دو سیم‌کارت ظرفیت 256 گیگابایت",
+                "گوشی موبایل اپل مدل iPhone 17 ظرفیت 256 گیگابایت",
             englishName:
-                "Apple iPhone 13 Pro Max A2644 Dual SIM 256GB And 6GB RAM Mobile Phone",
+                "Apple iPhone 17 256GB Smartphone",
             rating: 4.8,
             colors: [
-                { name: "نقره‌ای", value: "#C0C0C0" },
-                { name: "طلایی", value: "#FFD700" },
-                { name: "آبی سیر", value: "#1E3A8A" },
-                { name: "خاکستری", value: "#4B5563" },
+                { name: "مشکی", value: "#111827" },
+                { name: "آبی مه‌آلود", value: "#9CA3AF" },
+                { name: "سبز متمایل به خاکستری", value: "#A8B5A0" },
             ],
             features: [
-                { label: "منطقه", value: "چین" },
-                { label: "فناوری نمایشگر", value: "Super Retina XDR OLED" },
-                { label: "سیستم‌عامل", value: "iOS 15" },
-                { label: "دوربین", value: "12 مگاپیکسل (سه‌گانه)" },
-                { label: "سایز", value: "6.7 اینچ" },
+                { label: "نمایشگر", value: "6.3 اینچ Super Retina XDR OLED" },
+                { label: "پردازنده", value: "Apple A19" },
+                { label: "حافظه داخلی", value: "256 گیگابایت" },
+                { label: "دوربین", value: "48 مگاپیکسل دوگانه" },
+                { label: "نرخ نوسازی", value: "تا 120 هرتز" },
             ],
             description:
-                "آیفون 13 پرو مکس با تراشه A15 Bionic، نمایشگر ProMotion با نرخ نوسازی 120 هرتز و سیستم دوربین سه‌گانه حرفه‌ای، یکی از قدرتمندترین گوشی‌های بازار است.",
+                "iPhone 17 با نمایشگر OLED، تراشه A19 و سیستم دوربین دوگانه 48 مگاپیکسلی.",
         },
         purchasePanel: {
             storeName: "کالاچی",
-            guarantee: "12 ماه گارانتی آواژنگ",
-            stock: 12,
-            price: 48_000_000,
-            discountPrice: 45_000_000,
+            guarantee: "18 ماه گارانتی شرکتی",
+            stock: 8,
+            price: 89_000_000,
+            discountPrice: 84_000_000,
         },
     },
 
@@ -79,35 +80,33 @@ export const products: Product[] = [
         slug: "asus-vivobook-15-x1504za",
         categoryId: "laptops",
         images: [
-            "/products/vivobook/laptop-1.jpg",
-            "/products/vivobook/laptop-2.jpg",
-            "/products/vivobook/laptop-3.jpg",
-            "/products/vivobook/laptop-4.jpg",
+            "/images/products/vivobook-15/1.webp",
+            "/images/products/vivobook-15/2.webp",
+            "/images/products/vivobook-15/3.webp",
+            "/images/products/vivobook-15/4.webp",
         ],
         info: {
             persianName:
-                "لپ‌تاپ 15 اینچی ایسوس مدل Vivobook 15 X1504ZA با پردازنده Core i5 و 16 گیگابایت رم",
+                "لپ‌تاپ 15.6 اینچی ایسوس Vivobook 15 X1504ZA",
             englishName:
-                "ASUS Vivobook 15 X1504ZA Core i5 1235U 16GB RAM 512GB SSD 15.6 inch",
-            rating: 4.2,
+                "ASUS Vivobook 15 X1504ZA Core i5",
+            rating: 4.4,
             colors: [
-                { name: "خاکستری", value: "#6B7280" },
                 { name: "نقره‌ای", value: "#D1D5DB" },
-                { name: "آبی", value: "#2563EB" },
             ],
             features: [
-                { label: "منطقه", value: "تایوان" },
-                { label: "فناوری نمایشگر", value: "IPS Full HD" },
+                { label: "پردازنده", value: "Intel Core i5-1235U" },
+                { label: "رم", value: "16 گیگابایت" },
+                { label: "حافظه", value: "512 گیگابایت SSD" },
+                { label: "نمایشگر", value: "15.6 اینچ Full HD" },
                 { label: "سیستم‌عامل", value: "Windows 11" },
-                { label: "دوربین", value: "720p HD" },
-                { label: "سایز", value: "15.6 اینچ" },
             ],
             description:
-                "لپ‌تاپ ایسوس Vivobook 15 با پردازنده نسل دوازدهم اینتل Core i5، 16 گیگابایت رم DDR4 و 512 گیگابایت SSD، گزینه‌ای عالی برای کارهای اداری، دانشجویی و مولتی‌مدیا است.",
+                "لپ‌تاپ Vivobook 15 برای استفاده روزمره، کاری و دانشجویی با نمایشگر 15.6 اینچی و حافظه SSD.",
         },
         purchasePanel: {
             storeName: "کالاچی",
-            guarantee: "12 ماه گارانتی سازگار",
+            guarantee: "18 ماه گارانتی سازگار",
             stock: 5,
             price: 30_000_000,
             discountPrice: 28_000_000,
@@ -119,30 +118,30 @@ export const products: Product[] = [
         slug: "samsung-galaxy-tab-s9",
         categoryId: "tablets",
         images: [
-            "/products/tablet/tablet-1.jpg",
-            "/products/tablet/tablet-2.jpg",
-            "/products/tablet/tablet-3.jpg",
-            "/products/tablet/tablet-4.jpg",
+            "/images/products/galaxy-tab-s9/1.webp",
+            "/images/products/galaxy-tab-s9/2.webp",
+            "/images/products/galaxy-tab-s9/3.webp",
+            "/images/products/galaxy-tab-s9/4.webp",
         ],
         info: {
             persianName:
-                "تبلت سامسونگ مدل Galaxy Tab S9 ظرفیت 256 گیگابایت",
+                "تبلت سامسونگ Galaxy Tab S9 ظرفیت 256 گیگابایت",
             englishName:
-                "Samsung Galaxy Tab S9 256GB WiFi Tablet",
+                "Samsung Galaxy Tab S9 256GB WiFi",
             rating: 4.6,
             colors: [
                 { name: "خاکستری", value: "#6B7280" },
                 { name: "بژ", value: "#D6C7B0" },
             ],
             features: [
-                { label: "منطقه", value: "کره جنوبی" },
-                { label: "فناوری نمایشگر", value: "Dynamic AMOLED 2X" },
-                { label: "سیستم‌عامل", value: "Android" },
+                { label: "نمایشگر", value: "11 اینچ Dynamic AMOLED 2X" },
+                { label: "حافظه داخلی", value: "256 گیگابایت" },
+                { label: "رم", value: "12 گیگابایت" },
                 { label: "دوربین", value: "13 مگاپیکسل" },
-                { label: "سایز", value: "11 اینچ" },
+                { label: "قلم", value: "پشتیبانی از S Pen" },
             ],
             description:
-                "تبلت Galaxy Tab S9 با نمایشگر Dynamic AMOLED 2X، پردازنده قدرتمند و پشتیبانی از قلم S Pen، گزینه‌ای مناسب برای استفاده روزمره، مطالعه و کار است.",
+                "Galaxy Tab S9 با نمایشگر Dynamic AMOLED 2X، پشتیبانی از S Pen و طراحی باریک.",
         },
         purchasePanel: {
             storeName: "کالاچی",
@@ -153,4 +152,3 @@ export const products: Product[] = [
         },
     },
 ];
-

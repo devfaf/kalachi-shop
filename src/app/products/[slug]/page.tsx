@@ -1,5 +1,6 @@
 import { products } from "@/data/products"
 import { notFound } from "next/navigation";
+import PageContainer from "@/components/common/PageContainer";
 
 type ProductDetailsPageProps = {
     params: Promise<{
@@ -8,7 +9,7 @@ type ProductDetailsPageProps = {
 }
 
 
-export default async function productDetailsPage ({ params }: ProductDetailsPageProps) {
+export default async function productDetailsPage({ params }: ProductDetailsPageProps) {
     const { slug } = await params
 
     const product = products.find((product) => product.slug === slug)
@@ -18,16 +19,19 @@ export default async function productDetailsPage ({ params }: ProductDetailsPage
     }
 
     return (
-        <div>
+        <PageContainer>
             <div>
-                {product.info.persianName}
+                <div>
+                    {product.info.persianName}
+                </div>
+                <div>
+                    {product.info.description}
+                </div>
+                <div>
+                    {product.purchasePanel.price}
+                </div>
             </div>
-            <div>
-                {product.info.description}
-            </div>
-            <div>
-                {product.purchasePanel.price}
-            </div>
-        </div>
+
+        </PageContainer>
     )
 }
