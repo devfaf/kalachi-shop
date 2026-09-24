@@ -1,6 +1,9 @@
 import { products } from "@/data/products"
 import { notFound } from "next/navigation";
 import PageContainer from "@/components/common/PageContainer";
+import ProductGallery from "@/components/product/ProductGallery";
+import ProductInfo from "@/components/product/ProductInfo";
+import PurchasePanel from "@/components/product/PurchasePanel";
 
 type ProductDetailsPageProps = {
     params: Promise<{
@@ -19,19 +22,17 @@ export default async function productDetailsPage({ params }: ProductDetailsPageP
     }
 
     return (
-        <PageContainer>
-            <div>
-                <div>
-                    {product.info.persianName}
-                </div>
-                <div>
-                    {product.info.description}
-                </div>
-                <div>
-                    {product.purchasePanel.price}
-                </div>
-            </div>
+<PageContainer>
+  <div className="product-layout">
 
-        </PageContainer>
+    <div className="product-main">
+      <ProductGallery images={product.images} />
+      {/* <ProductInfo product={product.info} /> */}
+    </div>
+
+    {/* <PurchasePanel purchase={product.purchasePanel} /> */}
+
+  </div>
+</PageContainer>
     )
 }

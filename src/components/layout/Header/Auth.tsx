@@ -1,48 +1,15 @@
-import AppButton from "@/components/common/AppButton";
 import { AiOutlineUser } from "react-icons/ai";
-import { Box } from "@mui/material";
+import AppButton from "@/components/common/AppButton";
 
 const Auth = () => {
   return (
     <AppButton
       startIcon={
-        <AiOutlineUser
-          style={{
-            fontSize: "20px",
-          }}
-        />
+        <AiOutlineUser className="text-[28px] md:text-[20px]" />
       }
-      sx={{
-        height: 45,
-        minWidth: {
-          xs: 44,
-          md: "auto",
-        },
-        color: "text.primary",
-
-        "& .MuiButton-startIcon svg": {
-          fontSize: {
-            xs: 28,
-            md: 20,
-          },
-        },
-
-        "& .MuiButton-endIcon": {
-          display: "none",
-        },
-      }}
+      className="h-11 min-w-11 text-foreground md:min-w-0"
     >
-      <Box
-        component="span"
-        sx={{
-          display: {
-            xs: "none",
-            md: "inline",
-          },
-        }}
-      >
-        ورود / ثبت‌نام
-      </Box>
+      <span className="hidden md:inline">ورود / ثبت‌نام</span>
     </AppButton>
   );
 };

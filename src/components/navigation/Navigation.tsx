@@ -1,51 +1,25 @@
-import { Box, Link } from "@mui/material";
-import Navbar from "./Navbar";
+import Link from "next/link";
 import { LiaFireAltSolid } from "react-icons/lia";
+import Navbar from "./Navbar";
 
 const Navigation = () => {
+  return (
+    <nav className="flex items-center justify-between px-4">
+      <Navbar />
 
-    return (
-        <Box
-            component={"nav"}
-            sx={{
-                px:2,
-                display:'flex',
-                justifyContent:'space-between',
-                alignItems:'center',
+      <ul className="m-0 list-none p-0">
+        <li>
+          <Link
+            href="/"
+            className="flex items-center gap-1.5 p-2.5 font-bold text-foreground transition-colors duration-200 hover:text-primary/80"
+          >
+            <LiaFireAltSolid size={25} />
+            فروش ویژه
+          </Link>
+        </li>
+      </ul>
+    </nav>
+  );
+};
 
-            }}
-        >
-            <Navbar />
-            <Box>
-                <ul>
-                    <li>
-                        <Link
-                        href={"/"}
-                        sx={{
-                            display:"flex",
-                            alignItems:"center",
-                            textDecoration:"none",
-                            p:'10px',
-                            fontWeight:700,
-                            transition: "color 0.2s ease",
-                            "&:hover":{
-                                color:"primary.light"
-                            }
-                        }}
-                        >
-                            <Box
-                            component={LiaFireAltSolid}
-                            sx={{
-                                fontSize:"25px"
-                            }}
-                            ></Box>
-                            فروش ویژه
-                        </Link>
-                    </li>
-                </ul>
-            </Box>
-        </Box>
-
-    )
-}
-export default Navigation
+export default Navigation;

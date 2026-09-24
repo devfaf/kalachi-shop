@@ -1,6 +1,5 @@
 "use client";
 
-import { Box, Typography } from "@mui/material";
 import { FaWhatsapp } from "react-icons/fa";
 import { SiAparat } from "react-icons/si";
 import EitaaIcon from "@/assets/social/eitaa.svg";
@@ -21,120 +20,47 @@ const socialLinks = [
   },
   {
     title: "بله",
-    icon: (
-      <Image
-        src={BaleIcon}
-        alt=""
-        width={32}
-        height={32}
-        style={{
-          display: "block",
-        }}
-      />
-    ),
+    icon: <Image src={BaleIcon} alt="" width={32} height={32} />,
     href: "#",
   },
   {
     title: "ایتا",
-    icon: (
-      <Image
-        src={EitaaIcon}
-        alt=""
-        width={32}
-        height={32}
-        style={{
-          display: "block",
-        }}
-      />
-    ),
+    icon: <Image src={EitaaIcon} alt="" width={32} height={32} />,
     href: "#",
   },
 ];
 
 const FooterSocials = () => {
   return (
-    <Box
-      sx={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        gap: 2,
-      }}
-    >
-      <Typography
-        component="h3"
-        sx={{
-          fontWeight: 700,
-          fontSize: 18,
-          pt:{
-            xs:2
-          }
-        }}
-      >
+    <div className="flex flex-col items-center gap-4">
+      <h3 className="pt-2 text-lg font-bold text-foreground">
         ما را در شبکه‌های اجتماعی دنبال کنید
-      </Typography>
+      </h3>
 
-      <Box
-        sx={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          gap: 2,
-          flexWrap: "wrap",
-        }}
-      >
+      <div className="flex flex-wrap items-center justify-center gap-4">
         {socialLinks.map(({ title, icon, href }) => (
-          <Box
+          <a
             key={title}
-            component="a"
             href={href}
             aria-label={title}
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              color: "common.black",
-              fontSize: 32,
-              transition: "0.2s",
-
-              "& img": {
-                filter: "grayscale(1) brightness(0)",
-                transition: "0.2s",
-              },
-
-              "&:hover": {
-                color: "primary.main",
-                transform: "translateY(-2px)",
-
-                "& img": {
-                  // رنگ primary تقریبی: #0F766E
-                  filter:
-                    "brightness(0) saturate(100%) invert(33%) sepia(39%) saturate(1014%) hue-rotate(128deg) brightness(88%) contrast(91%)",
-                },
-              },
-            }}
+            className="group flex size-10 items-center justify-center text-3xl text-foreground transition-all duration-200 hover:-translate-y-0.5 hover:text-primary"
           >
-            {icon}
-          </Box>
+            <span className="flex [&_img]:block [&_img]:transition [&_img]:duration-200 [&_img]:[filter:grayscale(1)_brightness(0)] group-hover:[&_img]:[filter:brightness(0)_saturate(100%)_invert(33%)_sepia(39%)_saturate(1014%)_hue-rotate(128deg)_brightness(88%)_contrast(91%)]">
+              {icon}
+            </span>
+          </a>
         ))}
-      </Box>
+      </div>
 
-      <Typography
-        component="p"
-        sx={{
-          fontWeight: 700,
-          fontSize: 18,
-          mt: 1,
-        }}
-      >
+      <p className="mt-1 text-lg font-bold text-foreground">
         عضویت در خبرنامه
-      </Typography>
+      </p>
 
       <AppInput
         placeholder="شماره موبایل خود را وارد نمایید"
         buttonText="ثبت"
       />
-    </Box>
+    </div>
   );
 };
 

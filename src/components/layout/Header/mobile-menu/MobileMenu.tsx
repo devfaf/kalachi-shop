@@ -1,7 +1,7 @@
-import { Box, Button, List, ListItem, IconButton } from "@mui/material";
+import Link from "next/link";
+import { HiOutlineXMark } from "react-icons/hi2";
 import { navItems } from "@/data/navItems";
 import Logo from "../Logo";
-import { HiOutlineXMark } from "react-icons/hi2";
 
 type MobileMenuProps = {
   onClose: () => void;
@@ -9,89 +9,39 @@ type MobileMenuProps = {
 
 const MobileMenu = ({ onClose }: MobileMenuProps) => {
   return (
-    <Box
-      sx={{
-        width: 300,
-      }}
-    >
-      {/* Logo */}
-      <Box
-        sx={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          p: 2,
-          borderBottom: "1px solid",
-          borderColor: "divider",
-        }}
-      >
+    <div className="w-[300px]">
+      {/* Header: Logo + Close */}
+      <div className="flex items-center justify-between border-b border-border p-4">
         <Logo />
-        {/* Close button */}
-        <IconButton
+        <button
+          type="button"
           onClick={onClose}
           aria-label="بستن منو"
+          className="inline-flex items-center justify-center p-1 text-foreground transition-colors hover:text-primary"
         >
-          <Box
-            component={HiOutlineXMark}
-            sx={{
-              fontSize: 26,
-            }}
-          />
-        </IconButton>
-      </Box>
+          <HiOutlineXMark size={26} />
+        </button>
+      </div>
 
       {/* Navigation */}
-      <List
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          gap: 0,
-        }}
-      >
+      <nav className="flex flex-col">
         {navItems.map((item) => {
           const Icon = item.icon;
 
           return (
-            <ListItem
+            <Link
               key={item.label}
-              disablePadding
-              sx={{
-                borderBottom: "1px solid",
-                borderColor: "divider",
-              }}
+              href={item.href ?? "#"}
+              onClick={onClose}
+              className="flex items-center gap-1.5 border-b border-border px-4 py-4 text-sm font-medium text-foreground transition-colors hover:text-primary"
             >
-              <Button
-                fullWidth
-                sx={{
-                  display: "flex",
-                  gap: "5px",
-                  justifyContent: "flex-start",
-                  color: "text.primary",
-                  px: 2,
-                  py: 2,
-                  borderRadius: 0,
-
-                  "&:hover": {
-                    color: "primary.main",
-                  },
-                }}
-              >
-                {Icon ? (
-                  <Box
-                    component={Icon}
-                    sx={{
-                      fontSize: 24,
-                    }}
-                  />
-                ) : null}
-
-                {item.label}
-              </Button>
-            </ListItem>
+              {Icon ? <Icon size={24} /> : null}
+              {item.label}
+            </Link>
           );
         })}
-      </List>
-    </Box>
+      </nav>
+    </div>
   );
 };
 

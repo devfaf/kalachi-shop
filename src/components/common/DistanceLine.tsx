@@ -1,7 +1,17 @@
+import { cn } from "@/lib/utils";
 
-const DistanceLine = () => {
+interface DistanceLineProps {
+  className?: string;
+}
+
+const DistanceLine = ({ className }: DistanceLineProps) => {
   return (
-    <div></div>
+    <div
+      className={cn(
+        "h-4 w-px shrink-0 bg-border",
+        className
+      )}
+    />
   );
 };
 

@@ -1,53 +1,34 @@
-import { Button } from "@mui/material";
-import type { ButtonProps } from "@mui/material";
+import * as React from "react";
+import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
-const AppButton = (props: ButtonProps) => {
-  return (
-    <Button
-      {...props}
-      sx={{
-        height: 45,
-        fontSize: 14,
-        fontWeight: 400,
-        borderRadius: 1,
-
-        border: {
-          xs: "none",
-          md: "1px solid",
-        },
-
-        borderColor: {
-          md: "divider",
-        },
-
-        minWidth: {
-          xs: 40,
-          md: "auto",
-        },
-
-        px: {
-          xs: 1,
-          md: 2,
-        },
-
-        "& .MuiButton-startIcon": {
-          marginLeft: "4px",
-          marginRight: 0,
-        },
-
-        "& .MuiButton-endIcon": {
-          display: {
-            xs: "none",
-            md: "inline-flex",
-          },
-          marginLeft: 0,
-          marginRight: "4px",
-        },
-
-        ...props.sx,
-      }}
-    />
-  );
+type AppButtonProps = React.ComponentProps<typeof Button> & {
+  startIcon?: React.ReactNode;
+  endIcon?: React.ReactNode;
 };
+
+const AppButton = React.forwardRef<HTMLButtonElement, AppButtonProps>(
+  ({ className, children, startIcon, endIcon, ...props }, ref) => {
+    return (
+      <Button
+        ref={ref}
+        variant="outline"
+        className={cn(
+          "h-11 gap-1.5 rounded-md border-0 px-2 text-sm font-normal",
+          "md:min-w-0 md:border md:border-border md:px-3",
+          "min-w-10 [&_svg]:size-4 [&_svg]:shrink-0",
+          className
+        )}
+        {...props}
+      >
+        {startIcon}
+        {children}
+        {endIcon}
+      </Button>
+    );
+  }
+);
+
+AppButton.displayName = "AppButton";
 
 export default AppButton;

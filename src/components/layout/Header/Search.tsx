@@ -1,106 +1,44 @@
-import { Box, TextField, IconButton, InputAdornment } from "@mui/material"
-import {
-    SearchOutlined,
-} from "@mui/icons-material";
-import { HiOutlineCamera } from "react-icons/hi2";
+"use client";
+
+import { useState } from "react";
+import { HiOutlineCamera, HiOutlineMagnifyingGlass } from "react-icons/hi2";
 import { CiSearch } from "react-icons/ci";
 
 const Search = () => {
-    return (
+  const [value, setValue] = useState("");
 
-        <Box
-            sx={{
-                width: "100%",
-                maxWidth: 500,
-            }}
+  return (
+    <div className="w-full max-w-[500px]">
+      <div className="flex h-16 items-center overflow-hidden rounded-md border border-border transition-colors focus-within:border-primary/60">
+        {/* Search button (start in RTL = right side) */}
+        <button
+          type="button"
+          aria-label="جستجو"
+          className="flex h-full w-[50px] shrink-0 items-center justify-center bg-primary text-primary-foreground transition-colors hover:bg-primary/90 active:scale-95"
         >
-            <TextField
-                fullWidth
-                placeholder="جستجو در بین ۱۵۰۰ محصول تخفیف‌دار"
-                sx={{
-                    height: 50,
-                    "& .MuiOutlinedInput-root": {
-                        height: 64,
-                        padding: 0,
-                        borderRadius: 1,
+          <CiSearch size={30} />
+        </button>
 
-                        "& fieldset": {
-                            border: "1px solid",
-                            borderColor: "divider",
-                            borderWidth: "1px !important",
-                        },
+        {/* Input */}
+        <input
+          type="text"
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
+          placeholder="جستجو در بین ۱۵۰۰ محصول تخفیف‌دار"
+          className="h-full flex-1 border-0 bg-transparent px-3 text-sm outline-none placeholder:text-muted-foreground"
+        />
 
-                        "&:hover fieldset": {
-                            borderColor: "divider",
-                            borderWidth: "1px !important",
-                        },
+        {/* Camera button (end in RTL = left side) */}
+        <button
+          type="button"
+          aria-label="جستجوی تصویری"
+          className="flex h-full w-12 shrink-0 items-center justify-center pl-2 text-primary transition-transform duration-150 active:scale-[0.85]"
+        >
+          <HiOutlineCamera size={30} />
+        </button>
+      </div>
+    </div>
+  );
+};
 
-                        "&.Mui-focused fieldset": {
-                            borderColor: "divider",
-                            borderWidth: "1px !important",
-                        },
-                    },
-                }}
-                slotProps={{
-                    input: {
-                        startAdornment: (
-                            <InputAdornment position="end">
-                                <IconButton
-                                    size="small"
-                                    aria-label="جستجو"
-                                    sx={{
-                                        width: 50,
-                                        height: 50,
-                                        padding: 0,
-                                        border: "10px solid",
-                                        borderColor: "primary.main",
-                                        borderRadius: 1,
-
-                                        bgcolor: "primary.main",
-                                        color: "primary.contrastText",
-
-                                        "&:hover": {
-                                            bgcolor: "primary.main",
-                                        },
-                                    }}
-                                >
-                                    <Box
-                                        component={CiSearch}
-                                        sx={{ fontSize: 30 }} />
-                                </IconButton>
-                            </InputAdornment>
-                        ),
-
-                        endAdornment: (
-                            <InputAdornment position="start">
-                                <IconButton
-                                    size="small"
-                                    aria-label="جستجوی تصویری"
-                                    sx={{
-                                        pl: 2,
-
-                                        "&:active": {
-                                            transform: "scale(0.85)",
-                                        },
-
-                                        transition: "transform 150ms ease",
-                                    }}
-                                >
-                                    <Box
-                                        component={HiOutlineCamera}
-                                        sx={{
-                                            fontSize: 30,
-                                            color: "primary.main",
-                                        }}
-
-                                    />
-                                </IconButton>
-                            </InputAdornment>
-                        ),
-                    },
-                }}
-            />
-        </Box>
-    )
-}
-export default Search
+export default Search;

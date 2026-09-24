@@ -1,18 +1,20 @@
-import { products } from "@/data/products"
-import { Box } from "@mui/material";
 import Link from "next/link";
+import { products } from "@/data/products";
 
 const ProductList = () => {
   return (
-        <Box>
-            {
-                products.map(p => 
-                    <Link href={`/products/${p.slug}`} key={p.id}>
-                        {p.name}
-                    </Link>
-                )
-            }
-        </Box>
-  )
-}
-export default ProductList
+    <div className="flex flex-col gap-2">
+      {products.map((p) => (
+        <Link
+          key={p.id}
+          href={`/products/${p.slug}`}
+          className="text-sm text-foreground transition-colors hover:text-primary"
+        >
+          {p.info.persianName}
+        </Link>
+      ))}
+    </div>
+  );
+};
+
+export default ProductList;

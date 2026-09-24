@@ -1,23 +1,19 @@
-import { products } from "@/data/products"
-import { Box } from "@mui/material"
+import { products } from "@/data/products";
 
-type productInfoProps = {
+type ProductInfoProps = {
   slug: string;
-}
+};
 
-const ProductInfo = ({slug}:productInfoProps) => {
-  const productsInfo = products.find(p => p.slug === slug)
-  console.log(productsInfo);
-  
+const ProductInfo = ({ slug }: ProductInfoProps) => {
+  const product = products.find((p) => p.slug === slug);
 
   return (
-    <Box>
-      {
-          <Box>
-            <Box>{productsInfo?.info.persianName}</Box>
-          </Box>
-      }
-    </Box>
-  )
-}
-export default ProductInfo
+    <div>
+      <div>
+        <div>{product?.info.persianName}</div>
+      </div>
+    </div>
+  );
+};
+
+export default ProductInfo;

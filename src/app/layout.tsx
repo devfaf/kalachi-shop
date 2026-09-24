@@ -3,7 +3,6 @@ import "../styles/globals.css";
 import { peyda } from "@/styles/fonts";
 import Providers from "@/lib/providers";
 import Header from "@/components/layout/Header/Header"
-import { CssBaseline } from "@mui/material";
 import Footer from "@/components/layout/Footer/Footer";
 import { cn } from "@/lib/utils";
 
@@ -23,7 +22,6 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <Providers>
           <Header />
           <main>
-            <CssBaseline />
             {children}
           </main>
           <Footer />

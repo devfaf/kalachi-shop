@@ -10,96 +10,36 @@ import Navigation from "../../navigation/Navigation";
 import MobileHeader from "./mobile-menu/MobileHeader";
 import DistanceLine from "@/components/common/DistanceLine";
 
-import {
-  AppBar,
-  Box,
-  Toolbar,
-} from "@mui/material";
-
 const Header = () => {
   return (
-    <AppBar
-      component="header"
-      position="static"
-      elevation={0}
-      sx={{
-        bgcolor: "background.paper",
-        color: "text.primary",
-        borderBottom: "1px solid #E5E7EB",
-        pb: {
-          xs: 2,
-          md: 0,
-        }
-      }}
-    >
+    <header className="border-b border-border bg-background pb-2 text-foreground md:pb-0">
       {/* ================= TOP HEADER ================= */}
-      <Toolbar
-        sx={{
-          minHeight: 105,
-          px: { xs: 2, md: 4 },
-          gap: 2,
-        }}
-      >
-        {/* Logo + Search + Location */}
-        <Box
-          sx={{
-            display: { xs: "none", md: "flex" },
-            alignItems: "center",
-            gap: { md: 2 },
-            flex: 1,
-            minWidth: 0,
-            height: "80px",
-          }}
-        >
-          {/* Logo */}
+      <div className="flex min-h-[105px] items-center gap-4 px-4 md:px-6">
+        {/* Logo + Search + Location (Desktop) */}
+        <div className="hidden h-20 min-w-0 flex-1 items-center gap-2 md:flex">
           <Logo />
-
-          {/* Search */}
           <Search />
-
-          {/* Location */}
           <Location />
-        </Box>
+        </div>
 
-        {/* Other Actions */}
-        <Box
-          sx={{
-            display: { xs: "none", md: "flex" },
-            alignItems: "center",
-            gap: 2,
-            flexShrink: 0,
-            pl: 2,
-          }}
-        >
-
+        {/* Other Actions (Desktop) */}
+        <div className="hidden shrink-0 items-center gap-4 pl-4 md:flex">
           <Contact />
           <DistanceLine />
-
           <Auth />
-
           <DistanceLine />
-
           <Cart />
-        </Box>
-
+        </div>
 
         {/* Mobile / Tablet */}
         <MobileHeader />
-      </Toolbar>
-
+      </div>
 
       {/* ================= NAVIGATION ================= */}
-      <Box
-        sx={{
-          display: {
-            xs: "none",
-            md: "block",
-          },
-        }}
-      >
+      <div className="hidden md:block">
         <Navigation />
-      </Box>
-    </AppBar>
+      </div>
+    </header>
   );
 };
 
