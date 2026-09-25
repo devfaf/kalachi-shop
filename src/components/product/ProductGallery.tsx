@@ -2,10 +2,11 @@
 
 import { useState } from "react"
 import { Swiper, SwiperSlide } from "swiper/react"
-import { Thumbs } from "swiper/modules"
+import { Thumbs, FreeMode } from "swiper/modules"
 
 import "swiper/css"
 import "swiper/css/thumbs"
+import "swiper/css/free-mode"
 
 type ProductGalleryProps = {
   images: string[]
@@ -41,15 +42,16 @@ const ProductGallery = ({ images }: ProductGalleryProps) => {
       {/* Thumbnails */}
       <div className="mt-3 w-full sm:mt-4">
         <Swiper
-          modules={[Thumbs]}
+          modules={[Thumbs, FreeMode]}
           onSwiper={setThumbsSwiper}
-          slidesPerView={4}
+          slidesPerView="auto"
           spaceBetween={8}
           watchSlidesProgress
+          freeMode
           className="w-full"
         >
           {images.map((image) => (
-            <SwiperSlide key={image}>
+            <SwiperSlide key={image} className="!w-16 sm:!w-20">
               <div className="aspect-square overflow-hidden rounded-lg border bg-white p-1 sm:p-2">
                 <img
                   src={image}
