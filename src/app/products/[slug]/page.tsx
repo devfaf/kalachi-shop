@@ -27,7 +27,7 @@ export default async function productDetailsPage({ params }: ProductDetailsPageP
 
     <div className="product-main">
       <ProductGallery images={product.images} />
-      {/* <ProductInfo product={product.info} /> */}
+      <ProductInfo info={product.info} />
     </div>
 
     {/* <PurchasePanel purchase={product.purchasePanel} /> */}

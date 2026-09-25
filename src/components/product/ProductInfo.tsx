@@ -1,16 +1,15 @@
-import { products } from "@/data/products";
+import type { ProductInfo } from "@/data/products";
 
 type ProductInfoProps = {
-  slug: string;
+  info: ProductInfo;
 };
 
-const ProductInfo = ({ slug }: ProductInfoProps) => {
-  const product = products.find((p) => p.slug === slug);
+const ProductInfo = ({ info }: ProductInfoProps) => {
 
   return (
     <div>
       <div>
-        <div>{product?.info.persianName}</div>
+        <div>{info.persianName}</div>
       </div>
     </div>
   );

@@ -15,7 +15,7 @@ const ProductGallery = ({ images }: ProductGalleryProps) => {
   const [thumbsSwiper, setThumbsSwiper] = useState<any>(null)
 
   return (
-    <div className="w-full">
+    <div className="mx-auto w-full max-w-xs sm:max-w-sm lg:max-w-md">
 
       {/* Main image */}
       <div className="w-full overflow-hidden rounded-xl border bg-white">
@@ -26,11 +26,11 @@ const ProductGallery = ({ images }: ProductGalleryProps) => {
         >
           {images.map((image) => (
             <SwiperSlide key={image}>
-              <div className="flex aspect-square w-full items-center justify-center p-6">
+              <div className="flex aspect-square w-full items-center justify-center p-3 sm:p-5">
                 <img
                   src={image}
                   alt=""
-                  className="h-full w-full object-contain"
+                  className="max-h-full max-w-full object-contain"
                 />
               </div>
             </SwiperSlide>
@@ -39,18 +39,18 @@ const ProductGallery = ({ images }: ProductGalleryProps) => {
       </div>
 
       {/* Thumbnails */}
-      <div className="mt-4 w-full">
+      <div className="mt-3 w-full sm:mt-4">
         <Swiper
           modules={[Thumbs]}
           onSwiper={setThumbsSwiper}
           slidesPerView={4}
-          spaceBetween={10}
+          spaceBetween={8}
           watchSlidesProgress
           className="w-full"
         >
           {images.map((image) => (
             <SwiperSlide key={image}>
-              <div className="aspect-square overflow-hidden rounded-lg border bg-white p-2">
+              <div className="aspect-square overflow-hidden rounded-lg border bg-white p-1 sm:p-2">
                 <img
                   src={image}
                   alt=""
