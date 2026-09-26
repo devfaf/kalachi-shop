@@ -4,11 +4,12 @@ export type ProductFeature = {
 };
 
 export type PurchasePanel = {
-    storeName: string;
-    guarantee: string;
-    stock: number;
-    price: number;
-    discountPrice?: number;
+  storeName: string;
+  sellerRating: number;
+  guarantee: string;
+  stock: number;
+  price: number;
+  discountPrice?: number;
 };
 
 export type ProductInfo = {
@@ -69,9 +70,10 @@ export const products: Product[] = [
         purchasePanel: {
             storeName: "کالاچی",
             guarantee: "18 ماه گارانتی شرکتی",
-            stock: 8,
+            stock: 2,
             price: 89_000_000,
             discountPrice: 84_000_000,
+            sellerRating:4.8,
         },
     },
 
@@ -110,6 +112,7 @@ export const products: Product[] = [
             stock: 5,
             price: 30_000_000,
             discountPrice: 28_000_000,
+            sellerRating:4.4,
         },
     },
 
@@ -149,6 +152,7 @@ export const products: Product[] = [
             stock: 7,
             price: 35_000_000,
             discountPrice: 32_000_000,
+            sellerRating:4.6
         },
     },
 ];

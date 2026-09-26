@@ -31,7 +31,7 @@ export default async function productDetailsPage({ params }: ProductDetailsPageP
                     <ProductInfo info={product.info} />
                 </div>
 
-                {/* <PurchasePanel purchase={product.purchasePanel} /> */}
+                <PurchasePanel purchase={product.purchasePanel} />
 
             </div>
         </PageContainer>
