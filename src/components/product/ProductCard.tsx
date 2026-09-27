@@ -8,8 +8,8 @@ type ProductCardProps = {
 }
 
 const ProductCard = ({ product }: ProductCardProps) => {
-    const price = product.purchasePanel.discountPrice ?? product.purchasePanel.price
-
+const price =
+  product.purchasePanel.finalPrice ?? product.purchasePanel.originalPrice
     return (
 
         <div className="group relative overflow-hidden rounded-2xl border border-border/50 bg-card shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary/30 hover:shadow-xl hover:shadow-primary/10">
