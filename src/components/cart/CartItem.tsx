@@ -25,8 +25,6 @@ const CartItem = ({ item }: CartItemProps) => {
         product.purchasePanel.finalPrice != null &&
         product.purchasePanel.finalPrice < originalPrice;
 
-    const totalPrice = price * quantity;
-
     return (
         <div className="flex min-h-0 w-full flex-col pb-2 border-b border-gray-200">
             <div className="flex items-start gap-3">

@@ -2,9 +2,11 @@ import { HiOutlineShoppingCart } from "react-icons/hi2";
 import { toPersianNumber } from "@/lib/utils/farsiNumbers";
 import { useState } from "react";
 import Cart from "@/components/cart/Cart";
+import { useCartStore } from "@/store/cartStore";
 
 const CardWrapper = () => {
   const [isCartDisplay, setIsCartDisplay] = useState(false);
+  const totalQuantity = useCartStore((state) => state.items.reduce((total, item) => total + item.quantity, 0))
 
   return (
     <div className="relative">
@@ -18,7 +20,7 @@ const CardWrapper = () => {
         <HiOutlineShoppingCart size={30} />
 
         <span className="absolute -right-2 -top-2 flex h-5 min-w-5 items-center justify-center rounded-full bg-primary px-1 text-[10px] font-bold leading-none text-primary-foreground">
-          {toPersianNumber(3)}
+          {toPersianNumber(totalQuantity)}
         </span>
       </button>
 
@@ -30,7 +32,8 @@ const CardWrapper = () => {
         >
           <Cart />
         </div>
-      )}
+      )
+    }
     </div>
   );
 };

@@ -7,7 +7,7 @@ import Contact from "./Contact";
 import Auth from "./Auth";
 import CardWrapper from "./CardWrapper";
 import Navigation from "../../navigation/Navigation";
-import MobileHeader from "./mobile-menu/MobileHeader";
+import MobileHeader from "./mobile/MobileHeader";
 import DistanceLine from "@/components/common/DistanceLine";
 
 const Header = () => {
