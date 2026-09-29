@@ -12,7 +12,6 @@ type ProductDetailsPageProps = {
     }>
 }
 
-
 export default async function productDetailsPage({ params }: ProductDetailsPageProps) {
     const { slug } = await params
 
@@ -31,7 +30,7 @@ export default async function productDetailsPage({ params }: ProductDetailsPageP
                     <ProductInfo info={product.info} />
                 </div>
 
-                <PurchasePanel purchase={product.purchasePanel} />
+                <PurchasePanel purchase={product.purchasePanel} product={product} />
 
             </div>
         </PageContainer>

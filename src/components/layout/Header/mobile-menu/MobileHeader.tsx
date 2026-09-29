@@ -6,7 +6,7 @@ import Logo from "../Logo";
 import Search from "../Search";
 import Contact from "../Contact";
 import Auth from "../Auth";
-import Cart from "../Cart";
+import CardWrapper from "../CardWrapper";
 import MobileMenu from "./MobileMenu";
 
 const MobileHeader = () => {
@@ -43,7 +43,7 @@ const MobileHeader = () => {
       <div className="flex w-full items-center gap-2">
         <Search />
         <Auth />
-        <Cart />
+        <CardWrapper />
       </div>
 
       {/* Drawer */}

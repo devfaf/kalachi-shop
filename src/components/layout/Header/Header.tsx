@@ -5,7 +5,7 @@ import Search from "./Search";
 import Location from "./Location";
 import Contact from "./Contact";
 import Auth from "./Auth";
-import Cart from "./Cart";
+import CardWrapper from "./CardWrapper";
 import Navigation from "../../navigation/Navigation";
 import MobileHeader from "./mobile-menu/MobileHeader";
 import DistanceLine from "@/components/common/DistanceLine";
@@ -28,7 +28,7 @@ const Header = () => {
           <DistanceLine />
           <Auth />
           <DistanceLine />
-          <Cart />
+          <CardWrapper />
         </div>
 
         {/* Mobile / Tablet */}
