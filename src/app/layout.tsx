@@ -2,8 +2,9 @@ import { Metadata } from "next";
 import "../styles/globals.css";
 import { peyda } from "@/styles/fonts";
 import Providers from "@/lib/providers";
-import Header from "@/components/layout/Header/Header"
-import Footer from "@/components/layout/Footer/Footer";
+import Header from "@/components/layout/header/Header"
+import Footer from "@/components/layout/footer/Footer";
+import BottomNavigation from "@/components/layout/mobile/bottom-navigation/BottomNavigation";
 import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
@@ -24,6 +25,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           <main>
             {children}
           </main>
+          <BottomNavigation />
           <Footer />
         </Providers>
       </body>

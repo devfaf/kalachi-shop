@@ -2,11 +2,11 @@
 
 import { useState } from "react";
 import { HiOutlineBars3, HiOutlineXMark } from "react-icons/hi2";
-import Logo from "../Logo";
-import Search from "../Search";
-import Contact from "../Contact";
-import Auth from "../Auth";
-import CardWrapper from "../CardWrapper";
+import Logo from "../../header/Logo";
+import Search from "../../header/Search";
+import Contact from "../../header/Contact";
+import Auth from "../../header/Auth";
+import CardWrapper from "../../header/CardWrapper";
 import MobileMenu from "./MobileMenu";
 
 const MobileHeader = () => {

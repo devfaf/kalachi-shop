@@ -1,7 +1,7 @@
 import { HiOutlineShoppingCart } from "react-icons/hi2";
 import { toPersianNumber } from "@/lib/utils/farsiNumbers";
 import { useState } from "react";
-import Cart from "@/components/cart/Cart";
+import CartDropdown from "@/components/cart/CartDropdown";
 import { useCartStore } from "@/store/cartStore";
 
 const CardWrapper = () => {
@@ -30,7 +30,7 @@ const CardWrapper = () => {
           onMouseLeave={() => setIsCartDisplay(false)}
           className="absolute top-8 end-0 z-50"
         >
-          <Cart />
+          <CartDropdown />
         </div>
       )
     }

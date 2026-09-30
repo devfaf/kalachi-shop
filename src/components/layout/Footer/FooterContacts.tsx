@@ -1,4 +1,4 @@
-import Logo from "../Header/Logo";
+import Logo from "../header/Logo";
 import AppButton from "@/components/common/AppButton";
 import DistanceLine from "@/components/common/DistanceLine";
 import { HiOutlineChevronUp } from "react-icons/hi2";

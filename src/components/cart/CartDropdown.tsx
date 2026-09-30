@@ -4,7 +4,7 @@ import { toPersianNumber } from "@/lib/utils/farsiNumbers"
 import AppButton from "../common/AppButton"
 import Image from "next/image";
 
-const Cart = () => {
+const CartDropdown = () => {
   const cartItems = useCartStore((state) => state.items)
 
   const totalQuantity = cartItems.reduce((total, item) =>
@@ -64,4 +64,4 @@ const Cart = () => {
     </div>
   )
 }
-export default Cart
+export default CartDropdown
