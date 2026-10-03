@@ -1,8 +1,7 @@
-import ProductList from "@/components/product/ProductList";
-
+import HomeSlider from "@/components/home/slider";
 const HomePage = () => {
     return (
-        <ProductList/>
+        <HomeSlider/>
     )
 }
 
