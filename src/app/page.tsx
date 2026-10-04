@@ -1,7 +1,11 @@
 import HomeSlider from "@/components/home/slider";
+import FeaturedCategories from "@/components/home/FeaturedCategories";
 const HomePage = () => {
     return (
-        <HomeSlider/>
+        <div>
+            <HomeSlider/>
+            <FeaturedCategories/>
+        </div>
     )
 }
 
