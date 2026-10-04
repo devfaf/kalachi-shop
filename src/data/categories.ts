@@ -6,7 +6,6 @@ export type Category = {
 };
 
 export const categories: Category[] = [
-    // موبایل
     {
         id: "mobile",
         name: "موبایل",
@@ -31,7 +30,6 @@ export const categories: Category[] = [
         parentId: "mobile",
     },
 
-    // لپ‌تاپ
     {
         id: "laptops",
         name: "لپ‌تاپ",
@@ -56,7 +54,6 @@ export const categories: Category[] = [
         parentId: "laptops",
     },
 
-    // تبلت
     {
         id: "tablets",
         name: "تبلت",
@@ -81,11 +78,16 @@ export const categories: Category[] = [
         parentId: "tablets",
     },
 
-    // لوازم جانبی موبایل
+    {
+        id: "accessories",
+        name: "لوازم جانبی",
+        slug: "accessories",
+    },
     {
         id: "mobile-accessories",
         name: "لوازم جانبی موبایل",
         slug: "mobile-accessories",
+        parentId: "accessories",
     },
     {
         id: "mobile-cases",
@@ -112,11 +114,16 @@ export const categories: Category[] = [
         parentId: "mobile-accessories",
     },
 
-    // هدفون
+    {
+        id: "audio",
+        name: "هدفون و بلندگو",
+        slug: "audio",
+    },
     {
         id: "headphones",
         name: "هدفون",
         slug: "headphones",
+        parentId: "audio",
     },
     {
         id: "in-ear-headphones",
@@ -130,12 +137,11 @@ export const categories: Category[] = [
         slug: "over-ear",
         parentId: "headphones",
     },
-
-    // بلندگو
     {
         id: "speakers",
         name: "بلندگو",
         slug: "speakers",
+        parentId: "audio",
     },
     {
         id: "portable-speakers",
@@ -148,5 +154,35 @@ export const categories: Category[] = [
         name: "اسپیکر رومیزی",
         slug: "desktop",
         parentId: "speakers",
+    },
+
+    {
+        id: "gaming",
+        name: "گیمینگ",
+        slug: "gaming",
+    },
+    {
+        id: "gaming-monitors",
+        name: "مانیتور گیمینگ",
+        slug: "gaming-monitors",
+        parentId: "gaming",
+    },
+    {
+        id: "gaming-keyboards",
+        name: "کیبورد گیمینگ",
+        slug: "gaming-keyboards",
+        parentId: "gaming",
+    },
+    {
+        id: "gaming-mice",
+        name: "ماوس گیمینگ",
+        slug: "gaming-mice",
+        parentId: "gaming",
+    },
+    {
+        id: "gaming-headsets",
+        name: "هدست گیمینگ",
+        slug: "gaming-headsets",
+        parentId: "gaming",
     },
 ];

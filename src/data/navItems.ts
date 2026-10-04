@@ -1,5 +1,3 @@
-// data/navigation.ts
-
 import {
     HiOutlineHome,
     HiOutlineQuestionMarkCircle,
@@ -14,13 +12,13 @@ export type NavItem = {
     href?: string;
     icon: React.ElementType;
     children?: NavChild[];
-}
+};
 
 export type NavChild = {
     label: string;
     href?: string;
     children?: NavChild[];
-}
+};
 
 export const navItems: NavItem[] = [
     {
@@ -32,24 +30,24 @@ export const navItems: NavItem[] = [
                 href: "/category/mobile",
             },
             {
-                label: "لپ‌تاپ",
-                href: "/category/laptops",
-            },
-            {
                 label: "تبلت",
                 href: "/category/tablets",
             },
             {
-                label: "لوازم جانبی موبایل",
-                href: "/category/mobile-accessories",
+                label: "لپ‌تاپ",
+                href: "/category/laptops",
             },
             {
-                label: "هدفون",
-                href: "/category/headphones",
+                label: "لوازم جانبی",
+                href: "/category/accessories",
             },
             {
-                label: "بلندگو",
-                href: "/category/speakers",
+                label: "هدفون و بلندگو",
+                href: "/category/audio",
+            },
+            {
+                label: "گیمینگ",
+                href: "/category/gaming",
             },
         ],
     },
