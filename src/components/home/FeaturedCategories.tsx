@@ -16,130 +16,79 @@ const featuredCategories = [
     slug: "foldable-phones",
     name: "گوشی تاشو",
     icon: FaMobileAlt,
-    bg: "bg-blue-500/15",
-    border: "border-blue-400/40",
-    hoverBg: "group-hover:bg-blue-500/25",
-    hoverBorder: "group-hover:border-blue-500",
-    iconColor: "text-blue-600",
-    hoverIcon: "group-hover:text-blue-500",
-    glow: "group-hover:shadow-blue-400/50",
-    textHover: "group-hover:text-blue-600",
   },
   {
     categoryId: "gaming-laptops",
     slug: "gaming-laptops",
     name: "لپ‌تاپ گیمینگ",
     icon: FaLaptop,
-    bg: "bg-purple-500/15",
-    border: "border-purple-400/40",
-    hoverBg: "group-hover:bg-purple-500/25",
-    hoverBorder: "group-hover:border-purple-500",
-    iconColor: "text-purple-600",
-    hoverIcon: "group-hover:text-purple-500",
-    glow: "group-hover:shadow-purple-400/50",
-    textHover: "group-hover:text-purple-600",
   },
   {
     categoryId: "ipad",
     slug: "ipad",
     name: "آیپد",
     icon: FaTabletAlt,
-    bg: "bg-cyan-500/15",
-    border: "border-cyan-400/40",
-    hoverBg: "group-hover:bg-cyan-500/25",
-    hoverBorder: "group-hover:border-cyan-500",
-    iconColor: "text-cyan-600",
-    hoverIcon: "group-hover:text-cyan-500",
-    glow: "group-hover:shadow-cyan-400/50",
-    textHover: "group-hover:text-cyan-600",
   },
   {
     categoryId: "power-banks",
     slug: "power-banks",
     name: "پاوربانک",
     icon: FaPlug,
-    bg: "bg-red-500/15",
-    border: "border-red-400/40",
-    hoverBg: "group-hover:bg-red-500/25",
-    hoverBorder: "group-hover:border-red-500",
-    iconColor: "text-red-600",
-    hoverIcon: "group-hover:text-red-500",
-    glow: "group-hover:shadow-red-400/50",
-    textHover: "group-hover:text-red-600",
   },
   {
     categoryId: "headphones",
     slug: "headphones",
     name: "هدفون",
     icon: FaHeadphones,
-    bg: "bg-pink-500/15",
-    border: "border-pink-400/40",
-    hoverBg: "group-hover:bg-pink-500/25",
-    hoverBorder: "group-hover:border-pink-500",
-    iconColor: "text-pink-600",
-    hoverIcon: "group-hover:text-pink-500",
-    glow: "group-hover:shadow-pink-400/50",
-    textHover: "group-hover:text-pink-600",
   },
   {
     categoryId: "gaming-monitors",
     slug: "gaming-monitors",
     name: "مانیتور گیمینگ",
     icon: FaDesktop,
-    bg: "bg-orange-500/15",
-    border: "border-orange-400/40",
-    hoverBg: "group-hover:bg-orange-500/25",
-    hoverBorder: "group-hover:border-orange-500",
-    iconColor: "text-orange-600",
-    hoverIcon: "group-hover:text-orange-500",
-    glow: "group-hover:shadow-orange-400/50",
-    textHover: "group-hover:text-orange-600",
   },
   {
     categoryId: "gaming-keyboards",
     slug: "gaming-keyboards",
     name: "کیبورد گیمینگ",
     icon: FaKeyboard,
-    bg: "bg-emerald-500/15",
-    border: "border-emerald-400/40",
-    hoverBg: "group-hover:bg-emerald-500/25",
-    hoverBorder: "group-hover:border-emerald-500",
-    iconColor: "text-emerald-600",
-    hoverIcon: "group-hover:text-emerald-500",
-    glow: "group-hover:shadow-emerald-400/50",
-    textHover: "group-hover:text-emerald-600",
   },
   {
     categoryId: "speakers",
     slug: "speakers",
     name: "اسپیکر",
     icon: FaVolumeUp,
-    bg: "bg-indigo-500/15",
-    border: "border-indigo-400/40",
-    hoverBg: "group-hover:bg-indigo-500/25",
-    hoverBorder: "group-hover:border-indigo-500",
-    iconColor: "text-indigo-600",
-    hoverIcon: "group-hover:text-indigo-500",
-    glow: "group-hover:shadow-indigo-400/50",
-    textHover: "group-hover:text-indigo-600",
   },
 ];
 
 const FeaturedCategories = () => {
   return (
-    <section className="py-6 md:py-10 px-3 md:px-6 max-w-7xl mx-auto">
+    <section className="relative py-10 md:py-14 px-3 md:px-6 max-w-7xl mx-auto overflow-hidden">
+      {/* 🌈 پس‌زمینه گرادیانی آبی-بنفش-سبز */}
+      <div className="absolute inset-0 -z-10 bg-gradient-to-br from-blue-500 via-indigo-500 to-cyan-400" />
+
+      {/* ✨ بلاب‌های نور برای عمق بیشتر */}
+      <div className="absolute -top-20 -right-20 w-72 h-72 bg-cyan-300/40 rounded-full blur-3xl -z-10" />
+      <div className="absolute -bottom-20 -left-20 w-80 h-80 bg-purple-400/40 rounded-full blur-3xl -z-10" />
+      <div className="absolute top-1/2 left-1/2 w-96 h-96 bg-blue-300/30 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2 -z-10" />
+
+      {/* عنوان بخش */}
       <div className="flex items-center justify-between mb-6 md:mb-8">
-        <h2 className="text-lg md:text-2xl font-bold text-gray-800">
+        <h2 className="text-lg md:text-2xl font-bold text-white drop-shadow-md">
           دسته‌بندی‌های محبوب
         </h2>
         <Link
           href="/categories"
-          className="text-sm md:text-base text-green-600 hover:text-green-700 font-medium transition-colors"
+          className="text-sm md:text-base text-white/80 hover:text-white font-medium transition-colors flex items-center gap-1 group"
         >
           مشاهده همه
+          <span className="group-hover:-translate-x-1 transition-transform duration-200">
+            ←
+          </span>
         </Link>
       </div>
 
+      {/* گرید دسته‌بندی‌ها */}
       <div className="grid grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-3 md:gap-5 lg:gap-7">
         {featuredCategories.map((item) => {
           const Icon = item.icon;
@@ -150,21 +99,20 @@ const FeaturedCategories = () => {
               href={`/category/${item.slug}`}
               className="group flex flex-col items-center gap-2 md:gap-3 cursor-pointer"
             >
-              <div
-                className={`relative w-full aspect-square max-w-[110px] md:max-w-[130px] lg:max-w-[150px] rounded-full backdrop-blur-md border shadow-sm group-hover:shadow-lg transition-all duration-300 flex items-center justify-center overflow-hidden ${item.bg} ${item.border} ${item.hoverBg} ${item.hoverBorder} ${item.glow}`}
-              >
-                <div className="absolute inset-0 bg-gradient-to-tr from-white/50 via-transparent to-transparent opacity-70 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+              {/* 🫧 آیکون دایره‌ای شیشه‌ای */}
+              <div className="relative w-full aspect-square max-w-[110px] md:max-w-[130px] lg:max-w-[150px] rounded-full bg-white/15 backdrop-blur-md border border-white/30 group-hover:bg-white/25 group-hover:border-white/60 shadow-lg shadow-blue-900/20 group-hover:shadow-xl group-hover:shadow-cyan-300/30 transition-all duration-300 flex items-center justify-center overflow-hidden">
+                {/* براقی شیشه */}
+                <div className="absolute inset-0 bg-gradient-to-tr from-white/40 via-transparent to-transparent opacity-60 group-hover:opacity-90 transition-opacity duration-300" />
 
-                <div className="absolute top-1 left-1/2 -translate-x-1/2 w-2/3 h-1/3 bg-white/50 rounded-full blur-md pointer-events-none" />
+                {/* هایلایت بالای دایره */}
+                <div className="absolute top-1 left-1/2 -translate-x-1/2 w-2/3 h-1/3 bg-white/30 rounded-full blur-md pointer-events-none" />
 
-                <Icon
-                  className={`relative text-3xl md:text-4xl lg:text-5xl drop-shadow-sm group-hover:scale-110 transition-all duration-300 ${item.iconColor} ${item.hoverIcon}`}
-                />
+                {/* آیکون */}
+                <Icon className="relative text-3xl md:text-4xl lg:text-5xl text-white drop-shadow-md group-hover:scale-110 group-hover:text-cyan-100 transition-all duration-300" />
               </div>
 
-              <p
-                className={`text-[11px] md:text-sm text-center text-gray-700 font-medium leading-tight line-clamp-2 transition-colors duration-200 ${item.textHover}`}
-              >
+              {/* نام دسته */}
+              <p className="text-[11px] md:text-sm text-center text-white/90 group-hover:text-white font-medium leading-tight line-clamp-2 transition-colors duration-200 drop-shadow-sm">
                 {item.name}
               </p>
             </Link>
