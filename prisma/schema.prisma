@@ -3,35 +3,35 @@ generator client {
 }
 
 datasource db {
-  provider  = "postgresql"
+  provider = "postgresql"
 }
 
 model User {
-  id String @id @default(cuid())
-  email String @unique
+  id           String @id @default(cuid())
+  email        String @unique
   passwordHash String
-  name String
-  role Role @default(USER)
+  name         String
+  role         Role   @default(USER)
 
   orders Order[]
 }
 
 model Product {
-  id String @id @default(cuid())
-  name String
+  id          String  @id @default(cuid())
+  name        String
   description String?
-  price Int
-  imageUrl String?
-  stock Int @default(0)
+  price       Int
+  imageUrl    String?
+  stock       Int     @default(0)
 
   categoryId String
-  category Category @relation(fields: [categoryId], references:[id])
+  category   Category @relation(fields: [categoryId], references: [id])
 
   orderItems OrderItem[]
 }
 
 model Category {
-  id String @id @default(cuid())
+  id   String @id @default(cuid())
   name String
   slug String @unique
 
@@ -39,24 +39,24 @@ model Category {
 }
 
 model Order {
-  id String @id @default(cuid())
-  userId String
-  total Int
-  status OrderStatus @default(PENDING)
-  createdAt DateTime @default(now())
+  id        String      @id @default(cuid())
+  userId    String
+  total     Int
+  status    OrderStatus @default(PENDING)
+  createdAt DateTime    @default(now())
 
-  user User @relation(fields: [userId], references:[id])
+  user  User        @relation(fields: [userId], references: [id])
   items OrderItem[]
 }
 
 model OrderItem {
-  id String @id @default(cuid())
-  orderId String
+  id        String @id @default(cuid())
+  orderId   String
   productId String
-  quantity Int
-  price Int
+  quantity  Int
+  price     Int
 
-  order Order @relation(fields: [orderId], references: [id])
+  order   Order   @relation(fields: [orderId], references: [id])
   product Product @relation(fields: [productId], references: [id])
 }
 
@@ -65,12 +65,10 @@ enum Role {
   ADMIN
 }
 
-enum OrderStatus{
+enum OrderStatus {
   PENDING
   PROCESSING
   SHIPPED
   DELIVERED
   CANCELLED
 }
-
-
