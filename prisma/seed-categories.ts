@@ -1,11 +1,11 @@
-
+import "dotenv/config";
 import { PrismaClient } from "@prisma/client";
 import { PrismaPg } from "@prisma/adapter-pg";
 import { Pool } from "pg";
 import { categories } from "../src/data/categories";
 
 const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
+  connectionString: process.env.DIRECT_URL,
 });
 
 const adapter = new PrismaPg(pool);
