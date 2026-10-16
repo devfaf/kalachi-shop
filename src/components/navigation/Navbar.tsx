@@ -11,17 +11,27 @@ import {
 
 import { navItems } from "@/data/navItems"
 import { useState } from "react";
-import { categories } from "@/data/categories";
-
-
+import { useCategories } from "@/hooks/use-categories";
 
 export default function Navbar() {
-    const [activeCategoryId, setActiveCategoryId] = useState<string | null>(null)
+    const { categories, isLoading, error } = useCategories();
 
-    const categoryParents = categories.filter(category => !category.parentId)
+    const [activeCategoryId, setActiveCategoryId] = useState<string | null>(null);
 
-    const categoryChildren = categories.filter(category => category.parentId === activeCategoryId)
+    const categoryParents = categories.filter(
+        (category) => !category.parentId
+    );
 
+    const categoryChildren = categories.filter(
+        (category) => category.parentId === activeCategoryId
+    );
+
+    if (isLoading) return null;
+
+    if (error) {
+        console.error(error);
+        return null;
+    }
 
     return (
         <NavigationMenu
@@ -54,7 +64,7 @@ export default function Navbar() {
                                                 <NavigationMenuLink
                                                     key={submenu.id}
                                                     href={`/category/${submenu.slug}`}
-                                                    >
+                                                >
                                                     <NavigationMenuLink>
                                                         {submenu.name}
                                                     </NavigationMenuLink>
