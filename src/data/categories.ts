@@ -13,19 +13,19 @@ export const categories: Category[] = [
     },
     {
         id: "smartphones",
-        name: "گوشی هوشمند",
+        name: "گوشی بر اساس قیمت",
         slug: "smartphones",
         parentId: "mobile",
     },
     {
         id: "foldable-phones",
-        name: "گوشی تاشو",
+        name: "گوشی بر اساس حافظه",
         slug: "foldable-phones",
         parentId: "mobile",
     },
     {
         id: "gaming-phones",
-        name: "گوشی گیمینگ",
+        name: "گوشی بر اساس عملکرد",
         slug: "gaming-phones",
         parentId: "mobile",
     },
@@ -37,19 +37,19 @@ export const categories: Category[] = [
     },
     {
         id: "gaming-laptops",
-        name: "لپ‌تاپ گیمینگ",
+        name: "لپ‌تاپ بر اساس کاربرد",
         slug: "gaming-laptops",
         parentId: "laptops",
     },
     {
         id: "ultrabooks",
-        name: "لپ‌تاپ سبک و باریک",
+        name: "لپ‌تاپ بر اساس پردازنده",
         slug: "ultrabooks",
         parentId: "laptops",
     },
     {
         id: "convertible-laptops",
-        name: "لپ‌تاپ دوکاره",
+        name: "لپ‌تاپ بر اساس قیمت",
         slug: "convertible-laptops",
         parentId: "laptops",
     },
@@ -61,23 +61,24 @@ export const categories: Category[] = [
     },
     {
         id: "android-tablets",
-        name: "تبلت اندرویدی",
+        name: "تبلت بر اساس برند",
         slug: "android-tablets",
         parentId: "tablets",
     },
     {
         id: "ipad",
-        name: "آیپد",
+        name: "تبلت بر اساس قیمت",
         slug: "ipad",
         parentId: "tablets",
     },
     {
         id: "gaming-tablets",
-        name: "تبلت گیمینگ",
+        name: "تبلت بر اساس کاربرد",
         slug: "gaming-tablets",
         parentId: "tablets",
     },
 
+    // لوازم جانبی موبایل
     {
         id: "accessories",
         name: "لوازم جانبی",
