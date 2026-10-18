@@ -23,16 +23,6 @@ type OfferProduct = {
   }[];
 };
 
-const offerSlugs = [
-  "apple-iphone-18-pro",
-  "samsung-galaxy-a56-5g",
-  "asus-rog-phone-9",
-  "lenovo-loq-15irx9",
-  "xiaomi-pad-7",
-  "apple-ipad-air-m3",
-  "anker-nano-30w",
-];
-
 const AmazingOffers = () => {
   const [products, setProducts] = useState<OfferProduct[]>([]);
   const [loading, setLoading] = useState(true);
@@ -41,19 +31,14 @@ const AmazingOffers = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await fetch("/api/products");
+        const response = await fetch("/api/products/amazing-offers");
 
         if (!response.ok) {
           throw new Error("Failed to fetch products");
         }
 
         const data: OfferProduct[] = await response.json();
-
-        const selectedProducts = offerSlugs
-          .map((slug) => data.find((product) => product.slug === slug))
-          .filter((product) => product !== undefined);
-
-        setProducts(selectedProducts);
+        setProducts(data);
       } catch (error) {
         console.error("Error fetching offer products:", error);
       } finally {

@@ -37,6 +37,8 @@ model Product {
   colors   ProductColor[]
   features ProductFeature[]
   orderItems OrderItem[]
+
+  isAmazingOffer Boolean @default(false)
 }
 
 model ProductImage {
