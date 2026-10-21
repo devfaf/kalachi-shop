@@ -10,6 +10,10 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 
 import "swiper/css";
 
+type Campaign = {
+  endsAt: string;
+};
+
 type OfferProduct = {
   id: string;
   slug: string;
@@ -27,6 +31,8 @@ const AmazingOffers = () => {
   const [products, setProducts] = useState<OfferProduct[]>([]);
   const [loading, setLoading] = useState(true);
   const [swiper, setSwiper] = useState<SwiperInstance | null>(null);
+  const [campaign, setCampaign] = useState<Campaign | null>(null);
+  const [now, setNow] = useState(Date.now());
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -49,18 +55,77 @@ const AmazingOffers = () => {
     fetchProducts();
   }, []);
 
+  // Timer
+  useEffect(() => {
+    const fetchCampaign = async () => {
+      try {
+        const response = await fetch(
+          "/api/products/amazing-offers/campaign"
+        );
+
+        if (!response.ok) {
+          throw new Error("Failed to fetch campaign");
+        }
+
+        const data = await response.json();
+        setCampaign(data);
+      } catch (error) {
+        console.error("Error fetching campaign:", error);
+      }
+    };
+
+    fetchCampaign();
+  }, []);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setNow(Date.now());
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, []);
+
+  const timeLeft = campaign
+    ? Math.max(0, Math.floor((new Date(campaign.endsAt).getTime() - now) / 1000))
+    : 0;
+
+  const hours = Math.floor(timeLeft / 3600);
+  const minutes = Math.floor((timeLeft % 3600) / 60);
+  const seconds = timeLeft % 60;
+  const formatTime = (value: number) => String(value).padStart(2, "0");
+
   return (
-    <section className="bg-primary py-8 text-primary-foreground md:py-10">
+    <section className="bg-primary text-primary-foreground py-4">
       <PageContainer>
         <div className="mb-6 flex items-center justify-between gap-4">
-          <div>
-            <h2 className="text-xl font-bold md:text-2xl">
-              شگفت‌انگیز کالاچی
-            </h2>
+          <div className=" flex gap-4 items-center">
+            <div className="flex flex-col">
+              <h2 className="text-xl font-bold md:text-2xl">
+                شگفت‌انگیز کالاچی
+              </h2>
 
-            <p className="mt-1 text-sm text-primary-foreground/75">
-              پیشنهادهای ویژه با قیمت استثنایی
-            </p>
+              <p className="mt-1 text-sm text-primary-foreground/75">
+                پیشنهادهای ویژه با قیمت استثنایی
+              </p>
+            </div>
+            {campaign && (
+              <div
+                dir="ltr"
+                className="flex shrink-0 items-center gap-1.5 text-sm font-bold"
+              >
+                <span className="rounded-md bg-primary-foreground/15 px-2 py-1 tabular-nums">
+                  {formatTime(hours).replace(/\d/g, (digit) => "۰۱۲۳۴۵۶۷۸۹"[Number(digit)])}
+                </span>
+                :
+                <span className="rounded-md bg-primary-foreground/15 px-2 py-1 tabular-nums">
+                  {formatTime(minutes).replace(/\d/g, (digit) => "۰۱۲۳۴۵۶۷۸۹"[Number(digit)])}
+                </span>
+                :
+                <span className="rounded-md bg-primary-foreground/15 px-2 py-1 tabular-nums">
+                  {formatTime(seconds).replace(/\d/g, (digit) => "۰۱۲۳۴۵۶۷۸۹"[Number(digit)])}
+                </span>
+              </div>
+            )}
           </div>
 
           <div className="flex shrink-0 items-center gap-2">

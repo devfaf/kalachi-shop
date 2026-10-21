@@ -7,38 +7,35 @@ datasource db {
 }
 
 model User {
-  id           String @id @default(cuid())
-  email        String @unique
+  id           String  @id @default(cuid())
+  email        String  @unique
   passwordHash String
   name         String
-  role         Role   @default(USER)
-
-  orders Order[]
+  role         Role    @default(USER)
+  orders       Order[]
 }
 
 model Product {
-  id             String   @id @default(cuid())
-  slug           String   @unique
-  persianName    String
-  englishName    String
-  description    String
-  rating         Float    @default(0)
-  price          Int
-  originalPrice  Int
-  stock          Int      @default(0)
-  storeName      String   @default("کالاچی")
-  sellerRating   Float    @default(0)
-  guarantee      String
-
-  categoryId String
-  category   Category @relation(fields: [categoryId], references: [id])
-
-  images   ProductImage[]
-  colors   ProductColor[]
-  features ProductFeature[]
-  orderItems OrderItem[]
-
-  isAmazingOffer Boolean @default(false)
+  id                    String                 @id @default(cuid())
+  description           String
+  price                 Int
+  stock                 Int                    @default(0)
+  categoryId            String
+  englishName           String
+  guarantee             String
+  originalPrice         Int
+  persianName           String
+  rating                Float                  @default(0)
+  sellerRating          Float                  @default(0)
+  slug                  String                 @unique
+  storeName             String                 @default("کالاچی")
+  isAmazingOffer        Boolean                @default(false)
+  orderItems            OrderItem[]
+  category              Category               @relation(fields: [categoryId], references: [id])
+  colors                ProductColor[]
+  features              ProductFeature[]
+  images                ProductImage[]
+  amazingOfferCampaigns AmazingOfferCampaign[] @relation("AmazingOfferCampaignToProduct")
 }
 
 model ProductImage {
@@ -66,13 +63,13 @@ model ProductFeature {
 }
 
 model Category {
-  id        String     @id @default(cuid())
-  name      String
-  slug      String     @unique
-  parentId  String?
-  parent    Category?  @relation("CategoryTree", fields: [parentId], references: [id])
-  children  Category[] @relation("CategoryTree")
-  products  Product[]
+  id       String     @id @default(cuid())
+  name     String
+  slug     String     @unique
+  parentId String?
+  parent   Category?  @relation("CategoryTree", fields: [parentId], references: [id])
+  children Category[] @relation("CategoryTree")
+  products Product[]
 }
 
 model Order {
@@ -81,20 +78,31 @@ model Order {
   total     Int
   status    OrderStatus @default(PENDING)
   createdAt DateTime    @default(now())
-
-  user  User        @relation(fields: [userId], references: [id])
-  items OrderItem[]
+  user      User        @relation(fields: [userId], references: [id])
+  items     OrderItem[]
 }
 
 model OrderItem {
-  id        String @id @default(cuid())
+  id        String  @id @default(cuid())
   orderId   String
   productId String
   quantity  Int
   price     Int
+  order     Order   @relation(fields: [orderId], references: [id])
+  product   Product @relation(fields: [productId], references: [id])
+}
 
-  order   Order   @relation(fields: [orderId], references: [id])
-  product Product @relation(fields: [productId], references: [id])
+model AmazingOfferCampaign {
+  id            String    @id @default(cuid())
+  name          String    @default("شگفت‌انگیز کالاچی")
+  startsAt      DateTime  @default(now())
+  endsAt        DateTime
+  durationHours Int       @default(17)
+  isActive      Boolean   @default(false)
+  autoRenew     Boolean   @default(false)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  products      Product[] @relation("AmazingOfferCampaignToProduct")
 }
 
 enum Role {
