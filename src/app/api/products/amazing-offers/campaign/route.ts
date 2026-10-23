@@ -77,3 +77,67 @@ export async function GET() {
     );
   }
 }
+
+export async function POST(request: Request) {
+  try {
+    const body = await request.json();
+
+    const {
+      name,
+      startsAt,
+      endsAt,
+      durationHours = 17,
+      isActive = false,
+      autoRenew = false,
+    } = body;
+
+    if (!startsAt || !endsAt) {
+      return NextResponse.json(
+        { error: "زمان شروع و پایان کمپین الزامی است." },
+        { status: 400 }
+      );
+    }
+
+    const startDate = new Date(startsAt);
+    const endDate = new Date(endsAt);
+
+    if (
+      Number.isNaN(startDate.getTime()) ||
+      Number.isNaN(endDate.getTime()) ||
+      endDate <= startDate
+    ) {
+      return NextResponse.json(
+        { error: "زمان شروع و پایان کمپین معتبر نیست." },
+        { status: 400 }
+      );
+    }
+
+    if (!Number.isInteger(durationHours) || durationHours <= 0) {
+      return NextResponse.json(
+        { error: "مدت کمپین باید عدد صحیح و مثبت باشد." },
+        { status: 400 }
+      );
+    }
+
+    const campaign = await prisma.amazingOfferCampaign.create({
+      data: {
+        name,
+        startsAt: startDate,
+        endsAt: endDate,
+        durationHours,
+        isActive,
+        autoRenew,
+      },
+    });
+
+    return NextResponse.json(campaign, { status: 201 });
+  } catch (error) {
+    console.error("Failed to create amazing offer campaign:", error);
+
+    return NextResponse.json(
+      { error: "ساخت کمپین ناموفق بود." },
+      { status: 500 }
+    );
+  }
+}
+
