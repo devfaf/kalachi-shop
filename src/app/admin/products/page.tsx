@@ -5,7 +5,9 @@ import { useEffect, useMemo, useState } from "react";
 import {
   Package,
   RefreshCw,
+  Plus
 } from "lucide-react";
+import Link from "next/link";
 import type { Product, StockFilter } from "./_components/products-types";
 import ProductsFilters from "./_components/products-filters";
 import ProductsTable from "./_components/products-table";
@@ -91,10 +93,19 @@ export default function AdminProductsPage() {
         <h1 className="text-2xl font-bold text-[var(--foreground)]">
           مدیریت محصولات
         </h1>
+        <div className="flex flex-wrap items-center justify-between gap-4">
+          <p className="mt-2 text-sm text-[var(--muted-foreground)]">
+            محصولات فروشگاه را از این بخش مدیریت کن.
+          </p>
+          <Link
+            href="/admin/products/new"
+            className="inline-flex items-center gap-2 rounded-lg bg-[var(--primary)] px-4 py-2.5 text-sm font-medium text-white transition-opacity hover:opacity-90"
+          >
+            <Plus size={18} />
+            افزودن محصول
+          </Link>
 
-        <p className="mt-2 text-sm text-[var(--muted-foreground)]">
-          محصولات فروشگاه را از این بخش مدیریت کن.
-        </p>
+        </div>
       </div>
 
       {/* Products Summary */}

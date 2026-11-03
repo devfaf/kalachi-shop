@@ -17,4 +17,22 @@ export type Product = {
   }[];
 };
 
+export type ProductFormData = {
+  persianName: string;
+  englishName: string;
+  description: string;
+  categoryId: string;
+  guarantee: string;
+  originalPrice: string;
+  price: string;
+  stock: string;
+};
+
 export type StockFilter = "all" | "available" | "unavailable";
+
+export type Category = {
+  id: string;
+  name: string;
+  slug: string;
+  parentId: string | null;
+};
