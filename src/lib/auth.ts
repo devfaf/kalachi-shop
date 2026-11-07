@@ -24,6 +24,8 @@ export async function getCurrentUserRole(): Promise<UserRole | null> {
     .maybeSingle();
 
   if (roleError || !roleData) {
+    console.error("Role query error:", JSON.stringify(roleError, null, 2));
+    console.error("Role data:", roleData);
     return null;
   }
 

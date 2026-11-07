@@ -98,7 +98,7 @@ model AmazingOfferCampaign {
   startsAt      DateTime  @default(now())
   endsAt        DateTime
   durationHours Int       @default(17)
-  isActive      Boolean   @default(false)
+  isActive Boolean @default(true)
   autoRenew     Boolean   @default(false)
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
