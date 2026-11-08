@@ -27,6 +27,13 @@ export default function AmazingOffersPage() {
     const [saving, setSaving] = useState(false);
     const [message, setMessage] = useState("");
 
+    const calculatedEndAt = startsAt
+        ? new Date(
+            new Date(startsAt).getTime() +
+            durationHours * 60 * 60 * 1000
+        )
+        : null;
+
     function requestToggleChange(
         type: "active" | "autoRenew",
         value: boolean
@@ -39,6 +46,10 @@ export default function AmazingOffersPage() {
 
         if (pendingChange.type === "active") {
             setIsActive(pendingChange.value);
+
+            if (!pendingChange.value) {
+                setAutoRenew(false);
+            }
         } else {
             setAutoRenew(pendingChange.value);
         }
@@ -188,6 +199,17 @@ export default function AmazingOffersPage() {
                             <option value={72}>۷۲ ساعت</option>
                         </select>
                     </div>
+                    {calculatedEndAt && (
+                        <p className="mt-2 text-sm text-[var(--muted-foreground)]">
+                            زمان پایان کمپین:{" "}
+                            <span className="font-medium text-[var(--foreground)]">
+                                {calculatedEndAt.toLocaleString("fa-IR", {
+                                    dateStyle: "medium",
+                                    timeStyle: "short",
+                                })}
+                            </span>
+                        </p>
+                    )}
 
                     <div className="space-y-4 border-t border-[var(--border)] pt-5">
                         <label className="flex cursor-pointer items-center justify-between gap-4">
