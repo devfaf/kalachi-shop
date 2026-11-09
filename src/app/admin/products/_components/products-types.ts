@@ -26,6 +26,15 @@ export type ProductFormData = {
   originalPrice: string;
   price: string;
   stock: string;
+  images: File[];
+  colors: {
+    name: string;
+    value: string;
+  }[];
+  features: {
+    label: string;
+    value: string;
+  }[];
 };
 
 export type StockFilter = "all" | "available" | "unavailable";

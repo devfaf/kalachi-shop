@@ -3,6 +3,8 @@
 import { useState } from "react";
 import { useEffect } from "react";
 import type { ProductFormData, Category } from "../../_components/products-types";
+import { createClient } from "@/lib/supabase-browser";
+import { useRouter } from "next/navigation";
 
 export function ProductForm() {
     const [categories, setCategories] = useState<Category[]>([]);
@@ -15,9 +17,28 @@ export function ProductForm() {
         originalPrice: "",
         price: "",
         stock: "",
+        images: [],
+        colors: [],
+        features: [],
     };
+    const router = useRouter();
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [submitError, setSubmitError] = useState("");
 
     const [formData, setFormData] = useState<ProductFormData>(initialFormData);
+    const [imagePreviews, setImagePreviews] = useState<string[]>([]);
+
+    useEffect(() => {
+        const previews = formData.images.map((file) =>
+            URL.createObjectURL(file)
+        );
+
+        setImagePreviews(previews);
+
+        return () => {
+            previews.forEach((url) => URL.revokeObjectURL(url));
+        };
+    }, [formData.images]);
 
     function handleChange(
         event: React.ChangeEvent<
@@ -51,8 +72,80 @@ export function ProductForm() {
         fetchCategories();
     }, []);
 
+    async function uploadImages() {
+        const supabase = createClient();
+        const uploadedImages: { url: string; sortOrder: number }[] = [];
+
+        for (const [index, file] of formData.images.entries()) {
+            const filePath = `${crypto.randomUUID()}-${file.name}`;
+
+            const { error } = await supabase.storage
+                .from("product-images")
+                .upload(filePath, file);
+
+            if (error) {
+                throw new Error("آپلود تصاویر محصول ناموفق بود.");
+            }
+
+            const { data } = supabase.storage
+                .from("product-images")
+                .getPublicUrl(filePath);
+
+            uploadedImages.push({
+                url: data.publicUrl,
+                sortOrder: index,
+            });
+        }
+
+        return uploadedImages;
+    }
+
+    async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+        event.preventDefault();
+
+        try {
+            setIsSubmitting(true);
+            setSubmitError("");
+
+            const uploadedImages = await uploadImages();
+
+            const response = await fetch("/api/admin/products", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    ...formData,
+                    originalPrice: Number(formData.originalPrice),
+                    price: Number(formData.price),
+                    stock: Number(formData.stock),
+                    images: uploadedImages,
+                }),
+            });
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                throw new Error(data.error || "ثبت محصول ناموفق بود.");
+            }
+
+            router.push("/admin/products");
+            router.refresh();
+        } catch (error) {
+            console.error("Failed to create product:", error);
+            setSubmitError(
+                error instanceof Error
+                    ? error.message
+                    : "ثبت محصول ناموفق بود."
+            );
+        } finally {
+            setIsSubmitting(false);
+        }
+    }
+
     return (
-        <form className="space-y-6">
+
+        <form onSubmit={handleSubmit} className="space-y-6">
             <section className="rounded-xl border border-[var(--border)] bg-[var(--card)] p-6">
                 <h2 className="mb-5 text-lg font-semibold text-[var(--foreground)]">
                     اطلاعات اصلی محصول
@@ -183,6 +276,239 @@ export function ProductForm() {
                     </div>
                 </div>
             </section>
+
+            {/* Product Images */}
+            <section className="rounded-xl border border-[var(--border)] bg-[var(--card)] p-6">
+                <h2 className="mb-5 text-lg font-semibold text-[var(--foreground)]">
+                    تصاویر محصول
+                </h2>
+
+                <input
+                    type="file"
+                    accept="image/*"
+                    multiple
+                    onChange={(event) => {
+                        const files = Array.from(event.target.files ?? []);
+
+                        setFormData((prev) => ({
+                            ...prev,
+                            images: [...prev.images, ...files],
+                        }));
+                    }}
+                    className="w-full text-sm text-[var(--foreground)]"
+                />
+
+                <p className="mt-2 text-xs text-[var(--muted-foreground)]">
+                    می‌توانی چند تصویر برای محصول انتخاب کنی.
+                </p>
+                {imagePreviews.length > 0 && (
+                    <div className="mt-5 grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4">
+                        {imagePreviews.map((preview, index) => (
+                            <div
+                                key={index}
+                                className="relative overflow-hidden rounded-xl border border-[var(--border)]"
+                            >
+                                <img
+                                    src={preview}
+                                    alt={`تصویر محصول ${index + 1}`}
+                                    className="h-32 w-full object-cover"
+                                />
+
+                                <button
+                                    type="button"
+                                    onClick={() =>
+                                        setFormData((prev) => ({
+                                            ...prev,
+                                            images: prev.images.filter(
+                                                (_, i) => i !== index
+                                            ),
+                                        }))
+                                    }
+                                    className="absolute right-2 top-2 rounded-md bg-red-600 px-2 py-1 text-xs text-white"
+                                >
+                                    حذف
+                                </button>
+                            </div>
+                        ))}
+                    </div>
+                )}
+            </section>
+
+            {/* Product Colors */}
+            <section className="rounded-xl border border-[var(--border)] bg-[var(--card)] p-6">
+                <div className="mb-5 flex items-center justify-between">
+                    <h2 className="text-lg font-semibold text-[var(--foreground)]">
+                        رنگ‌های محصول
+                    </h2>
+
+                    <button
+                        type="button"
+                        onClick={() =>
+                            setFormData((prev) => ({
+                                ...prev,
+                                colors: [
+                                    ...prev.colors,
+                                    { name: "", value: "#000000" },
+                                ],
+                            }))
+                        }
+                        className="rounded-lg bg-[var(--primary)] px-3 py-2 text-sm text-white"
+                    >
+                        افزودن رنگ
+                    </button>
+                </div>
+
+                <div className="space-y-4">
+                    {formData.colors.map((color, index) => (
+                        <div
+                            key={index}
+                            className="flex flex-wrap items-center gap-3"
+                        >
+                            <input
+                                type="text"
+                                value={color.name}
+                                onChange={(event) =>
+                                    setFormData((prev) => ({
+                                        ...prev,
+                                        colors: prev.colors.map((item, i) =>
+                                            i === index
+                                                ? { ...item, name: event.target.value }
+                                                : item
+                                        ),
+                                    }))
+                                }
+                                placeholder="نام رنگ"
+                                className="min-w-0 flex-1 rounded-lg border border-[var(--border)] bg-transparent px-3 py-2.5 text-sm text-[var(--foreground)]"
+                            />
+
+                            <input
+                                type="color"
+                                value={color.value}
+                                onChange={(event) =>
+                                    setFormData((prev) => ({
+                                        ...prev,
+                                        colors: prev.colors.map((item, i) =>
+                                            i === index
+                                                ? { ...item, value: event.target.value }
+                                                : item
+                                        ),
+                                    }))
+                                }
+                                className="h-10 w-12 cursor-pointer rounded border border-[var(--border)]"
+                            />
+
+                            <button
+                                type="button"
+                                onClick={() =>
+                                    setFormData((prev) => ({
+                                        ...prev,
+                                        colors: prev.colors.filter((_, i) => i !== index),
+                                    }))
+                                }
+                                className="text-sm text-[var(--destructive)]"
+                            >
+                                حذف
+                            </button>
+                        </div>
+                    ))}
+                </div>
+            </section>
+            {/* Product Features */}
+            <section className="rounded-xl border border-[var(--border)] bg-[var(--card)] p-6">
+                <div className="mb-5 flex items-center justify-between">
+                    <h2 className="text-lg font-semibold text-[var(--foreground)]">
+                        ویژگی‌های محصول
+                    </h2>
+
+                    <button
+                        type="button"
+                        onClick={() =>
+                            setFormData((prev) => ({
+                                ...prev,
+                                features: [
+                                    ...prev.features,
+                                    { label: "", value: "" },
+                                ],
+                            }))
+                        }
+                        className="rounded-lg bg-[var(--primary)] px-3 py-2 text-sm text-white"
+                    >
+                        افزودن ویژگی
+                    </button>
+                </div>
+
+                <div className="space-y-4">
+                    {formData.features.map((feature, index) => (
+                        <div
+                            key={index}
+                            className="flex flex-wrap items-center gap-3"
+                        >
+                            <input
+                                type="text"
+                                value={feature.label}
+                                onChange={(event) =>
+                                    setFormData((prev) => ({
+                                        ...prev,
+                                        features: prev.features.map((item, i) =>
+                                            i === index
+                                                ? { ...item, label: event.target.value }
+                                                : item
+                                        ),
+                                    }))
+                                }
+                                placeholder="عنوان ویژگی (مثلا وزن)"
+                                className="min-w-0 flex-1 rounded-lg border border-[var(--border)] bg-transparent px-3 py-2.5 text-sm text-[var(--foreground)]"
+                            />
+
+                            <input
+                                type="text"
+                                value={feature.value}
+                                onChange={(event) =>
+                                    setFormData((prev) => ({
+                                        ...prev,
+                                        features: prev.features.map((item, i) =>
+                                            i === index
+                                                ? { ...item, value: event.target.value }
+                                                : item
+                                        ),
+                                    }))
+                                }
+                                placeholder="مقدار (مثلا ۲ کیلوگرم)"
+                                className="min-w-0 flex-1 rounded-lg border border-[var(--border)] bg-transparent px-3 py-2.5 text-sm text-[var(--foreground)]"
+                            />
+
+                            <button
+                                type="button"
+                                onClick={() =>
+                                    setFormData((prev) => ({
+                                        ...prev,
+                                        features: prev.features.filter((_, i) => i !== index),
+                                    }))
+                                }
+                                className="text-sm text-[var(--destructive)]"
+                            >
+                                حذف
+                            </button>
+                        </div>
+                    ))}
+                </div>
+            </section>
+
+            {submitError && (
+                <p className="text-sm text-[var(--destructive)]">
+                    {submitError}
+                </p>
+            )}
+
+            <div className="flex justify-end">
+                <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="rounded-lg bg-[var(--primary)] px-6 py-3 text-sm font-medium text-white transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50"
+                >
+                    {isSubmitting ? "در حال ثبت محصول..." : "ثبت محصول"}
+                </button>
+            </div>
         </form>
     );
 }
