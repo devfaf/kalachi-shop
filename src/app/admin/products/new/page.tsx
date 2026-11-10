@@ -1,7 +1,11 @@
+
 import { PackagePlus } from "lucide-react";
 import { ProductForm } from "./_components/product-form";
+import { getCurrentUserRole } from "@/lib/auth";
 
-export default function NewProductPage() {
+export default async function NewProductPage() {
+    const role = await getCurrentUserRole();
+
     return (
         <section className="space-y-6">
             <div className="flex items-center gap-3">
@@ -16,7 +20,7 @@ export default function NewProductPage() {
                 </div>
             </div>
 
-            <ProductForm />
+            <ProductForm role={role === "ADMIN" ? "ADMIN" : "DEMO"} />
         </section>
     );
 }

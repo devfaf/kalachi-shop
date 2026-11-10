@@ -7,7 +7,11 @@ import { createClient } from "@/lib/supabase-browser";
 import { useRouter } from "next/navigation";
 import { ImagePlus } from "lucide-react";
 
-export function ProductForm() {
+type ProductFormProps = {
+    role: "ADMIN" | "DEMO";
+};
+
+export function ProductForm({ role }: ProductFormProps) {
     const [categories, setCategories] = useState<Category[]>([]);
     const initialFormData: ProductFormData = {
         persianName: "",
@@ -74,6 +78,9 @@ export function ProductForm() {
     }, []);
 
     async function uploadImages() {
+        if (role !== "ADMIN") {
+            throw new Error("اجازه آپلود تصویر را ندارید.");
+        }
         const supabase = createClient();
         const uploadedImages: { url: string; sortOrder: number }[] = [];
 
@@ -104,7 +111,7 @@ export function ProductForm() {
 
     async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
-
+        if (role !== "ADMIN") return;
         try {
             setIsSubmitting(true);
             setSubmitError("");
@@ -517,13 +524,19 @@ export function ProductForm() {
             )}
 
             <div className="flex justify-end">
-                <button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="rounded-lg bg-[var(--primary)] px-6 py-3 text-sm font-medium text-white transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50"
-                >
-                    {isSubmitting ? "در حال ثبت محصول..." : "ثبت محصول"}
-                </button>
+                {role === "ADMIN" ? (
+                    <button
+                        type="submit"
+                        disabled={isSubmitting}
+                        className="rounded-lg bg-[var(--primary)] px-6 py-3 text-sm font-medium text-white transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50"
+                    >
+                        {isSubmitting ? "در حال ثبت محصول..." : "ثبت محصول"}
+                    </button>
+                ) : (
+                    <p className="text-sm text-[var(--muted-foreground)]">
+                        حالت نمایشی: تصاویر فقط برای پیش‌نمایش هستند و ثبت نمی‌شوند.
+                    </p>
+                )}
             </div>
         </form>
     );
