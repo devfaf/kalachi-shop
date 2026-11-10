@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import type { ProductFormData, Category } from "../../_components/products-types";
 import { createClient } from "@/lib/supabase-browser";
 import { useRouter } from "next/navigation";
+import { ImagePlus } from "lucide-react";
 
 export function ProductForm() {
     const [categories, setCategories] = useState<Category[]>([]);
@@ -84,7 +85,8 @@ export function ProductForm() {
                 .upload(filePath, file);
 
             if (error) {
-                throw new Error("آپلود تصاویر محصول ناموفق بود.");
+                console.error("Supabase Storage Error:", error);
+                throw new Error(error.message);
             }
 
             const { data } = supabase.storage
@@ -283,24 +285,38 @@ export function ProductForm() {
                     تصاویر محصول
                 </h2>
 
-                <input
-                    type="file"
-                    accept="image/*"
-                    multiple
-                    onChange={(event) => {
-                        const files = Array.from(event.target.files ?? []);
+                <label className="flex cursor-pointer flex-col items-center justify-center gap-3 rounded-xl border-2 border-dashed border-[var(--border)] bg-[var(--muted)]/40 px-6 py-10 text-center transition-colors hover:border-[var(--primary)] hover:bg-[var(--muted)]">
+                    <div className="flex h-14 w-14 items-center justify-center rounded-full bg-[var(--card)] text-[var(--primary)]">
+                        <ImagePlus size={28} />
+                    </div>
 
-                        setFormData((prev) => ({
-                            ...prev,
-                            images: [...prev.images, ...files],
-                        }));
-                    }}
-                    className="w-full text-sm text-[var(--foreground)]"
-                />
+                    <div>
+                        <p className="text-sm font-medium text-[var(--foreground)]">
+                            برای انتخاب تصاویر کلیک کن
+                        </p>
+                        <p className="mt-2 text-xs text-[var(--muted-foreground)]">
+                            می‌توانی چند تصویر انتخاب کنی
+                        </p>
+                    </div>
 
-                <p className="mt-2 text-xs text-[var(--muted-foreground)]">
-                    می‌توانی چند تصویر برای محصول انتخاب کنی.
-                </p>
+                    <input
+                        type="file"
+                        accept="image/*"
+                        multiple
+                        className="hidden"
+                        onChange={(event) => {
+                            const files = Array.from(event.target.files ?? []);
+
+                            setFormData((prev) => ({
+                                ...prev,
+                                images: [...prev.images, ...files],
+                            }));
+
+                            event.target.value = "";
+                        }}
+                    />
+                </label>
+
                 {imagePreviews.length > 0 && (
                     <div className="mt-5 grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4">
                         {imagePreviews.map((preview, index) => (
