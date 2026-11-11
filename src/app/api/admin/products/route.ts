@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { getCurrentUserRole } from "@/lib/auth";
 import { randomUUID } from "crypto";
+import { createProductSchema } from "@/lib/validations/product";
 
 export async function POST(request: Request) {
     const role = await getCurrentUserRole();
@@ -16,6 +17,15 @@ export async function POST(request: Request) {
     try {
         const body = await request.json();
 
+        const validation = createProductSchema.safeParse(body);
+
+        if (!validation.success) {
+            return NextResponse.json(
+                { error: "اطلاعات محصول معتبر نیست." },
+                { status: 400 }
+            );
+        }
+
         const {
             persianName,
             englishName,
@@ -28,29 +38,7 @@ export async function POST(request: Request) {
             images,
             colors,
             features,
-        } = body;
-
-        if (
-            !persianName?.trim() ||
-            !englishName?.trim() ||
-            !description?.trim() ||
-            !categoryId ||
-            !guarantee?.trim() ||
-            !Number.isInteger(Number(originalPrice)) ||
-            !Number.isInteger(Number(price)) ||
-            !Number.isInteger(Number(stock)) ||
-            Number(originalPrice) < 0 ||
-            Number(price) < 0 ||
-            Number(stock) < 0 ||
-            !Array.isArray(images) ||
-            !Array.isArray(colors) ||
-            !Array.isArray(features)
-        ) {
-            return NextResponse.json(
-                { error: "اطلاعات محصول معتبر نیست." },
-                { status: 400 }
-            );
-        }
+        } = validation.data;
 
         const baseSlug = englishName
             .trim()
