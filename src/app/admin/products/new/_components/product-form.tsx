@@ -6,6 +6,10 @@ import type { ProductFormData, Category } from "../../_components/products-types
 import { createClient } from "@/lib/supabase-browser";
 import { useRouter } from "next/navigation";
 import { ImagePlus } from "lucide-react";
+import {
+    productFormSchema,
+    productImagesSchema,
+} from "@/lib/validations/product";
 
 type ProductFormProps = {
     role: "ADMIN" | "DEMO";
@@ -77,6 +81,7 @@ export function ProductForm({ role }: ProductFormProps) {
         fetchCategories();
     }, []);
 
+
     async function uploadImages() {
         if (role !== "ADMIN") {
             throw new Error("اجازه آپلود تصویر را ندارید.");
@@ -115,6 +120,30 @@ export function ProductForm({ role }: ProductFormProps) {
         try {
             setIsSubmitting(true);
             setSubmitError("");
+            if (
+                !formData.originalPrice.trim() ||
+                !formData.price.trim() ||
+                !formData.stock.trim()
+            ) {
+                throw new Error("لطفا قیمت اصلی، قیمت فروش و موجودی را وارد کنید.");
+            }
+
+            const validation = productFormSchema.safeParse({
+                ...formData,
+                originalPrice: Number(formData.originalPrice),
+                price: Number(formData.price),
+                stock: Number(formData.stock),
+            });
+
+            if (!validation.success) {
+                throw new Error("اطلاعات واردشده معتبر نیست. لطفا فیلدها را بررسی کنید.");
+            }
+
+            const imageValidation = productImagesSchema.safeParse(formData.images);
+
+            if (!imageValidation.success) {
+                throw new Error(imageValidation.error.issues[0].message);
+            }
 
             const uploadedImages = await uploadImages();
 
@@ -124,10 +153,7 @@ export function ProductForm({ role }: ProductFormProps) {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
-                    ...formData,
-                    originalPrice: Number(formData.originalPrice),
-                    price: Number(formData.price),
-                    stock: Number(formData.stock),
+                    ...validation.data,
                     images: uploadedImages,
                 }),
             });
@@ -312,12 +338,24 @@ export function ProductForm({ role }: ProductFormProps) {
                         multiple
                         className="hidden"
                         onChange={(event) => {
-                            const files = Array.from(event.target.files ?? []);
+                            const selectedFiles = Array.from(event.target.files ?? []);
 
-                            setFormData((prev) => ({
-                                ...prev,
-                                images: [...prev.images, ...files],
-                            }));
+                            setFormData((prev) => {
+                                const newFiles = selectedFiles.filter(
+                                    (file) =>
+                                        !prev.images.some(
+                                            (existingFile) =>
+                                                existingFile.name === file.name &&
+                                                existingFile.size === file.size &&
+                                                existingFile.lastModified === file.lastModified
+                                        )
+                                );
+
+                                return {
+                                    ...prev,
+                                    images: [...prev.images, ...newFiles],
+                                };
+                            });
 
                             event.target.value = "";
                         }}
