@@ -2,25 +2,41 @@ import { create } from "zustand";
 import { Product } from "@/data/products";
 import { persist } from "zustand/middleware";
 
-export type cartItem = {
+export type CartItem = {
     product: Product;
     quantity: number;
 }
 
-type cartStore = {
-    items: cartItem[];
+type CartStore = {
+    items: CartItem[];
 
     addItem: (product: Product) => void;
     increaseQuantity: (productId: string) => void;
     decreaseQuantity: (productId: string) => void;
     removeItem: (productId: string) => void;
+    getTotalItems: () => number;
+    getTotalPrice: () => number;
 }
-
-export const useCartStore = create<cartStore>()(
+export const useCartStore = create<CartStore>()(
     persist(
 
-        (set) => ({
+        (set, get) => ({
             items: [],
+            getTotalItems: () =>
+                get().items.reduce(
+                    (total, item) => total + item.quantity,
+                    0
+                ),
+
+            getTotalPrice: () =>
+                get().items.reduce(
+                    (total, item) =>
+                        total +
+                        (item.product.purchasePanel.finalPrice ??
+                            item.product.purchasePanel.originalPrice) *
+                        item.quantity,
+                    0
+                ),
 
             addItem: (product) =>
                 set((state) => {
@@ -45,7 +61,10 @@ export const useCartStore = create<cartStore>()(
             increaseQuantity: (productId) =>
                 set((state) => ({
                     items: state.items.map((item) =>
-                        item.product.id === productId ? { ...item, quantity: item.quantity + 1 } : item
+                        item.product.id === productId &&
+                            item.quantity < item.product.purchasePanel.stock
+                            ? { ...item, quantity: item.quantity + 1 }
+                            : item
                     ),
                 })),
 
@@ -66,6 +85,7 @@ export const useCartStore = create<cartStore>()(
         {
             name: "cart-store"
         }
+
 
     )
 )
