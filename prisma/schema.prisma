@@ -4,15 +4,16 @@ generator client {
 
 datasource db {
   provider = "postgresql"
+  schemas  = ["public", "auth"]
 }
 
 model User {
-  id           String  @id @default(cuid())
-  email        String  @unique
-  passwordHash String
-  name         String
-  role         Role    @default(USER)
-  orders       Order[]
+  id     String   @id @db.Uuid
+  email  String   @unique
+  name   String
+  orders Order[]
+
+  @@schema("public")
 }
 
 model Product {
@@ -36,6 +37,8 @@ model Product {
   features              ProductFeature[]
   images                ProductImage[]
   amazingOfferCampaigns AmazingOfferCampaign[] @relation("AmazingOfferCampaignToProduct")
+
+  @@schema("public")
 }
 
 model ProductImage {
@@ -44,6 +47,8 @@ model ProductImage {
   sortOrder Int     @default(0)
   productId String
   product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@schema("public")
 }
 
 model ProductColor {
@@ -52,6 +57,8 @@ model ProductColor {
   value     String
   productId String
   product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@schema("public")
 }
 
 model ProductFeature {
@@ -60,6 +67,8 @@ model ProductFeature {
   value     String
   productId String
   product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@schema("public")
 }
 
 model Category {
@@ -70,16 +79,20 @@ model Category {
   parent   Category?  @relation("CategoryTree", fields: [parentId], references: [id])
   children Category[] @relation("CategoryTree")
   products Product[]
+
+  @@schema("public")
 }
 
 model Order {
   id        String      @id @default(cuid())
-  userId    String
+  userId    String      @db.Uuid
   total     Int
   status    OrderStatus @default(PENDING)
   createdAt DateTime    @default(now())
   user      User        @relation(fields: [userId], references: [id])
   items     OrderItem[]
+
+  @@schema("public")
 }
 
 model OrderItem {
@@ -90,6 +103,8 @@ model OrderItem {
   price     Int
   order     Order   @relation(fields: [orderId], references: [id])
   product   Product @relation(fields: [productId], references: [id])
+
+  @@schema("public")
 }
 
 model AmazingOfferCampaign {
@@ -98,16 +113,20 @@ model AmazingOfferCampaign {
   startsAt      DateTime  @default(now())
   endsAt        DateTime
   durationHours Int       @default(17)
-  isActive Boolean @default(true)
+  isActive      Boolean   @default(true)
   autoRenew     Boolean   @default(false)
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
   products      Product[] @relation("AmazingOfferCampaignToProduct")
+
+  @@schema("public")
 }
 
 enum Role {
   USER
   ADMIN
+
+  @@schema("public")
 }
 
 enum OrderStatus {
@@ -116,4 +135,6 @@ enum OrderStatus {
   SHIPPED
   DELIVERED
   CANCELLED
+
+  @@schema("public")
 }
