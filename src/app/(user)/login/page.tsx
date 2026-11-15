@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState } from "react";
@@ -5,7 +6,7 @@ import { useRouter } from "next/navigation";
 import { LockKeyhole, Mail } from "lucide-react";
 import { createClient } from "@/lib/supabase-browser";
 
-export default function AdminLoginPage() {
+export default function UserLoginPage() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
@@ -32,7 +33,7 @@ export default function AdminLoginPage() {
                 return;
             }
 
-            router.replace("/admin");
+            router.replace("/");
             router.refresh();
         } catch {
             setErrorMessage("خطایی در ورود رخ داد. لطفا دوباره تلاش کنید.");
@@ -42,19 +43,40 @@ export default function AdminLoginPage() {
     }
 
     return (
-        <main className="flex min-h-screen items-center justify-center bg-[var(--background)] p-4">
-            <div className="w-full max-w-md rounded-2xl border border-[var(--border)] bg-[var(--card)] p-8 shadow-sm">
+        <main className="relative flex min-h-screen items-center justify-center bg-[var(--background)] p-4">
+            <button
+                type="button"
+                onClick={() => router.back()}
+                aria-label="بازگشت"
+                className="absolute right-4 top-4 flex size-10 items-center justify-center rounded-lg border border-[var(--border)] bg-[var(--card)] text-[var(--foreground)] transition-colors hover:bg-[var(--muted)] sm:right-6 sm:top-6"
+            >
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                >
+                    <path d="m15 18-6-6 6-6" />
+                </svg>
+            </button>
+
+            <div className="w-full max-w-md rounded-2xl border border-[var(--border)] bg-[var(--card)] p-6 shadow-sm sm:p-8">
                 <div className="mb-8 text-center">
                     <div className="mx-auto mb-4 flex size-14 items-center justify-center rounded-xl bg-[var(--primary)]/10 text-[var(--primary)]">
                         <LockKeyhole size={26} />
                     </div>
 
                     <h1 className="text-2xl font-bold text-[var(--foreground)]">
-                        ورود به پنل مدیریت
+                        ورود به حساب کاربری
                     </h1>
 
                     <p className="mt-2 text-sm text-[var(--muted-foreground)]">
-                        برای ادامه، اطلاعات حساب خود را وارد کنید.
+                        برای ادامه خرید، وارد حساب کاربری خود شوید.
                     </p>
                 </div>
 
@@ -76,6 +98,7 @@ export default function AdminLoginPage() {
                                 onChange={(event) => setEmail(event.target.value)}
                                 placeholder="example@email.com"
                                 dir="ltr"
+                                required
                                 className="w-full rounded-lg border border-[var(--border)] bg-transparent py-3 pl-3 pr-10 text-sm text-[var(--foreground)] outline-none focus:border-[var(--primary)]"
                             />
                         </div>
@@ -92,20 +115,23 @@ export default function AdminLoginPage() {
                             onChange={(event) => setPassword(event.target.value)}
                             placeholder="رمز عبور خود را وارد کنید"
                             dir="ltr"
+                            required
                             className="w-full rounded-lg border border-[var(--border)] bg-transparent px-3 py-3 text-sm text-[var(--foreground)] outline-none focus:border-[var(--primary)]"
                         />
                     </div>
+
                     {errorMessage && (
                         <p className="rounded-lg bg-red-500/10 p-3 text-sm text-red-500">
                             {errorMessage}
                         </p>
                     )}
+
                     <button
                         type="submit"
                         disabled={loading}
                         className="w-full rounded-lg bg-[var(--primary)] py-3 text-sm font-semibold text-white transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60"
                     >
-                        {loading ? "در حال ورود..." : "ورود به پنل"}
+                        {loading ? "در حال ورود..." : "ورود به حساب"}
                     </button>
                 </form>
             </div>
