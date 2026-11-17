@@ -1,3 +1,4 @@
+
 "use client";
 
 import {
@@ -18,19 +19,15 @@ import { useState } from "react";
 export default function Navbar() {
   const { categories, isLoading, error } = useCategories();
 
-  // دسته والدِ در حال نمایش (اگر null باشد، اولین والد پیش‌فرض است)
   const [activeCategoryId, setActiveCategoryId] = useState<string | null>(null);
 
   const categoryParents = categories.filter((c) => !c.parentId);
-
-  // اگر کاربر روی والدی hover نکرده، اولین والد پیش‌فرض انتخاب می‌شود
   const activeId = activeCategoryId ?? categoryParents[0]?.id ?? null;
-
   const activeCategory = categoryParents.find((c) => c.id === activeId) ?? null;
-
   const categoryChildren = categories.filter((c) => c.parentId === activeId);
 
   if (isLoading) return null;
+
   if (error) {
     console.error(error);
     return null;
@@ -49,17 +46,15 @@ export default function Navbar() {
 
                 <NavigationMenuContent className="w-[640px] max-w-[90vw] p-0">
                   <div className="grid h-[420px] grid-cols-1 sm:grid-cols-[220px_1fr]">
-                    {/* ───────── ستون دسته‌های والد ───────── */}
                     <ul className="flex flex-col gap-0.5 overflow-y-auto border-b border-border/60 p-2 sm:border-b-0 sm:border-e">
                       {categoryParents.map((category) => {
                         const isActive = category.id === activeId;
+
                         return (
                           <li key={category.id}>
                             <NavigationMenuLink
                               href={`/category/${category.slug}`}
-                              onMouseEnter={() =>
-                                setActiveCategoryId(category.id)
-                              }
+                              onMouseEnter={() => setActiveCategoryId(category.id)}
                               onFocus={() => setActiveCategoryId(category.id)}
                               className={cn(
                                 "flex items-center justify-between gap-2 rounded-lg px-3 py-2 text-sm transition-colors",
@@ -79,6 +74,7 @@ export default function Navbar() {
                                 />
                                 <span>{category.name}</span>
                               </span>
+
                               <ChevronLeftIcon
                                 className={cn(
                                   "size-4 shrink-0 transition-transform",
@@ -94,7 +90,6 @@ export default function Navbar() {
                       })}
                     </ul>
 
-                    {/* ───────── ستون زیر‌دسته‌ها ───────── */}
                     <div className="flex flex-col overflow-hidden">
                       {activeCategory ? (
                         <>
@@ -102,6 +97,7 @@ export default function Navbar() {
                             <h3 className="text-sm font-semibold text-foreground">
                               {activeCategory.name}
                             </h3>
+
                             <NavigationMenuLink
                               href={`/category/${activeCategory.slug}`}
                               className="rounded-md px-0 py-0 text-xs font-medium text-primary hover:underline focus-visible:ring-0"
@@ -142,7 +138,6 @@ export default function Navbar() {
             );
           }
 
-          // سایر آیتم‌های نوار (بدون زیرمنو)
           return (
             <NavigationMenuItem key={item.label}>
               <NavigationMenuLink href={item.href}>
