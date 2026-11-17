@@ -1,6 +1,6 @@
 
 import { redirect } from "next/navigation";
-import AdminSidebar from "./admin-sidebar";
+import AdminSidebar from "./adminSidebar";
 import { getCurrentUserRole } from "@/lib/auth";
 
 export default async function AdminLayout({

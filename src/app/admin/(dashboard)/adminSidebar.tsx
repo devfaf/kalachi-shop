@@ -7,6 +7,7 @@ import {
   Sparkles,
   Store,
 } from "lucide-react";
+import LogoutButton from "@/components/common/LogoutButton";
 
 const menuItems = [
   { label: "داشبورد", href: "/admin", icon: LayoutDashboard },
@@ -42,6 +43,7 @@ export default function AdminSidebar() {
           </Link>
         ))}
       </nav>
+      <LogoutButton />
     </aside>
   );
 }
