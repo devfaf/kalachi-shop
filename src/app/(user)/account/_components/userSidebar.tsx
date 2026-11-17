@@ -6,6 +6,7 @@ import {
   UserRound,
   Store,
 } from "lucide-react";
+import LogoutButton from "@/components/common/LogoutButton";
 
 const menuItems = [
   { label: "داشبورد", href: "/account", icon: LayoutDashboard },
@@ -36,6 +37,7 @@ export default function UserSidebar() {
           </Link>
         ))}
       </nav>
+      <LogoutButton />
     </aside>
   );
 }
