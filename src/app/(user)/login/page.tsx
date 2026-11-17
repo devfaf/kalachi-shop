@@ -68,7 +68,7 @@ export default function UserLoginPage() {
                     return;
                 }
 
-                router.replace("/admin");
+                router.replace("/auth/redirect");
                 router.refresh();
                 return;
             }
@@ -97,7 +97,7 @@ export default function UserLoginPage() {
                 }
 
                 if (data.session) {
-                    router.replace("/account");
+                    router.replace("/auth/redirect");
                     router.refresh();
                     return;
                 }
@@ -118,8 +118,9 @@ export default function UserLoginPage() {
                 return;
             }
 
-            router.replace("/");
+            router.replace("/auth/redirect");
             router.refresh();
+            
         } catch {
             setErrorMessage("خطایی رخ داد. لطفا دوباره تلاش کنید.");
         } finally {
@@ -146,8 +147,8 @@ export default function UserLoginPage() {
                         type="button"
                         onClick={() => changeTab("user")}
                         className={`flex h-10 items-center justify-center gap-2 rounded-md text-sm font-medium transition-all ${!isAdmin
-                                ? "bg-[#4B73FF] text-white shadow-sm"
-                                : "text-[var(--muted-foreground)] hover:text-[var(--foreground)]"
+                            ? "bg-[#4B73FF] text-white shadow-sm"
+                            : "text-[var(--muted-foreground)] hover:text-[var(--foreground)]"
                             }`}
                     >
                         <UserRound size={17} />
@@ -158,8 +159,8 @@ export default function UserLoginPage() {
                         type="button"
                         onClick={() => changeTab("admin")}
                         className={`flex h-10 items-center justify-center gap-2 rounded-md text-sm font-medium transition-all ${isAdmin
-                                ? "bg-[#8469FF] text-white shadow-sm"
-                                : "text-[var(--muted-foreground)] hover:text-[var(--foreground)]"
+                            ? "bg-[#8469FF] text-white shadow-sm"
+                            : "text-[var(--muted-foreground)] hover:text-[var(--foreground)]"
                             }`}
                     >
                         <ShieldCheck size={17} />
@@ -171,8 +172,8 @@ export default function UserLoginPage() {
                 <div className="mb-7 text-center">
                     <div
                         className={`mx-auto mb-4 flex size-14 items-center justify-center rounded-xl ${isAdmin
-                                ? "bg-[#8469FF]/10 text-[#8469FF]"
-                                : "bg-[#4B73FF]/10 text-[#4B73FF]"
+                            ? "bg-[#8469FF]/10 text-[#8469FF]"
+                            : "bg-[#4B73FF]/10 text-[#4B73FF]"
                             }`}
                     >
                         {isAdmin ? (
