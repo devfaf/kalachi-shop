@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { AiOutlineUser } from "react-icons/ai";
 import AppButton from "@/components/common/AppButton";
+import { createClient } from "@/lib/supabase-browser";
 
 type UserRole = "USER" | "ADMIN" | "DEMO" | null;
 
@@ -12,11 +13,19 @@ const Auth = () => {
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
+        const supabase = createClient();
+
         async function fetchRole() {
             try {
-                const response = await fetch("/api/auth/role");
-                const data = await response.json();
+                const response = await fetch("/api/auth/role", {
+                    cache: "no-store",
+                });
 
+                if (!response.ok) {
+                    throw new Error("Failed to fetch auth role");
+                }
+
+                const data = await response.json();
                 setRole(data.role);
             } catch (error) {
                 console.error("Auth status error:", error);
@@ -26,6 +35,15 @@ const Auth = () => {
         }
 
         fetchRole();
+
+        const {
+            data: { subscription },
+        } = supabase.auth.onAuthStateChange(() => {
+            setIsLoading(true);
+            fetchRole();
+        });
+
+        return () => subscription.unsubscribe();
     }, []);
 
     const href =

@@ -5,7 +5,7 @@ import { FiPlus, FiMinus } from "react-icons/fi";
 import { FiMoreVertical } from "react-icons/fi";
 import Image from "next/image";
 
-import { cartItem as CartItemType, useCartStore } from "@/store/cartStore";
+import { CartItem as CartItemType, useCartStore } from "@/store/cartStore";
 
 type CartItemProps = {
     item: CartItemType;

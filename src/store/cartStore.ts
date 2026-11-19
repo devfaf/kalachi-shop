@@ -16,8 +16,10 @@ type CartStore = {
     removeItem: (productId: string) => void;
     getTotalItems: () => number;
     getTotalPrice: () => number;
+    clearCart: () => void;
 }
 export const useCartStore = create<CartStore>()(
+
     persist(
 
         (set, get) => ({
@@ -80,7 +82,8 @@ export const useCartStore = create<CartStore>()(
                     items: state.items.filter((item) =>
                         item.product.id !== productId
                     )
-                }))
+                })),
+            clearCart: () => set({ items: [] }),
         }),
         {
             name: "cart-store"

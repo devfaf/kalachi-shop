@@ -3,6 +3,7 @@ import CartItem from "./CartItem"
 import { toPersianNumber } from "@/lib/utils/farsiNumbers"
 import AppButton from "../common/AppButton"
 import Image from "next/image";
+import Link from "next/link"
 
 const CartDropdown = () => {
   const cartItems = useCartStore((state) => state.items)
@@ -49,9 +50,11 @@ const CartDropdown = () => {
               ))}
             </div>
             <div className="grid grid-cols-2 place-items-center p-3 pt-0">
-              <AppButton className="w-full bg-blue-600 hover:bg-blue-700 active:bg-blue-800 !text-white font-medium py-2.5 px-4 rounded-lg transition-colors duration-200 cursor-pointer w-full">
-                ثبت سفارش
-              </AppButton>
+              <Link href="/checkout" className="w-full">
+                <AppButton className="w-full bg-blue-600 hover:bg-blue-700 active:bg-blue-800 !text-white font-medium py-2.5 px-4 rounded-lg transition-colors duration-200 cursor-pointer">
+                  ثبت سفارش
+                </AppButton>
+              </Link>
               <div className="flex gap-1 items-center">
                 <div className="text-lg font-bold">{toPersianNumber(totalPrice)}</div>
                 <div className="text-sm">تومان</div>

@@ -83,17 +83,21 @@ model Category {
   @@schema("public")
 }
 
+
 model Order {
-  id        String      @id @default(cuid())
-  userId    String      @db.Uuid
-  total     Int
-  status    OrderStatus @default(PENDING)
-  createdAt DateTime    @default(now())
-  user      User        @relation(fields: [userId], references: [id])
-  items     OrderItem[]
+  id              String      @id @default(cuid())
+  userId          String      @db.Uuid
+  total           Int
+  status          OrderStatus @default(PENDING)
+  paymentAuthority String?    @unique
+  paymentRefId    String?
+  createdAt       DateTime    @default(now())
+  user            User        @relation(fields: [userId], references: [id])
+  items           OrderItem[]
 
   @@schema("public")
 }
+
 
 model OrderItem {
   id        String  @id @default(cuid())
