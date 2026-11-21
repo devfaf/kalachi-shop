@@ -1,8 +1,9 @@
 
 import { redirect } from "next/navigation";
+import Link from "next/link";
 import { createClient } from "@/lib/supabase-server";
 import { prisma } from "@/lib/prisma";
-import { Package } from "lucide-react";
+import { Package, ExternalLink } from "lucide-react";
 
 export default async function OrdersPage() {
   const supabase = await createClient();
@@ -44,7 +45,7 @@ export default async function OrdersPage() {
 
   const statusLabels = {
     PENDING: "در انتظار پرداخت",
-    PROCESSING: "در حال پردازش",
+    PROCESSING: "پرداخت موفق · در حال پردازش",
     SHIPPED: "ارسال شده",
     DELIVERED: "تحویل شده",
     CANCELLED: "لغو شده",
@@ -88,23 +89,53 @@ export default async function OrdersPage() {
                   </p>
                 </div>
 
-                <span className="rounded-lg bg-[var(--accent)] px-3 py-2 text-xs font-medium text-[var(--primary)]">
+                <span
+                  className={`rounded-lg px-3 py-2 text-xs font-medium ${
+                    order.status === "PROCESSING"
+                      ? "bg-green-500/10 text-green-600 dark:text-green-400"
+                      : order.status === "CANCELLED"
+                        ? "bg-red-500/10 text-red-600 dark:text-red-400"
+                        : order.status === "DELIVERED"
+                          ? "bg-blue-500/10 text-blue-600 dark:text-blue-400"
+                          : "bg-[var(--accent)] text-[var(--primary)]"
+                  }`}
+                >
                   {statusLabels[order.status]}
                 </span>
               </div>
 
-              <div className="space-y-3 py-4">
+              <div className="space-y-4 py-4">
                 {order.items.map((item) => (
                   <div
                     key={item.id}
-                    className="flex items-center justify-between gap-3 text-sm"
+                    className="flex flex-wrap items-center justify-between gap-3"
                   >
-                    <span className="text-[var(--foreground)]">
-                      {item.product.persianName} × {item.quantity}
-                    </span>
-                    <span className="shrink-0 text-[var(--muted-foreground)]">
-                      {(item.price * item.quantity).toLocaleString("fa-IR")} تومان
-                    </span>
+                    <div className="min-w-0">
+                      <Link
+                        href={`/products/${item.product.slug}`}
+                        className="text-sm font-medium text-[var(--foreground)] transition-colors hover:text-[var(--primary)]"
+                      >
+                        {item.product.persianName}
+                      </Link>
+
+                      <p className="mt-1 text-xs text-[var(--muted-foreground)]">
+                        تعداد: {item.quantity}
+                      </p>
+                    </div>
+
+                    <div className="flex shrink-0 flex-col items-end gap-2">
+                      <span className="text-sm text-[var(--muted-foreground)]">
+                        {(item.price * item.quantity).toLocaleString("fa-IR")} تومان
+                      </span>
+
+                      <Link
+                        href={`/products/${item.product.slug}`}
+                        className="flex items-center gap-1 text-xs font-medium text-[var(--primary)] hover:opacity-75"
+                      >
+                        <ExternalLink size={13} />
+                        مشاهده محصول
+                      </Link>
+                    </div>
                   </div>
                 ))}
               </div>
