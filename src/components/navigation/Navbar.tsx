@@ -15,6 +15,7 @@ import { useCategories } from "@/hooks/use-categories";
 import { cn } from "cn";
 import { ChevronLeftIcon, LayoutGrid } from "lucide-react";
 import { useState } from "react";
+import Link from "next/link";
 
 export default function Navbar() {
   const { categories, isLoading, error } = useCategories();
@@ -47,6 +48,17 @@ export default function Navbar() {
                 <NavigationMenuContent className="w-[640px] max-w-[90vw] p-0">
                   <div className="grid h-[420px] grid-cols-1 sm:grid-cols-[220px_1fr]">
                     <ul className="flex flex-col gap-0.5 overflow-y-auto border-b border-border/60 p-2 sm:border-b-0 sm:border-e">
+                      <li>
+                        <NavigationMenuLink
+                          href="/products"
+                          className="flex items-center gap-2 rounded-lg bg-primary/10 px-3 py-3 text-sm font-semibold text-primary transition-colors hover:bg-primary/15"
+                        >
+                          <LayoutGrid className="size-4 shrink-0" />
+                          مشاهده همه محصولات
+                        </NavigationMenuLink>
+                      </li>
+
+                      <li className="my-1 border-t border-border/60" />
                       {categoryParents.map((category) => {
                         const isActive = category.id === activeId;
 
@@ -99,7 +111,7 @@ export default function Navbar() {
                             </h3>
 
                             <NavigationMenuLink
-                              href={`/category/${activeCategory.slug}`}
+                              href={`/products?category=${activeCategory.slug}`}
                               className="rounded-md px-0 py-0 text-xs font-medium text-primary hover:underline focus-visible:ring-0"
                             >
                               مشاهده همه

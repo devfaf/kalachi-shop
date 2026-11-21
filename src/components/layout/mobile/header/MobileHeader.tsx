@@ -73,9 +73,8 @@ const Drawer = ({ open, onClose, side = "right", children }: DrawerProps) => {
       {/* Overlay */}
       <div
         onClick={onClose}
-        className={`fixed inset-0 z-40 bg-black/50 transition-opacity duration-300 ${
-          open ? "opacity-100" : "pointer-events-none opacity-0"
-        }`}
+        className={`fixed inset-0 z-40 bg-black/50 transition-opacity duration-300 ${open ? "opacity-100" : "pointer-events-none opacity-0"
+          }`}
         aria-hidden="true"
       />
 
@@ -83,21 +82,11 @@ const Drawer = ({ open, onClose, side = "right", children }: DrawerProps) => {
       <aside
         role="dialog"
         aria-modal="true"
-        className={`fixed inset-y-0 z-50 w-72 max-w-[85vw] bg-background shadow-lg transition-transform duration-300 ${
-          side === "right" ? "right-0" : "left-0"
-        } ${open ? "translate-x-0" : side === "right" ? "translate-x-full" : "-translate-x-full"}`}
+        className={`fixed inset-y-0 z-[60] w-[300px] max-w-[85vw] overflow-hidden bg-background shadow-lg transition-transform duration-300 ${side === "right" ? "right-0" : "left-0"
+          } ${open ? "translate-x-0" : side === "right" ? "translate-x-full" : "-translate-x-full"}`}
       >
-        {/* Close button */}
-        <button
-          type="button"
-          onClick={onClose}
-          aria-label="بستن منو"
-          className="absolute left-3 top-3 inline-flex items-center justify-center p-1 text-muted-foreground transition-colors hover:text-foreground"
-        >
-          <HiOutlineXMark size={22} />
-        </button>
 
-        <div className="h-full overflow-y-auto pt-12">
+        <div className="h-full overflow-y-auto">
           {children}
         </div>
       </aside>
