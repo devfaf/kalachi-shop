@@ -10,7 +10,7 @@ const Logo = () => {
     >
       <div className="flex w-[102px] md:w-[130px]">
         <Image
-          src="/logo/logo.png"
+          src="/logo/logo.webp"
           alt="کالاچی"
           width={130}
           height={50}

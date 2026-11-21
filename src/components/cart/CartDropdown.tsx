@@ -36,7 +36,7 @@ const CartDropdown = () => {
         cartItems.length === 0 ?
           <div className="flex items-center w-full justify-center p-3">
             <Image
-              src="/images/cart/empty-cart.png"
+              src="/images/cart/empty-cart.webp"
               alt="سبد خرید خالی"
               width={250}
               height={150}
