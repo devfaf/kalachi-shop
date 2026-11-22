@@ -12,7 +12,7 @@ import DistanceLine from "@/components/common/DistanceLine";
 
 const Header = () => {
   return (
-    <header className="border-b border-border bg-background pb-2 text-foreground md:pb-0">
+    <header className="sticky top-0 z-50 border-b border-border bg-background pb-2 text-foreground md:pb-0">
       {/* ================= TOP HEADER ================= */}
       <div className="flex min-h-[105px] items-center gap-4 px-4 md:px-6">
         {/* Logo + Search + Location (Desktop) */}
