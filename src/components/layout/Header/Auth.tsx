@@ -50,15 +50,15 @@ const Auth = () => {
         role === "ADMIN" || role === "DEMO"
             ? "/admin"
             : role === "USER"
-              ? "/account"
-              : "/login";
+                ? "/account"
+                : "/login";
 
     const label =
         role === "ADMIN" || role === "DEMO"
             ? "پنل مدیریت"
             : role === "USER"
-              ? "پنل کاربری"
-              : "ورود / ثبت‌نام";
+                ? "پنل کاربری"
+                : "ورود / ثبت‌نام";
 
     if (isLoading) return null;
 
@@ -66,10 +66,16 @@ const Auth = () => {
         <Link href={href}>
             <AppButton
                 startIcon={
-                    <AiOutlineUser className="text-[28px] md:text-[20px]" />
+                    <AiOutlineUser className="text-[22px] md:text-[20px]" />
                 }
-                className="h-11 min-w-11 text-foreground md:min-w-0"
+                className="h-11 min-w-11 whitespace-nowrap px-2.5 text-xs text-foreground md:px-3 md:text-sm"
             >
+                <span className="md:hidden">
+                    {role === "ADMIN" || role === "DEMO"
+                        ? "پنل"
+                        : "ورود"}
+                </span>
+
                 <span className="hidden md:inline">{label}</span>
             </AppButton>
         </Link>
