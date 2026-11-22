@@ -3,7 +3,7 @@ import { redirect } from "next/navigation";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase-server";
 import { prisma } from "@/lib/prisma";
-import { Package, ExternalLink } from "lucide-react";
+import { Package, ExternalLink, Store } from "lucide-react";
 
 export default async function OrdersPage() {
   const supabase = await createClient();
@@ -53,13 +53,23 @@ export default async function OrdersPage() {
 
   return (
     <div className="space-y-8">
-      <div>
-        <h1 className="text-2xl font-bold text-[var(--foreground)]">
-          سفارش‌های من
-        </h1>
-        <p className="mt-2 text-sm text-[var(--muted-foreground)]">
-          فهرست سفارش‌هایی که ثبت کرده‌ای.
-        </p>
+      <div className="flex flex-wrap items-center justify-between gap-4">
+        <div>
+          <h1 className="text-2xl font-bold text-[var(--foreground)]">
+            سفارش‌های من
+          </h1>
+          <p className="mt-2 text-sm text-[var(--muted-foreground)]">
+            فهرست سفارش‌هایی که ثبت کرده‌ای.
+          </p>
+        </div>
+
+        <Link
+          href="/"
+          className="inline-flex shrink-0 items-center justify-center gap-2 rounded-xl bg-[var(--primary)] px-4 py-2.5 text-sm font-medium text-white transition-opacity hover:opacity-90"
+        >
+          <Store size={18} />
+          رفتن به فروشگاه
+        </Link>
       </div>
 
       {orders.length === 0 ? (
