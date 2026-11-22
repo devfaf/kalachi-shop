@@ -3,7 +3,7 @@
 
 import { useEffect, useState } from "react";
 import PageContainer from "../common/PageContainer";
-import ProductCard from "../product/ProductCard";
+import ProductCard, { type ProductCardData } from "../product/ProductCard";
 import { Swiper, SwiperSlide } from "swiper/react";
 import type { Swiper as SwiperInstance } from "swiper";
 import { ChevronLeft, ChevronRight } from "lucide-react";
@@ -28,7 +28,7 @@ type OfferProduct = {
 };
 
 const AmazingOffers = () => {
-  const [products, setProducts] = useState<OfferProduct[]>([]);
+  const [products, setProducts] = useState<ProductCardData[]>([]);
   const [loading, setLoading] = useState(true);
   const [swiper, setSwiper] = useState<SwiperInstance | null>(null);
   const [campaign, setCampaign] = useState<Campaign | null>(null);
@@ -43,7 +43,7 @@ const AmazingOffers = () => {
           throw new Error("Failed to fetch products");
         }
 
-        const data: OfferProduct[] = await response.json();
+        const data: ProductCardData[] = await response.json();
         setProducts(data);
       } catch (error) {
         console.error("Error fetching offer products:", error);
