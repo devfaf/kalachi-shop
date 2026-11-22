@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState } from "react";
@@ -6,8 +7,6 @@ import { HiOutlineChevronDown } from "react-icons/hi2";
 import { footerData } from "./footerData";
 import { cn } from "@/lib/utils";
 
-/* ---------- Accordion مستقل ---------- */
-
 interface AccordionItemProps {
   title: string;
   isOpen: boolean;
@@ -15,20 +14,26 @@ interface AccordionItemProps {
   children: React.ReactNode;
 }
 
-const AccordionItem = ({ title, isOpen, onToggle, children }: AccordionItemProps) => {
+const AccordionItem = ({
+  title,
+  isOpen,
+  onToggle,
+  children,
+}: AccordionItemProps) => {
   return (
-    <div className="rounded-md bg-muted px-3">
+    <div className="border-b border-border last:border-b-0">
       <button
         type="button"
         onClick={onToggle}
         aria-expanded={isOpen}
-        className="flex w-full items-center justify-center gap-1 py-3 text-base font-bold text-foreground"
+        className="flex w-full items-center justify-center gap-2 py-4 text-center text-sm font-bold text-foreground transition-colors hover:text-primary"
       >
         {title}
+
         <HiOutlineChevronDown
           size={18}
           className={cn(
-            "transition-transform duration-200",
+            "text-muted-foreground transition-transform duration-200",
             isOpen && "rotate-180"
           )}
         />
@@ -37,7 +42,7 @@ const AccordionItem = ({ title, isOpen, onToggle, children }: AccordionItemProps
       <div
         className={cn(
           "grid transition-all duration-200",
-          isOpen ? "grid-rows-[1fr] pb-3" : "grid-rows-[0fr]"
+          isOpen ? "grid-rows-[1fr] pb-4" : "grid-rows-[0fr]"
         )}
       >
         <div className="overflow-hidden">
@@ -50,22 +55,19 @@ const AccordionItem = ({ title, isOpen, onToggle, children }: AccordionItemProps
   );
 };
 
-/* ---------- FooterLinks ---------- */
-
 const FooterLinks = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
     <div>
-      {/* Desktop */}
-      <div className="hidden justify-between gap-6 md:flex">
+      <div className="hidden grid-cols-3 gap-8 md:grid">
         {footerData.map((group) => (
-          <div key={group.title}>
-            <h3 className="mb-4 text-base font-bold text-foreground">
+          <div key={group.title} className="text-center">
+            <h3 className="mb-5 text-base font-bold text-foreground">
               {group.title}
             </h3>
 
-            <ul className="m-0 flex list-none flex-col gap-3 p-0">
+            <ul className="m-0 flex list-none flex-col items-center gap-4 p-0">
               {group.links.map((link) => (
                 <li key={link.title}>
                   <Link
@@ -81,20 +83,21 @@ const FooterLinks = () => {
         ))}
       </div>
 
-      {/* Tablet / Mobile */}
-      <div className="flex flex-col gap-2 md:hidden">
+      <div className="flex flex-col md:hidden">
         {footerData.map((group, index) => (
           <AccordionItem
             key={group.title}
             title={group.title}
             isOpen={openIndex === index}
-            onToggle={() => setOpenIndex(openIndex === index ? null : index)}
+            onToggle={() =>
+              setOpenIndex(openIndex === index ? null : index)
+            }
           >
             {group.links.map((link) => (
               <li key={link.title}>
                 <Link
                   href={link.href}
-                  className="text-sm text-muted-foreground transition-colors hover:text-primary"
+                  className="text-center text-sm text-muted-foreground transition-colors hover:text-primary"
                 >
                   {link.title}
                 </Link>

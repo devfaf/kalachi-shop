@@ -1,3 +1,4 @@
+
 "use client";
 
 import Image from "next/image";
@@ -16,15 +17,14 @@ const FooterAbout = () => {
   return (
     <section
       dir="rtl"
-      className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between"
+      className="flex flex-col gap-8 border-t border-border py-8 md:flex-row md:items-center md:justify-between md:gap-10"
     >
-      {/* About */}
-      <div className="flex flex-col gap-3">
-        <h2 className="text-lg font-bold text-foreground md:text-xl">
+      <div className="flex min-w-0 flex-1 flex-col gap-3">
+        <h2 className="text-base font-bold leading-8 text-foreground sm:text-lg">
           فروشگاه اینترنتی کالاچی، بررسی، انتخاب و خرید آنلاین
         </h2>
 
-        <p className="max-w-3xl text-sm leading-8 text-muted-foreground md:text-[15px]">
+        <p className="max-w-3xl text-sm leading-8 text-muted-foreground">
           کالاچی به عنوان یکی از فروشگاه‌های اینترنتی، با پایبندی به اصول
           مشتری‌مداری، تضمین کیفیت و ارائه خدمات مناسب تلاش می‌کند تجربه‌ای
           مطمئن و آسان برای خرید آنلاین فراهم کند. در کالاچی می‌توانید محصولات
@@ -33,19 +33,18 @@ const FooterAbout = () => {
         </p>
       </div>
 
-      {/* Validity */}
-      <div className="flex shrink-0 items-center justify-center gap-3 md:gap-4">
+      <div className="flex shrink-0 items-center justify-center gap-3 sm:gap-4">
         {validityBadges.map(({ src, alt }) => (
           <div
             key={alt}
-            className="group flex items-center justify-center rounded-xl border border-border/60 bg-background p-2 transition-all duration-300 hover:-translate-y-1 hover:border-primary/40 hover:shadow-md"
+            className="group flex size-[76px] items-center justify-center rounded-xl border border-border bg-card p-2 transition-all duration-200 hover:-translate-y-1 hover:border-primary/40 hover:shadow-md sm:size-[88px]"
           >
             <Image
               src={src}
               alt={alt}
               width={80}
               height={80}
-              className="h-16 w-16 object-contain transition-transform duration-300 group-hover:scale-105 md:h-20 md:w-20"
+              className="size-full object-contain transition-transform duration-200 group-hover:scale-105"
             />
           </div>
         ))}
