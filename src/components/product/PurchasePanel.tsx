@@ -47,11 +47,11 @@ const PurchasePanel = ({ purchase, product }: PurchasePanelProps) => {
 
           <div
             className={`font-bold ${sellerRatingLabel === "عالی" ||
-                sellerRatingLabel === "خوب"
-                ? "text-green-600"
-                : sellerRatingLabel === "متوسط"
-                  ? "text-yellow-600"
-                  : "text-red-600"
+              sellerRatingLabel === "خوب"
+              ? "text-green-600"
+              : sellerRatingLabel === "متوسط"
+                ? "text-yellow-600"
+                : "text-red-600"
               }`}
           >
             {sellerRatingLabel}
@@ -96,9 +96,7 @@ const PurchasePanel = ({ purchase, product }: PurchasePanelProps) => {
         <button
           onClick={() => addItem(product)}
           type="button"
-          className="w-full bg-blue-600 hover:bg-blue-700 active:bg-blue-800
-            text-white font-medium py-2.5 px-4 rounded-lg
-            transition-colors duration-200 cursor-pointer"
+          className="w-full bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white font-medium py-2.5 px-4 rounded-lg transition-colors duration-200 cursor-pointer"
         >
           افزودن به سبد خرید
         </button>
@@ -117,9 +115,7 @@ const PurchasePanel = ({ purchase, product }: PurchasePanelProps) => {
         <button
           onClick={() => addItem(product)}
           type="button"
-          className="flex-1 bg-blue-600 hover:bg-blue-700 active:bg-blue-800
-            text-white font-medium py-2 px-4 rounded-lg
-            transition-colors duration-200"
+          className="flex-1 bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200"
         >
           افزودن به سبد خرید
         </button>
