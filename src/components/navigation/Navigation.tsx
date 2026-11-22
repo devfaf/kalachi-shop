@@ -1,3 +1,4 @@
+
 import Link from "next/link";
 import { LiaFireAltSolid } from "react-icons/lia";
 import Navbar from "./Navbar";
@@ -10,7 +11,7 @@ const Navigation = () => {
       <ul className="m-0 list-none p-0">
         <li>
           <Link
-            href="/"
+            href="/special-offers"
             className="flex items-center gap-1.5 p-2.5 font-bold text-foreground transition-colors duration-200 hover:text-primary/80"
           >
             <LiaFireAltSolid size={25} />

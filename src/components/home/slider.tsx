@@ -1,28 +1,28 @@
-"use client"
+"use client";
 
-import Link from "next/link"
-import Image from "next/image"
-import { Swiper, SwiperSlide } from "swiper/react"
-import { Autoplay, Pagination } from "swiper/modules"
+import Link from "next/link";
+import Image from "next/image";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, Pagination } from "swiper/modules";
 
-import "swiper/css"
-import "swiper/css/pagination"
+import "swiper/css";
+import "swiper/css/pagination";
 
 const HomeSlider = () => {
   const slides = [
     {
       image: "/images/slider/1.png",
-      href: "/products/apple-iphone-17",
+      href: "/products",
     },
     {
       image: "/images/slider/2.webp",
-      href: "/products/asus-vivobook-15-x1504za",
+      href: "/products",
     },
     {
       image: "/images/slider/3.webp",
-      href: "/products/samsung-galaxy-tab-s9",
+      href: "/products",
     },
-  ]
+  ];
 
   return (
     <Swiper
@@ -46,14 +46,14 @@ const HomeSlider = () => {
                 fill
                 priority
                 className="object-contain"
+                sizes="100vw"
               />
             </div>
           </Link>
         </SwiperSlide>
       ))}
     </Swiper>
-  )
-}
+  );
+};
 
-export default HomeSlider
-
+export default HomeSlider;

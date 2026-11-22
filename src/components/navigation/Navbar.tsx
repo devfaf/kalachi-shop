@@ -15,7 +15,6 @@ import { useCategories } from "@/hooks/use-categories";
 import { cn } from "cn";
 import { ChevronLeftIcon, LayoutGrid } from "lucide-react";
 import { useState } from "react";
-import Link from "next/link";
 
 export default function Navbar() {
   const { categories, isLoading, error } = useCategories();

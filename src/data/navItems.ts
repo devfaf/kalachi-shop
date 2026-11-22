@@ -6,6 +6,7 @@ import {
     HiOutlineSquares2X2,
     HiOutlineTruck,
 } from "react-icons/hi2";
+import { LiaFireAltSolid } from "react-icons/lia";
 
 export type NavItem = {
     label: string;
@@ -80,5 +81,10 @@ export const navItems: NavItem[] = [
         label: "تماس با ما",
         href: "/contact",
         icon: HiOutlinePhone,
+    },
+    {
+        label: "فروش ویژه",
+        href: "/special-offers",
+        icon: LiaFireAltSolid,
     },
 ];
