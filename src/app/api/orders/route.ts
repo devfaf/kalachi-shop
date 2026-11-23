@@ -224,6 +224,12 @@ export async function POST(request: NextRequest) {
             });
 
             paymentResponse = await response.json();
+            console.log("Zarinpal response:", {
+    status: response.status,
+    ok: response.ok,
+    data: paymentResponse.data,
+    errors: (paymentResponse as any).errors,
+});
 
             if (
                 !response.ok ||
