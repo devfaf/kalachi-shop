@@ -59,7 +59,7 @@ const getCategoryIcon = (slug: string, name: string) => {
 
   if (
     normalizedSlug.includes("laptop") ||
-    normalizedName.includes("لپ‌تاپ") ||
+    normalizedName.includes("لپ تاپ") ||
     normalizedName.includes("لپ تاپ")
   ) {
     return Laptop;

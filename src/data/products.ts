@@ -162,7 +162,7 @@ export const products: Product[] = [
       "/images/products/lenovo-loq-15irx9/3.webp",
     ],
     info: {
-      persianName: "لپ‌تاپ گیمینگ لنوو LOQ 15IRX9",
+      persianName: "لپ تاپ گیمینگ لنوو LOQ 15IRX9",
       englishName: "Lenovo LOQ 15IRX9",
       rating: 4.7,
       colors: [{ name: "خاکستری", value: "#55565A" }],
@@ -174,7 +174,7 @@ export const products: Product[] = [
         { label: "نمایشگر", value: "15.6 اینچ Full HD" },
       ],
       description:
-        "لپ‌تاپ گیمینگ Lenovo LOQ برای اجرای بازی‌ها و نرم‌افزارهای سنگین طراحی شده است. ترکیب پردازنده سری HX و گرافیک مجزا، آن را برای بازی، تدوین و کارهای گرافیکی مناسب می‌کند.",
+        "لپ تاپ گیمینگ Lenovo LOQ برای اجرای بازی‌ها و نرم‌افزارهای سنگین طراحی شده است. ترکیب پردازنده سری HX و گرافیک مجزا، آن را برای بازی، تدوین و کارهای گرافیکی مناسب می‌کند.",
     },
     purchasePanel: {
       storeName: "کالاچی",
@@ -197,7 +197,7 @@ export const products: Product[] = [
       "/images/products/lenovo-yoga-7-2-in-1/3.webp",
     ],
     info: {
-      persianName: "لپ‌تاپ لنوو Yoga 7 دوکاره 14 اینچی",
+      persianName: "لپ تاپ لنوو Yoga 7 دوکاره 14 اینچی",
       englishName: "Lenovo Yoga 7 2-in-1 14-inch",
       rating: 4.6,
       colors: [{ name: "خاکستری", value: "#777777" }],
@@ -209,7 +209,7 @@ export const products: Product[] = [
         { label: "طراحی", value: "تبدیل‌پذیر با لولای 360 درجه" },
       ],
       description:
-        "Lenovo Yoga 7 یک لپ‌تاپ دوکاره با طراحی تبدیل‌پذیر است که امکان استفاده در حالت لپ‌تاپ و تبلت را فراهم می‌کند و برای کار، مطالعه و جابه‌جایی روزانه گزینه‌ای کاربردی است.",
+        "Lenovo Yoga 7 یک لپ تاپ دوکاره با طراحی تبدیل‌پذیر است که امکان استفاده در حالت لپ تاپ و تبلت را فراهم می‌کند و برای کار، مطالعه و جابه‌جایی روزانه گزینه‌ای کاربردی است.",
     },
     purchasePanel: {
       storeName: "کالاچی",
@@ -232,7 +232,7 @@ export const products: Product[] = [
       "/images/products/lenovo-ideapad-slim-3/3.webp",
     ],
     info: {
-      persianName: "لپ‌تاپ لنوو IdeaPad Slim 3 پانزده اینچی",
+      persianName: "لپ تاپ لنوو IdeaPad Slim 3 پانزده اینچی",
       englishName: "Lenovo IdeaPad Slim 3 15-inch",
       rating: 4.5,
       colors: [{ name: "خاکستری", value: "#777777" }],

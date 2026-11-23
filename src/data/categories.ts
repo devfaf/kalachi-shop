@@ -32,24 +32,24 @@ export const categories: Category[] = [
 
     {
         id: "laptops",
-        name: "لپ‌تاپ",
+        name: "لپ تاپ",
         slug: "laptops",
     },
     {
         id: "gaming-laptops",
-        name: "لپ‌تاپ بر اساس کاربرد",
+        name: "لپ تاپ بر اساس کاربرد",
         slug: "gaming-laptops",
         parentId: "laptops",
     },
     {
         id: "ultrabooks",
-        name: "لپ‌تاپ بر اساس پردازنده",
+        name: "لپ تاپ بر اساس پردازنده",
         slug: "ultrabooks",
         parentId: "laptops",
     },
     {
         id: "convertible-laptops",
-        name: "لپ‌تاپ بر اساس قیمت",
+        name: "لپ تاپ بر اساس قیمت",
         slug: "convertible-laptops",
         parentId: "laptops",
     },

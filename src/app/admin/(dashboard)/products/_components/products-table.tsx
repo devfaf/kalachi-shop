@@ -1,5 +1,7 @@
 import { Image as ImageIcon } from "lucide-react";
 import type { Product } from "./products-types";
+import Link from "next/link";
+import { Pencil } from "lucide-react";
 
 type Props = {
   products: Product[];
@@ -69,11 +71,10 @@ export default function ProductsTable({ products }: Props) {
 
               <td className="px-5 py-4">
                 <span
-                  className={`rounded-full px-3 py-1 text-xs font-medium ${
-                    product.stock > 0
+                  className={`rounded-full px-3 py-1 text-xs font-medium ${product.stock > 0
                       ? "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400"
                       : "bg-red-500/10 text-red-600 dark:text-red-400"
-                  }`}
+                    }`}
                 >
                   {product.stock > 0 ? "موجود" : "ناموجود"}
                 </span>
@@ -91,8 +92,14 @@ export default function ProductsTable({ products }: Props) {
                 )}
               </td>
 
-              <td className="px-5 py-4 text-[var(--muted-foreground)]">
-                —
+              <td className="px-5 py-4">
+                <Link
+                  href={`/admin/products/${product.id}/edit`}
+                  aria-label={`ویرایش ${product.persianName}`}
+                  className="inline-flex size-9 items-center justify-center rounded-lg text-[var(--muted-foreground)] transition-colors hover:bg-[var(--accent)] hover:text-[var(--primary)]"
+                >
+                  <Pencil size={17} />
+                </Link>
               </td>
             </tr>
           ))}

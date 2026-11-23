@@ -1,6 +1,6 @@
 
 import { PackagePlus } from "lucide-react";
-import { ProductForm } from "./_components/product-form";
+import { ProductForm } from "./_components/productForm";
 import { getCurrentUserRole } from "@/lib/auth";
 
 export default async function NewProductPage() {

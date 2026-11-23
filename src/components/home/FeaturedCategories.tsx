@@ -20,7 +20,7 @@ const featuredCategories = [
   {
     categoryId: "laptops",
     slug: "laptops",
-    name: "لپ‌تاپ",
+    name: "لپ تاپ",
     icon: FaLaptop,
   },
   {

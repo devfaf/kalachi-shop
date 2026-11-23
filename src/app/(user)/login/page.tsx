@@ -41,10 +41,19 @@ export default function UserLoginPage() {
         setMode("login");
         setErrorMessage("");
         setSuccessMessage("");
+        setEmail("");
+        setPassword("");
     }
 
     function changeMode(newMode: AuthMode) {
         setMode(newMode);
+        setErrorMessage("");
+        setSuccessMessage("");
+    }
+
+    function fillDemoCredentials() {
+        setEmail(DEMO_EMAIL);
+        setPassword(DEMO_PASSWORD);
         setErrorMessage("");
         setSuccessMessage("");
     }
@@ -57,22 +66,6 @@ export default function UserLoginPage() {
         setSuccessMessage("");
 
         try {
-            if (isAdmin) {
-                const { error } = await supabase.auth.signInWithPassword({
-                    email: DEMO_EMAIL,
-                    password: DEMO_PASSWORD,
-                });
-
-                if (error) {
-                    setErrorMessage("ورود به پنل نمایشی با مشکل مواجه شد.");
-                    return;
-                }
-
-                router.replace("/auth/redirect");
-                router.refresh();
-                return;
-            }
-
             if (isSignup) {
                 const { data, error } = await supabase.auth.signUp({
                     email: email.trim(),
@@ -114,13 +107,17 @@ export default function UserLoginPage() {
             });
 
             if (error) {
-                setErrorMessage("ایمیل یا رمز عبور اشتباه است.");
+                setErrorMessage(
+                    isAdmin
+                        ? "ایمیل یا رمز عبور ادمین اشتباه است."
+                        : "ایمیل یا رمز عبور اشتباه است."
+                );
                 return;
             }
 
             router.replace("/auth/redirect");
             router.refresh();
-            
+
         } catch {
             setErrorMessage("خطایی رخ داد. لطفا دوباره تلاش کنید.");
         } finally {
@@ -141,15 +138,15 @@ export default function UserLoginPage() {
 
             <div className="w-full max-w-md rounded-2xl border border-[var(--border)] bg-[var(--card)] p-6 shadow-sm sm:p-8">
 
-                {/* Login tabs */}
                 <div className="mb-7 grid grid-cols-2 rounded-lg bg-[var(--muted)] p-1">
                     <button
                         type="button"
                         onClick={() => changeTab("user")}
-                        className={`flex h-10 items-center justify-center gap-2 rounded-md text-sm font-medium transition-all ${!isAdmin
-                            ? "bg-[#4B73FF] text-white shadow-sm"
-                            : "text-[var(--muted-foreground)] hover:text-[var(--foreground)]"
-                            }`}
+                        className={`flex h-10 items-center justify-center gap-2 rounded-md text-sm font-medium transition-all ${
+                            !isAdmin
+                                ? "bg-[#4B73FF] text-white shadow-sm"
+                                : "text-[var(--muted-foreground)] hover:text-[var(--foreground)]"
+                        }`}
                     >
                         <UserRound size={17} />
                         کاربر
@@ -158,23 +155,24 @@ export default function UserLoginPage() {
                     <button
                         type="button"
                         onClick={() => changeTab("admin")}
-                        className={`flex h-10 items-center justify-center gap-2 rounded-md text-sm font-medium transition-all ${isAdmin
-                            ? "bg-[#8469FF] text-white shadow-sm"
-                            : "text-[var(--muted-foreground)] hover:text-[var(--foreground)]"
-                            }`}
+                        className={`flex h-10 items-center justify-center gap-2 rounded-md text-sm font-medium transition-all ${
+                            isAdmin
+                                ? "bg-[#8469FF] text-white shadow-sm"
+                                : "text-[var(--muted-foreground)] hover:text-[var(--foreground)]"
+                        }`}
                     >
                         <ShieldCheck size={17} />
                         مدیریت
                     </button>
                 </div>
 
-                {/* Form heading */}
                 <div className="mb-7 text-center">
                     <div
-                        className={`mx-auto mb-4 flex size-14 items-center justify-center rounded-xl ${isAdmin
-                            ? "bg-[#8469FF]/10 text-[#8469FF]"
-                            : "bg-[#4B73FF]/10 text-[#4B73FF]"
-                            }`}
+                        className={`mx-auto mb-4 flex size-14 items-center justify-center rounded-xl ${
+                            isAdmin
+                                ? "bg-[#8469FF]/10 text-[#8469FF]"
+                                : "bg-[#4B73FF]/10 text-[#4B73FF]"
+                        }`}
                     >
                         {isAdmin ? (
                             <ShieldCheck size={26} />
@@ -195,7 +193,7 @@ export default function UserLoginPage() {
 
                     <p className="mt-2 text-sm text-[var(--muted-foreground)]">
                         {isAdmin
-                            ? "مشاهده نسخه نمایشی پنل مدیریت کالاچی"
+                            ? "با حساب مدیریت یا حساب نمایشی وارد شوید."
                             : isSignup
                                 ? "برای ساخت حساب، اطلاعات خود را وارد کنید."
                                 : "برای ادامه خرید، وارد حساب کاربری خود شوید."}
@@ -235,23 +233,19 @@ export default function UserLoginPage() {
                         </label>
 
                         <div className="relative">
-                            {!isAdmin && (
-                                <Mail
-                                    size={18}
-                                    className="absolute right-3 top-1/2 -translate-y-1/2 text-[var(--muted-foreground)]"
-                                />
-                            )}
+                            <Mail
+                                size={18}
+                                className="absolute right-3 top-1/2 -translate-y-1/2 text-[var(--muted-foreground)]"
+                            />
 
                             <input
                                 type="email"
-                                value={isAdmin ? DEMO_EMAIL : email}
+                                value={email}
                                 onChange={(event) => setEmail(event.target.value)}
                                 placeholder="example@email.com"
                                 dir="ltr"
                                 required
-                                readOnly={isAdmin}
-                                className={`w-full rounded-lg border border-[var(--border)] bg-transparent py-3 text-sm text-[var(--foreground)] outline-none focus:border-[#4B73FF] ${isAdmin ? "px-3" : "pl-3 pr-10"
-                                    }`}
+                                className="w-full rounded-lg border border-[var(--border)] bg-transparent py-3 pl-3 pr-10 text-sm text-[var(--foreground)] outline-none focus:border-[#4B73FF]"
                             />
                         </div>
                     </div>
@@ -263,13 +257,12 @@ export default function UserLoginPage() {
 
                         <input
                             type="password"
-                            value={isAdmin ? DEMO_PASSWORD : password}
+                            value={password}
                             onChange={(event) => setPassword(event.target.value)}
                             placeholder="رمز عبور خود را وارد کنید"
                             dir="ltr"
                             required
                             minLength={6}
-                            readOnly={isAdmin}
                             className="w-full rounded-lg border border-[var(--border)] bg-transparent px-3 py-3 text-sm text-[var(--foreground)] outline-none focus:border-[#4B73FF]"
                         />
 
@@ -280,9 +273,19 @@ export default function UserLoginPage() {
                         )}
 
                         {isAdmin && (
-                            <p className="mt-2 text-xs text-[var(--muted-foreground)]">
-                                این حساب نمایشی فقط امکان مشاهده اطلاعات را دارد.
-                            </p>
+                            <div className="mt-3 flex flex-wrap items-center justify-between gap-2">
+                                <p className="text-xs text-[var(--muted-foreground)]">
+                                    ورود با حساب واقعی یا نمایشی
+                                </p>
+
+                                <button
+                                    type="button"
+                                    onClick={fillDemoCredentials}
+                                    className="text-xs font-medium text-[#8469FF] transition-opacity hover:opacity-75"
+                                >
+                                    استفاده از حساب Demo
+                                </button>
+                            </div>
                         )}
                     </div>
 
@@ -301,8 +304,9 @@ export default function UserLoginPage() {
                     <button
                         type="submit"
                         disabled={loading}
-                        className={`w-full rounded-lg py-3 text-sm font-semibold text-white transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60 ${isAdmin ? "bg-[#8469FF]" : "bg-[#4B73FF]"
-                            }`}
+                        className={`w-full rounded-lg py-3 text-sm font-semibold text-white transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60 ${
+                            isAdmin ? "bg-[#8469FF]" : "bg-[#4B73FF]"
+                        }`}
                     >
                         {loading
                             ? "لطفا صبر کنید..."

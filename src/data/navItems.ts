@@ -35,7 +35,7 @@ export const navItems: NavItem[] = [
                 href: "/category/tablets",
             },
             {
-                label: "لپ‌تاپ",
+                label: "لپ تاپ",
                 href: "/category/laptops",
             },
             {

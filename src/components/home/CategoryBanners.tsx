@@ -11,7 +11,7 @@ const banners = [
   {
     image: "/images/banners/laptop.webp",
     href: "/products?category=laptops",
-    alt: "محصولات لپ‌تاپ",
+    alt: "محصولات لپ تاپ",
   },
 ];
 
