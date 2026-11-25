@@ -76,9 +76,4 @@ export const navItems: NavItem[] = [
         href: "/contact",
         icon: HiOutlinePhone,
     },
-    {
-        label: "فروش ویژه",
-        href: "/special-offers",
-        icon: LiaFireAltSolid,
-    },
 ];
