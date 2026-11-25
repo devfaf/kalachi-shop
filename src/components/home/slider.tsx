@@ -11,7 +11,7 @@ import "swiper/css/pagination";
 const HomeSlider = () => {
   const slides = [
     {
-      image: "/images/slider/1.png",
+      image: "/images/slider/1.webp",
       href: "/products",
     },
     {

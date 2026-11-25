@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useCartStore } from "@/store/cartStore";
 import { toPersianNumber } from "@/lib/utils/farsiNumbers";
-import { Trash2, Plus, Minus } from "lucide-react";
+import { Trash2, Plus, Minus, Info } from "lucide-react";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
@@ -15,17 +15,19 @@ export default function Page() {
   const decreaseQuantity = useCartStore((state) => state.decreaseQuantity);
   const removeItem = useCartStore((state) => state.removeItem);
   const totalPrice = useCartStore((state) => state.getTotalPrice());
-  const clearCart = useCartStore((state) => state.clearCart);
+
   const router = useRouter();
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+  const [isPaymentLimitError, setIsPaymentLimitError] = useState(false);
 
   async function handleSubmitOrder() {
     if (isSubmitting || items.length === 0) return;
 
     setIsSubmitting(true);
     setErrorMessage("");
+    setIsPaymentLimitError(false);
 
     try {
       const response = await fetch("/api/orders", {
@@ -49,8 +51,17 @@ export default function Page() {
           return;
         }
 
+        if (data.error === "PAYMENT_LIMIT_EXCEEDED") {
+          setIsPaymentLimitError(true);
+          setErrorMessage(
+            "مبلغ سفارش از سقف پرداخت آنلاین بیشتر است. لطفا سفارش خود را به چند سفارش جداگانه با مبلغ کمتر از ۲۰۰ میلیون تومان تقسیم کنید."
+          );
+          return;
+        }
+
         throw new Error(data.error || "ثبت سفارش انجام نشد.");
       }
+
       if (!data.paymentUrl) {
         throw new Error("آدرس درگاه پرداخت دریافت نشد.");
       }
@@ -66,6 +77,7 @@ export default function Page() {
       setIsSubmitting(false);
     }
   }
+
   if (items.length === 0) {
     return (
       <div className="mx-auto flex min-h-[60vh] max-w-3xl flex-col items-center justify-center gap-4 px-4 text-center">
@@ -157,9 +169,7 @@ export default function Page() {
           <h2 className="mb-5 text-lg font-bold">صورتحساب</h2>
 
           <div className="flex justify-between text-sm">
-            <span className="text-muted-foreground">
-              تعداد کالا
-            </span>
+            <span className="text-muted-foreground">تعداد کالا</span>
             <span>
               {toPersianNumber(
                 items.reduce((total, item) => total + item.quantity, 0)
@@ -177,9 +187,22 @@ export default function Page() {
           </div>
 
           {errorMessage && (
-            <p className="mt-4 text-sm text-red-500">
-              {errorMessage}
-            </p>
+            <div
+              role="alert"
+              className={`mt-4 flex items-start gap-2 rounded-lg p-3 text-sm ${
+                isPaymentLimitError
+                  ? "border border-blue-500/20 bg-blue-500/5 text-foreground"
+                  : "border border-red-500/20 bg-red-500/5 text-red-500"
+              }`}
+            >
+              {isPaymentLimitError && (
+                <Info
+                  size={18}
+                  className="mt-0.5 shrink-0 text-blue-500"
+                />
+              )}
+              <p>{errorMessage}</p>
+            </div>
           )}
 
           <button

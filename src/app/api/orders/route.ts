@@ -9,6 +9,7 @@ const ZARINPAL_REQUEST_URL =
 const ZARINPAL_START_PAY_URL =
     "https://sandbox.zarinpal.com/pg/StartPay";
 
+const MAX_PAYMENT_AMOUNT = 200_000_000;
 
 async function cancelOrderAndRestoreStock(orderId: string) {
     await prisma.$transaction(async (tx) => {
@@ -22,7 +23,6 @@ async function cancelOrderAndRestoreStock(orderId: string) {
             },
         });
 
-        // اگر قبلا لغو شده یا پرداخت شده، موجودی برنگردد.
         if (cancelled.count !== 1) return;
 
         const items = await tx.orderItem.findMany({
@@ -139,6 +139,12 @@ export async function POST(request: NextRequest) {
                     throw new Error("INSUFFICIENT_STOCK");
                 }
 
+                total += product.price * quantity;
+
+                if (total >= MAX_PAYMENT_AMOUNT) {
+                    throw new Error("PAYMENT_LIMIT_EXCEEDED");
+                }
+
                 const updated = await tx.product.updateMany({
                     where: {
                         id: productId,
@@ -158,8 +164,6 @@ export async function POST(request: NextRequest) {
                     quantity,
                     price: product.price,
                 });
-
-                total += product.price * quantity;
             }
 
             const name =
@@ -224,12 +228,6 @@ export async function POST(request: NextRequest) {
             });
 
             paymentResponse = await response.json();
-            console.log("Zarinpal response:", {
-    status: response.status,
-    ok: response.ok,
-    data: paymentResponse.data,
-    errors: (paymentResponse as any).errors,
-});
 
             if (
                 !response.ok ||
@@ -277,6 +275,16 @@ export async function POST(request: NextRequest) {
                 return NextResponse.json(
                     { error: "موجودی یکی از محصولات کافی نیست." },
                     { status: 409 }
+                );
+            }
+
+            if (error.message === "PAYMENT_LIMIT_EXCEEDED") {
+                return NextResponse.json(
+                    {
+                        code: "PAYMENT_LIMIT_EXCEEDED",
+                        error: "مبلغ سفارش از سقف پرداخت آنلاین بیشتر است. لطفا سفارش خود را به چند سفارش جداگانه با مبلغ کمتر از ۲۰۰ میلیون تومان تقسیم کنید.",
+                    },
+                    { status: 400 }
                 );
             }
         }
