@@ -66,12 +66,6 @@ export const navItems: NavItem[] = [
     },
 
     {
-        label: "پیگیری سفارش",
-        href: "/track-your-order",
-        icon: HiOutlineTruck,
-    },
-
-    {
         label: "وبلاگ",
         href: "/blog",
         icon: HiOutlineNewspaper,
