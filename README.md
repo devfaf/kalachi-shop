@@ -1,98 +1,21 @@
-کالاچی یه پروژه فروشگاهی هست که با تکنولوژی های نظیر Next و postgre داره ساخته میشه و فروشگاه محصولات دیجیتال هست.
-تصمیم دارم برای UI از shadcn استفاده کنم به جای متریال و این تصمیم رو به دلیل داینامیک تر بودن shadcn و ترکیب با تیلویند گرفتم. به علاوه خیلی از پروژه ها ازش در حال حاضر استفاده میکنن.
+# Kalachi Shop
 
-Project: Kalachi shop
-Type: Home & Lifestyle E-commerce
-Framework: Next.js
-Language: TypeScript
-UI: shadcn
+**Kalachi** is a full-stack e-commerce project focused on digital products and electronic devices. It is built with modern web technologies, with an emphasis on creating a clean, responsive, and user-friendly shopping experience.
 
-future structure:
-kalachi/
-├── public/
-│   ├── images/
-│   ├── icons/
-│   └── ...
-│
-├── src/
-│   ├── app/
-│   │   ├── (store)/
-│   │   │   ├── page.tsx
-│   │   │   ├── products/
-│   │   │   │   ├── page.tsx
-│   │   │   │   └── [slug]/
-│   │   │   │       └── page.tsx
-│   │   │   ├── categories/
-│   │   │   │   └── [slug]/
-│   │   │   │       └── page.tsx
-│   │   │   ├── cart/
-│   │   │   │   └── page.tsx
-│   │   │   ├── checkout/
-│   │   │   │   └── page.tsx
-│   │   │   ├── articles/
-│   │   │   │   ├── page.tsx
-│   │   │   │   └── [slug]/
-│   │   │   │       └── page.tsx
-│   │   │   └── layout.tsx
-│   │   │
-│   │   ├── (auth)/
-│   │   │   ├── login/
-│   │   │   │   └── page.tsx
-│   │   │   └── register/
-│   │   │       └── page.tsx
-│   │   │
-│   │   ├── account/
-│   │   │   ├── page.tsx
-│   │   │   ├── orders/
-│   │   │   │   └── page.tsx
-│   │   │   ├── addresses/
-│   │   │   │   └── page.tsx
-│   │   │   └── reviews/
-│   │   │       └── page.tsx
-│   │   │
-│   │   ├── admin/
-│   │   │   ├── page.tsx
-│   │   │   ├── products/
-│   │   │   ├── categories/
-│   │   │   ├── orders/
-│   │   │   ├── reviews/
-│   │   │   └── articles/
-│   │   │
-│   │   ├── api/
-│   │   │   └── ...
-│   │   │
-│   │   ├── layout.tsx
-│   │   ├── globals.css
-│   │   └── ...
-│   │
-│   ├── components/
-│   │   ├── layout/
-│   │   ├── product/
-│   │   ├── cart/
-│   │   ├── review/
-│   │   ├── article/
-│   │   └── common/
-│   │
-│   ├── features/
-│   │   ├── auth/
-│   │   ├── products/
-│   │   ├── cart/
-│   │   ├── checkout/
-│   │   ├── reviews/
-│   │   ├── articles/
-│   │   └── admin/
-│   │
-│   ├── lib/
-│   │   ├── api/
-│   │   ├── auth/
-│   │   ├── db/
-│   │   ├── payment/
-│   │   └── utils/
-│   │
-│   ├── types/
-│   └── ...
-│
-├── .env.local
-├── .env.example
-├── package.json
-└── ...
+The project is designed to provide essential e-commerce features, including product browsing, shopping cart management, user accounts, order management, and an admin dashboard.
+
+## Technology Stack
+
+- **Next.js** – React framework for building the application.
+- **TypeScript** – For type safety and maintainable code.
+- **PostgreSQL** – Relational database for storing application data.
+- **Prisma** – ORM for database access and management.
+- **Tailwind CSS** – Utility-first CSS framework for styling.
+- **shadcn/ui** – Customizable UI components built with Tailwind CSS.
+
+## UI Design Approach
+
+I chose **shadcn/ui** over Material UI because of its flexibility and customization capabilities.
+
+Its seamless integration with Tailwind CSS provides greater control over component styling and makes it easier to create a consistent, modern, and responsive user interface.
+
