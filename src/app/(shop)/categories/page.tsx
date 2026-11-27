@@ -111,7 +111,7 @@ export default function CategoriesPage() {
           دسته‌بندی موردنظرت رو انتخاب کن.
         </p>
       </div>
-            <Link
+      <Link
         href="/products"
         className="mb-5 flex items-center justify-between rounded-xl border border-border bg-card p-3 transition-colors hover:border-primary sm:mt-6 sm:rounded-2xl sm:p-4"
       >
