@@ -5,9 +5,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { useCartStore } from "@/store/cartStore";
 import { toPersianNumber } from "@/lib/utils/farsiNumbers";
-import { Trash2, Plus, Minus, Info } from "lucide-react";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { Trash2, Plus, Minus, Info, ArrowRight } from "lucide-react";
 
 export default function Page() {
   const items = useCartStore((state) => state.items);
@@ -99,7 +99,18 @@ export default function Page() {
 
   return (
     <main className="mx-auto max-w-6xl px-4 py-8 text-foreground">
-      <h1 className="mb-8 text-2xl font-bold">تکمیل سفارش</h1>
+      <div className="mb-8 flex items-center gap-3">
+        <button
+          type="button"
+          onClick={() => router.back()}
+          className="flex size-10 shrink-0 items-center justify-center rounded-lg border border-border transition-colors hover:bg-muted"
+          aria-label="بازگشت به صفحه قبل"
+        >
+          <ArrowRight size={20} />
+        </button>
+
+        <h1 className="text-2xl font-bold">تکمیل سفارش</h1>
+      </div>
 
       <div className="grid grid-cols-1 gap-8 lg:grid-cols-[1fr_320px]">
         <section className="space-y-4">
@@ -189,11 +200,10 @@ export default function Page() {
           {errorMessage && (
             <div
               role="alert"
-              className={`mt-4 flex items-start gap-2 rounded-lg p-3 text-sm ${
-                isPaymentLimitError
+              className={`mt-4 flex items-start gap-2 rounded-lg p-3 text-sm ${isPaymentLimitError
                   ? "border border-blue-500/20 bg-blue-500/5 text-foreground"
                   : "border border-red-500/20 bg-red-500/5 text-red-500"
-              }`}
+                }`}
             >
               {isPaymentLimitError && (
                 <Info
