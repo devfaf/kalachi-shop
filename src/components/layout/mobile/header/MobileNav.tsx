@@ -21,7 +21,7 @@ const MobileNav = () => {
 
   const items = [
     { label: "خانه", icon: Home, href: "/" },
-    { label: "دسته‌بندی", icon: LayoutGrid, href: "/products" },
+    { label: "دسته‌بندی", icon: LayoutGrid, href: "/categories" },
     {
       label: "سبد خرید",
       icon: ShoppingCart,

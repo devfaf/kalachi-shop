@@ -1,36 +1,18 @@
+
 "use client";
 
-import { useState } from "react";
-import { HiOutlineBars3, HiOutlineXMark } from "react-icons/hi2";
 import Logo from "../../header/Logo";
 import Search from "../../header/Search";
 import Contact from "../../header/Contact";
 import Auth from "../../header/Auth";
 import CardWrapper from "../../header/CardWrapper";
-import MobileMenu from "./MobileMenu";
 
 const MobileHeader = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-  const mobileMenuHandler = () => {
-    setIsMenuOpen((prev) => !prev);
-  };
-
   return (
     <div className="flex w-full flex-col gap-3 md:hidden">
       {/* Row 1 */}
       <div className="relative flex h-[60px] items-center justify-between">
-        {/* Hamburger */}
-        <button
-          type="button"
-          onClick={mobileMenuHandler}
-          aria-label="باز کردن منو"
-          className="inline-flex items-center justify-center p-2 text-foreground transition-colors hover:text-primary"
-        >
-          <HiOutlineBars3 size={30} />
-        </button>
-
-        {/* Logo - دقیقاً وسط */}
+        {/* Logo */}
         <div className="absolute left-1/2 -translate-x-1/2">
           <Logo />
         </div>
@@ -45,52 +27,7 @@ const MobileHeader = () => {
         <Auth />
         <CardWrapper />
       </div>
-
-      {/* Drawer */}
-      <Drawer
-        open={isMenuOpen}
-        onClose={mobileMenuHandler}
-        side="right"
-      >
-        <MobileMenu onClose={mobileMenuHandler} />
-      </Drawer>
     </div>
-  );
-};
-
-/* ---------- Drawer ---------- */
-
-interface DrawerProps {
-  open: boolean;
-  onClose: () => void;
-  side?: "left" | "right";
-  children: React.ReactNode;
-}
-
-const Drawer = ({ open, onClose, side = "right", children }: DrawerProps) => {
-  return (
-    <>
-      {/* Overlay */}
-      <div
-        onClick={onClose}
-        className={`fixed inset-0 z-40 bg-black/50 transition-opacity duration-300 ${open ? "opacity-100" : "pointer-events-none opacity-0"
-          }`}
-        aria-hidden="true"
-      />
-
-      {/* Panel */}
-      <aside
-        role="dialog"
-        aria-modal="true"
-        className={`fixed inset-y-0 z-[60] w-[300px] max-w-[85vw] overflow-hidden bg-background shadow-lg transition-transform duration-300 ${side === "right" ? "right-0" : "left-0"
-          } ${open ? "translate-x-0" : side === "right" ? "translate-x-full" : "-translate-x-full"}`}
-      >
-
-        <div className="h-full overflow-y-auto">
-          {children}
-        </div>
-      </aside>
-    </>
   );
 };
 

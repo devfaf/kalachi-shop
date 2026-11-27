@@ -4,9 +4,7 @@ import {
     HiOutlineNewspaper,
     HiOutlinePhone,
     HiOutlineSquares2X2,
-    HiOutlineTruck,
 } from "react-icons/hi2";
-import { LiaFireAltSolid } from "react-icons/lia";
 
 export type NavItem = {
     label: string;

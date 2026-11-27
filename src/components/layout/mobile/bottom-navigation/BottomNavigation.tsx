@@ -13,7 +13,7 @@ import { usePathname } from "next/navigation";
 
 const navItems = [
     { id: "home", label: "خانه", icon: FiHome, href: "/" },
-    { id: "categories", label: "دسته‌بندی‌ها", icon: FiGrid, href: "/category" },
+    { id: "categories", label: "دسته‌بندی‌ها", icon: FiGrid, href: "/categories" },
     { id: "cart", label: "سبد خرید", icon: FiShoppingCart, href: "/cart" },
     { id: "articles", label: "مقالات", icon: FiFileText, href: "/articles" },
     { id: "account", label: "حساب کاربری", icon: FiUser, href: "/account" },
