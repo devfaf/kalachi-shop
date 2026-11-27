@@ -43,14 +43,16 @@ const ProductInfo = ({ info }: ProductInfoProps) => {
         <div className="font-bold py-2">
           ویژگی‌ها
         </div>
-        <div className="grid grid-cols-1 grid-cols-3 gap-2">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
           {
             info.features.map((feature) => (
-              <div key={feature.label}
-                className="bg-gray-100 py-2 px-1.5 rounded-lg flex flex-col">
-                <span className="text-gray-600 text-xs">{feature.label}</span>
-                <span className="text-sm text-black">{feature.value}</span>
-              </div>
+<div
+  key={feature.label}
+  className="min-w-0 rounded-lg bg-gray-100 px-2 py-2 flex flex-col gap-1"
+>
+  <span className="text-gray-600 text-xs">{feature.label}</span>
+  <span className="text-sm text-black break-words">{feature.value}</span>
+</div>
             ))
           }
         </div>
