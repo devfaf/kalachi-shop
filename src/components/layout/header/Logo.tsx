@@ -1,3 +1,4 @@
+
 import Link from "next/link";
 import Image from "next/image";
 
@@ -8,7 +9,7 @@ const Logo = () => {
       aria-label="فروشگاه اینترنتی کالاچی"
       className="flex shrink-0 items-center"
     >
-      <div className="flex w-[102px] md:w-[130px]">
+      <div className="flex w-[80px] md:w-[130px]">
         <Image
           src="/logo/logo.webp"
           alt="کالاچی"
